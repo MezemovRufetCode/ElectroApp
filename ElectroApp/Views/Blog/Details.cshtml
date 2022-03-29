@@ -1,0 +1,652 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section id="brdcrumb">
+    <div class="container">
+        <div class="row">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <div class="display">
+                            <div class="syllabus">
+                                <a href="#">Home > Blog Detail</a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<section id="blogdetailPage">
+    <section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="leftSide col-lg-9">
+                    <div class="blogwrapper">
+                        <div class="blogimage">
+                            <img src="~/assets/images/blog/@Model.Image" alt="">
+                        </div>
+                        <p class="blogName">@Model.Title</p>
+                        <div class="blogDetails">
+                            <ul class="detailList">
+                                <li class="detail tags">
+                                    <ul>
+                                        @foreach (var tag in Model.BlogTags)
+                                        {
+                                            <li><a href="">@tag.Tag.Name&nbsp;</a></li>
+                                        }
+                                        @*<li><a href="">Art, </a></li>
+                                        <li><a href="">Classic, </a></li>
+                                        <li><a href="">Design, </a></li>
+                                        <li><a href="">Photography</a></li>*@
+                                    </ul>
+                                </li>
+                                <li class="detail shareDate">
+
+                                    <span>@Model.PublishDate</span>
+                                </li>
+                                <li class="detail blogauthor">
+                                    <span>Posted By: Rufet Mezemov</span>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="blogText">
+                            <p>
+                                @Model.Desc
+                            </p>
+                        </div>
+                        <div class="share">
+                            <a href="" class="social">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     width="11" height="14" viewBox="0 0 37 64">
+                                    <path d="M34.24 0.448v9.408h-5.568q-3.072 0-4.16 1.28t-1.088 3.84v6.784h10.496l-1.408 10.56h-9.088v27.136h-10.944v-27.136h-9.088v-10.56h9.088v-7.808q0-6.656 3.712-10.304t9.92-3.648q5.248 0 8.128 0.448z">
+                                    </path>
+                                </svg><span>Share</span>
+                            </a>
+                            <a href="" class="social">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     width="11" height="14" viewBox="0 0 48 64">
+                                    <path d="M47.936 56c0 2.176-0.832 4.096-2.368 5.632-1.6 1.6-3.456 2.368-5.696 2.368h-15.872c-6.592 0-12.288-2.304-16.96-7.040-4.672-4.672-7.040-10.304-7.040-16.896v-32.064c0-2.24 0.768-4.16 2.368-5.696 1.536-1.536 3.456-2.304 5.696-2.304 2.176 0 4.096 0.768 5.632 2.368 1.6 1.536 2.368 3.456 2.368 5.632v11.584h22.592c2.048 0 3.84 0.768 5.312 2.24 1.408 1.408 2.176 3.136 2.176 5.184s-0.768 3.776-2.176 5.248c-1.472 1.472-3.264 2.176-5.248 2.176h-22.656v5.632c0 2.176 0.768 4.096 2.304 5.632s3.456 2.304 5.632 2.304h15.872c2.24 0 4.096 0.768 5.696 2.368 1.536 1.536 2.368 3.456 2.368 5.632">
+                                    </path>
+                                </svg><span>Tweet</span>
+                            </a>
+                        </div>
+                        <div class="commentSection">
+                            <div class="countInfo heading">
+                                <p>2 Comments</p>
+                            </div>
+                            <div class="allcomment">
+                                <div class="comment">
+                                    <p class="cmntInfo">
+                                        <span class="username">
+                                            Elbrus
+                                            Hasanzade&nbsp;-&nbsp;
+                                        </span><span class="commentDate">
+                                            Dec
+                                            30,2022
+                                        </span>
+                                    </p>
+                                    <div class="cmntContent">
+                                        <p class="cntnt">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor numquam
+                                            incidunt
+                                            quis obcaecati iste? Magnam, provident sequi impedit iure excepturi
+                                            natus,
+                                            neque
+                                            sunt autem aspernatur ea illum similique esse sit.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p class="cmntInfo">
+                                        <span class="username">
+                                            Elbrus Hasanzade
+                                            &nbsp;-&nbsp;
+                                        </span><span class="commentDate">Dec 30,2022</span>
+                                    </p>
+                                    <div class="cmntContent">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor numquam
+                                        incidunt
+                                        quis obcaecati iste? Magnam, provident sequi impedit iure excepturi natus,
+                                        neque
+                                        sunt autem aspernatur ea illum similique esse sit.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writingComment">
+                                <div class="desc heading">
+                                    <p>Leave a comment</p>
+                                </div>
+                                <form action="">
+                                    <div class="nameemail">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="namewrapper">
+                                                <input type="text" placeholder="Name">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="emailwrapper">
+                                                <input type="email" placeholder="E-mail">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <textarea name="" id="" cols="20" rows="6" placeholder="Comment"></textarea>
+                                    <input type="submit" name="" id="" value="Post Comment">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rigthSide col-lg-3 d-lg-block d-md-none d-sm-none d-none">
+                    <div class="rightwrapper">
+                        <div class="searchBlog">
+                            <form action="">
+                                <input type="text" placeholder="Enter Keywors...">
+                                <button type="submit">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                         width="20" height="20" viewBox="0 0 61 64">
+                                        <title>electro-search-icon</title>
+                                        <path d="M16.64 2.24c5.888-2.56 12.672-2.88 18.816-0.96 6.016 1.92 11.2 6.080 14.592 11.392 3.648 5.568 5.12 12.48 4.224 19.072-0.64 5.312-2.944 10.368-6.336 14.464 4.288 4.416 8.64 8.768 12.864 13.184-1.408 1.536-3.072 2.944-4.288 4.608h-0.32c-0.064-0.448-0.576-0.64-0.768-0.96-4.096-4.16-8.128-8.32-12.16-12.416-4.672 3.456-10.496 5.376-16.384 5.312-6.080-0.064-12.096-2.368-16.768-6.208-6.272-5.184-9.984-13.184-10.112-21.312v-0.832c0.064-4.736 1.344-9.536 3.712-13.632 2.88-5.184 7.488-9.408 12.928-11.712M26.048 3.328c-8.448 0.384-16.32 5.696-20.096 13.184-2.816 5.504-3.456 12.096-1.856 18.112 1.472 5.44 4.864 10.304 9.472 13.632 3.84 2.752 8.576 4.288 13.312 4.352 5.056 0.128 10.112-1.472 14.208-4.48 3.776-2.688 6.72-6.464 8.384-10.752 2.432-5.888 2.432-12.8 0.064-18.752-1.92-4.864-5.504-9.088-9.984-11.84-4.032-2.496-8.832-3.712-13.504-3.456z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="about">
+                            <div class="heading">
+                                <p>About</p>
+                            </div>
+                            <div class="content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in
+                                    malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque.
+                                    Quisque id sodales libero.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="recentPost">
+                            <div class="heading">
+                                <p>
+                                    Recent Posts
+                                </p>
+                            </div>
+                            <div class="posts">
+                                @foreach (var blog in ViewBag.LatestBlogs)
+                                {
+                                    <div class="post">
+                                        <div class="postimage">
+                                            <a href=""><img src="~/assets/images/blog/@blog.Image" alt=""></a>
+                                        </div>
+                                        <div class="postinfo">
+                                            @if (blog.Title.Length > 30)
+                                            {
+                                            <a href="" class="postname"> @blog.Title.Substring(0, 30)</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="" class="postname">@blog.Title</a>
+                                            }
+                                            <p class="postDate">@blog.PublishDate</p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <div class="heading">
+                                <p>Tags</p>
+                            </div>
+                            <ul class="taglist">
+                                @foreach (var tag in Model.BlogTags)
+                                {
+                                    <li><a href="">@tag.Tag.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<section id="shoplistBannerfifth">
+    <div class="container">
+        <div class="row">
+            <div class="content">
+                <ul class="main-list">
+                    <li class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="container">
+                            <h4><a href="#">Featured Products</a></h4>
+                            <ul>
+                                <div class="item">
+                                <li>
+                                    <div class="productWrapper">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="~/assets/images/featuredProducts/Printer_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="textInfo">
+                                                    <div class="topProduct">
+                                                        <p class="productName">
+                                                            <a href="#">
+                                                                Freshkix Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $120.00 <span class="oldPrice">$150.00</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="productWrapper">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="~/assets/images/featuredProducts/Smartwatch_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="textInfo">
+                                                    <div class="topProduct">
+                                                        <p class="productName">
+                                                            <a href="#">
+                                                                Freshkix Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $120.00 <span class="oldPrice">$150.00</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="productWrapper">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="textInfo">
+                                                    <div class="topProduct">
+                                                        <p class="productName">
+                                                            <a href="#">
+                                                                Freshkix Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $120.00 <span class="oldPrice">$150.00</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                        </div>
+                </ul>
+            </div>
+            </li>
+            <li class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="container">
+                    <h4><a href="#">Onsale Products</a></h4>
+                    <ul>
+                        <div class="item">
+                        <li>
+                            <div class="productWrapper">
+                                <div class="product">
+                                    <div class="productContent">
+                                        <div class="productImage">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="textInfo">
+                                            <div class="topProduct">
+                                                <p class="productName">
+                                                    <a href="#">
+                                                        Freshkix Product
+                                                        Sample
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="bottomProduct">
+                                                <div class="contforBotPr">
+                                                    <div class="productPrice">
+                                                        <p class="CurrentPrice">
+                                                            $120.00 <span class="oldPrice">$150.00</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="productWrapper">
+                                <div class="product">
+                                    <div class="productContent">
+                                        <div class="productImage">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="textInfo">
+                                            <div class="topProduct">
+                                                <p class="productName">
+                                                    <a href="#">
+                                                        Freshkix Product
+                                                        Sample
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="bottomProduct">
+                                                <div class="contforBotPr">
+                                                    <div class="productPrice">
+                                                        <p class="CurrentPrice">
+                                                            $120.00 <span class="oldPrice">$150.00</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="productWrapper">
+                                <div class="product">
+                                    <div class="productContent">
+                                        <div class="productImage">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="textInfo">
+                                            <div class="topProduct">
+                                                <p class="productName">
+                                                    <a href="#">
+                                                        Freshkix Product
+                                                        Sample
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="bottomProduct">
+                                                <div class="contforBotPr">
+                                                    <div class="productPrice">
+                                                        <p class="CurrentPrice">
+                                                            $120.00 <span class="oldPrice">$150.00</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                </div>
+                </ul>
+        </div>
+        </li>
+        <li class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="container">
+                <h4><a href="#">Top Rated Products</a></h4>
+                <ul>
+                    <div class="item">
+                    <li>
+                        <div class="productWrapper">
+                            <div class="product">
+                                <div class="productContent">
+                                    <div class="productImage">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="textInfo">
+                                        <div class="topProduct">
+                                            <p class="productName">
+                                                <a href="#">
+                                                    Freshkix Product
+                                                    Sample
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="bottomProduct">
+                                            <div class="contforBotPr">
+                                                <div class="productPrice">
+                                                    <p class="CurrentPrice">
+                                                        $120.00 <span class="oldPrice">$150.00</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="productWrapper">
+                            <div class="product">
+                                <div class="productContent">
+                                    <div class="productImage">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="textInfo">
+                                        <div class="topProduct">
+                                            <p class="productName">
+                                                <a href="#">
+                                                    Freshkix Product
+                                                    Sample
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="bottomProduct">
+                                            <div class="contforBotPr">
+                                                <div class="productPrice">
+                                                    <p class="CurrentPrice">
+                                                        $120.00 <span class="oldPrice">$150.00</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="productWrapper">
+                            <div class="product">
+                                <div class="productContent">
+                                    <div class="productImage">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                     alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="textInfo">
+                                        <div class="topProduct">
+                                            <p class="productName">
+                                                <a href="#">
+                                                    Freshkix Product
+                                                    Sample
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="bottomProduct">
+                                            <div class="contforBotPr">
+                                                <div class="productPrice">
+                                                    <p class="CurrentPrice">
+                                                        $120.00 <span class="oldPrice">$150.00</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+            </div>
+            </ul>
+    </div>
+    </li>
+    <li class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="container">
+            <div class="specialProductImage">
+                <a href="#">
+                    <img src="~/assets/images/featuredProducts/v2-right-1_540x.jpg" alt="">
+                </a>
+            </div>
+        </div>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+</section>
+<section id="partnerBrands">
+    <div class="container">
+        <div class="row">
+            <div class="brandsSlider">
+                <div class="owl-carousel owl-theme">
+                    <div class="brand-wrapper">
+                        <img class="sliderImg"
+                             src="~/assets/images/brands/partner_logo_4_230x85.png" alt="">
+                    </div>
+                    <div class="brand-wrapper">
+                        <img class="sliderImg"
+                             src="~/assets/images/brands/partner_logo_5_230x85.png" alt="">
+                    </div>
+                    <div class="brand-wrapper">
+                        <img class="sliderImg"
+                             src="~/assets/images/brands/partner_logo_6_230x85.png" alt="">
+                    </div>
+                    <div class="brand-wrapper">
+                        <img class="sliderImg"
+                             src="~/assets/images/brands/partner_logo_7_230x85.png" alt="">
+                    </div>
+                    <div class="brand-wrapper">
+                        <img class="sliderImg"
+                             src="~/assets/images/brands/partner_logo_8_230x85.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="subscribeWrapper">
+                <div class="description col-xl-3 col-lg-6  col-md-6 col-sm-12 col-12">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="paper-plane" role="img"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                         class="svg-inline--fa fa-paper-plane fa-w-16 fa-2x">
+                        <path fill="currentColor"
+                              d="M464 4.3L16 262.7C-7 276-4.7 309.9 19.8 320L160 378v102c0 30.2 37.8 43.3 56.7 20.3l60.7-73.8 126.4 52.2c19.1 7.9 40.7-4.2 43.8-24.7l64-417.1C515.7 10.2 487-9 464 4.3zM192 480v-88.8l54.5 22.5L192 480zm224-30.9l-206.2-85.2 199.5-235.8c4.8-5.6-2.9-13.2-8.5-8.4L145.5 337.3 32 290.5 480 32l-64 417.1z"
+                              class=""></path>
+                    </svg>
+                    <p>Sign up to Newsletter</p>
+                </div>
+                <div class="info col-xl-4  col-md-4 col-sm-4">
+                    <p>...and receive <span>$20 coupon for first shopping.</span></p>
+                </div>
+                <div class="subsribe col-xl-5 col-lg-6  col-md-6 col-sm-12 col-12">
+                    <form action="">
+                        <div class="inputEmail col-lg-9 col-md-8 col-sm-9 col-9">
+                            <input type="text" placeholder="Enter your email adress">
+                        </div>
+                        <div class="inputSubmit col-lg-3 col-md-4 col-sm-3 col-3">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- owl carousel -->
+<script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+<!-- ---------------- -->
+<!-- ------progressbar---- -->
+<script src="~/assets/JS/skill.bars.jquery.js"></script>
+<!-- ----------------- -->
+<script src="~/assets/js/script.js"></script>
