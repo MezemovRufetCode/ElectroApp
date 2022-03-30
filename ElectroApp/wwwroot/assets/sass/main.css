@@ -4930,12 +4930,8 @@ header .activeShoppingcart {
 }
 
 #accountPage #account .account form .inputwrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: block;
+  margin-bottom:20px;
 }
 
 #accountPage #account .account form .inputwrapper input {
@@ -4951,10 +4947,10 @@ header .activeShoppingcart {
   color: #848484;
   font-size: 15px;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
-#accountPage #account .account form .inputwrapper input:last-child {
+#accountPage #account .account form .inputwrapper:last-of-type {
   margin-bottom: 0px;
 }
 
@@ -4971,7 +4967,7 @@ header .activeShoppingcart {
   border-radius: 25px;
   border: none;
   outline: none;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 #accountPage #account .account form .inpSubmit:hover {

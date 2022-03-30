@@ -1,0 +1,132 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+<div id="accountPage">
+    <section id="brdcrumb">
+        <div class="container">
+            <div class="row">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <div class="display">
+                                <div class="syllabus">
+                                    <a href="#">Home > Create Account</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section id="account">
+        <div class="container">
+            <div class="row">
+                <div class="account">
+                    <div class="registerwrapper col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="register">
+                            <div class="heading">
+                                <h4 class="nameofdiv">Create New Account</h4>
+                            </div>
+                            <div class="content">
+                                <p class="description">Create your own Account</p>
+                                <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                                <form method="post">
+                                    <label for="">Fullname</label>
+                                    <div class="inputwrapper">
+                                        <input asp-for="Fullname" id="fullname"><br />
+                                        <span class="text-danger text" asp-validation-for="Fullname"></span>
+                                    </div>
+                                    <label for="">Email Address *</label>
+                                    <div class="inputwrapper">
+                                        <input asp-for="Email" id="email"><br />
+                                        <span class="text-danger text" asp-validation-for="Email"></span>
+                                    </div>
+
+                                    <label for="">Password *</label>
+                                    <div class="inputwrapper">
+                                        <input asp-for="Password" id="password"><br />
+                                        <span class="text-danger text" asp-validation-for="Password"></span>
+                                    </div>
+                                    <label for="">Confirm Password *</label>
+                                    <div class="inputwrapper">
+                                        <input asp-for="ConfirmPassword" id="password"><br />
+                                        <span class="text-danger text" asp-validation-for="ConfirmPassword"></span>
+                                    </div>
+
+                                    <input class="inpSubmit" type="submit" value="Register">
+                                </form>
+                                <div class="info">
+                                    <h5>Sign up today and you'll be able to:</h5>
+                                    <ul>
+                                        <li>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14"
+                                                 height="14" viewBox="0 0 64 64">
+                                                <path d="M59.712 20.224q0 1.408-1.024 2.432l-30.72 30.72q-1.024 0.96-2.432 0.96t-2.432-0.96l-17.792-17.792q-0.96-1.024-0.96-2.432t0.96-2.432l4.864-4.864q1.024-1.024 2.432-1.024t2.432 1.024l10.496 10.56 23.424-23.488q1.024-1.024 2.432-1.024t2.432 1.024l4.864 4.864q1.024 0.96 1.024 2.432z">
+                                                </path>
+                                            </svg>Speed your way through the checkout
+                                        </li>
+                                        <li>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14"
+                                                 height="14" viewBox="0 0 64 64">
+                                                <path d="M59.712 20.224q0 1.408-1.024 2.432l-30.72 30.72q-1.024 0.96-2.432 0.96t-2.432-0.96l-17.792-17.792q-0.96-1.024-0.96-2.432t0.96-2.432l4.864-4.864q1.024-1.024 2.432-1.024t2.432 1.024l10.496 10.56 23.424-23.488q1.024-1.024 2.432-1.024t2.432 1.024l4.864 4.864q1.024 0.96 1.024 2.432z">
+                                                </path>
+                                            </svg>Track your orders easily
+                                        </li>
+                                        <li>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14"
+                                                 height="14" viewBox="0 0 64 64">
+                                                <path d="M59.712 20.224q0 1.408-1.024 2.432l-30.72 30.72q-1.024 0.96-2.432 0.96t-2.432-0.96l-17.792-17.792q-0.96-1.024-0.96-2.432t0.96-2.432l4.864-4.864q1.024-1.024 2.432-1.024t2.432 1.024l10.496 10.56 23.424-23.488q1.024-1.024 2.432-1.024t2.432 1.024l4.864 4.864q1.024 0.96 1.024 2.432z">
+                                                </path>
+                                            </svg>Keep a record of all your purchases
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loginwrapper col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="login">
+                            <div class="heading">
+                                <h4 class="nameofdiv">Login</h4>
+                            </div>
+                            <div class="content">
+                                <p class="description">Welcome back! Sign in yo your account</p>
+                                <form action="">
+                                    <label for="">Email Address *</label>
+                                    <div class="inputwrapper">
+                                        <input type="text" id="email">
+                                    </div>
+                                    <label for="">Password *</label>
+                                    <div class="inputwrapper">
+                                        <input type="text" id="password">
+                                    </div>
+                                    <div class="bottomlogin">
+                                        <a href="#">Return to Store</a>
+                                        <a href="#" class="forgonpass">Forgotten Password ?</a>
+                                    </div>
+                                    <input class="inpSubmit" type="submit" value="Login">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- owl carousel -->
+<script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+<!-- ---------------- -->
+<!-- ------progressbar---- -->
+<script src="~/assets/JS/skill.bars.jquery.js"></script>
+<!-- ----------------- -->
+<script src="~/assets/js/script.js"></script>

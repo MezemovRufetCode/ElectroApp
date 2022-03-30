@@ -12,10 +12,8 @@ body {
     height: 100%;
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
-td, tr {
-    vertical-align: middle;
-    line-height: 1;
-    padding: 1.25rem 0.9375rem;
+td {
+    vertical-align: middle !important;
 }
 @font-face {
     font-family: DS-DIGI;
@@ -2310,7 +2308,8 @@ table code {
 
 .body-content {
     padding: 32px;
-    padding: 2rem
+    padding: 2rem;
+    padding-top:0px !important;
 }
 
 @media(max-width:767px) {

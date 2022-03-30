@@ -2,15 +2,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-<style>
-    td {
-        vertical-align: middle !important;
-    }
-</style>
-}
 <div class="container">
     <div class="d-flex" style="justify-content:flex-end">
-        <a asp-controller="blog" asp-action="create" class="btn btn-primary btn-icon-text mt-3">
+        <a asp-controller="blog" asp-action="create" class="btn btn-primary btn-icon-text">
             <i class="mdi mdi-upload btn-icon-prepend"></i>
             Create
         </a>
@@ -73,7 +67,7 @@
                             </a>*@
                     </td>
                 </tr>
-       }
+            }
         </tbody>
     </table>
     @*pagination*@
@@ -87,32 +81,32 @@
                         <li class="page-item disabled">
                             <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
                         </li>
- }
+                    }
                     else
                     {
                         <li class="page-item">
                             <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
                         </li>
-}
+                    }
 
                     @for (int i = 1; i <= ViewBag.TotalPage; i++)
                     {
                         <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")
                                     " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="blog" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>
-}
+                                }
 
                     @if (ViewBag.CurrentPage == ViewBag.TotalPage)
                     {
                         <li class="page-item disabled">
                             <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
                         </li>
- }
+                    }
                     else
                     {
                         <li class="page-item">
                             <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
                         </li>
-}
+                    }
                 </ul>
             </nav>
         </div>
@@ -122,7 +116,7 @@
 @section Scripts{
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
             $(".delete-item").click(function (e) {
                 e.preventDefault();
 

@@ -4,14 +4,16 @@ using ElectroApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElectroApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220330082511_SomeModelsCreated")]
+    partial class SomeModelsCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,7 +168,7 @@ namespace ElectroApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Campaigns");
+                    b.ToTable("Campaign");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.Category", b =>
@@ -183,7 +185,7 @@ namespace ElectroApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.IntroSlider", b =>
@@ -259,7 +261,7 @@ namespace ElectroApp.Migrations
 
                     b.HasIndex("SpecsId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.ProductCategory", b =>
@@ -281,28 +283,7 @@ namespace ElectroApp.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductCategories");
-                });
-
-            modelBuilder.Entity("ElectroApp.Models.Settings", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("hContact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("hEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Settings");
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.Specs", b =>

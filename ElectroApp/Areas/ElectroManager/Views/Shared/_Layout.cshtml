@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Start Your Custom Style Now-->
     <link href="~/admin/assets/dist/css/style.css" rel="stylesheet">
+    <style>
+        td{
+            vertical-align:middle !important;
+        }
+    </style>
 </head>
 <body class="fixed">
     <!-- Page Loader -->
@@ -80,31 +85,32 @@
                         </li>
                         <li>
                             <a class="has-arrow material-ripple" href="#">
+                                <i class="typcn typcn-mail mr-2"></i>
+                                Product
+                            </a>
+                            <ul class="nav-second-level">
+                                <li><a asp-controller="brand" asp-action="index">Brands</a></li>
+                                <li><a asp-controller="category" asp-action="index">Categories</a></li>
+                                <li><a href="compose.html">Compose</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-chart-pie-outline mr-2"></i>
                                 Blogs
                             </a>
                             <ul class="nav-second-level">
                                 <li><a asp-controller="blog" asp-action="index">Blog</a></li>
                                 <li><a asp-controller="blgtag" asp-action="index">Tags</a></li>
-                                <li><a asp-controller="blgtag" asp-action="create">Create Tag</a></li>
-                                <li><a asp-controller="blgtag" asp-action="edit">Edit Tag</a></li>
+                                @*<li><a asp-controller="blgtag" asp-action="create">Create Tag</a></li>
+                                <li><a asp-controller="blgtag" asp-action="edit">Edit Tag</a></li>*@
                                 <li><a href="charts_sparkline.html">Sparkline Charts</a></li>
                                 <li><a href="charts_am.html">Am Charts</a></li>
                                 <li><a href="charts_apex.html">Chart Apex</a></li>
                             </ul>
                         </li>
                         <li><a href="chat.html"><i class="typcn typcn-messages mr-2"></i> Chat</a></li>
-                        <li>
-                            <a class="has-arrow material-ripple" href="#">
-                                <i class="typcn typcn-mail mr-2"></i>
-                                Mailbox
-                            </a>
-                            <ul class="nav-second-level">
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li><a href="mailbox_details.html">Mailbox Details</a></li>
-                                <li><a href="compose.html">Compose</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-archive mr-2"></i>

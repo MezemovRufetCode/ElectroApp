@@ -1,4 +1,5 @@
 ﻿using ElectroApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ElectroApp.DAL
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext:IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
@@ -17,5 +18,12 @@ namespace ElectroApp.DAL
         public DbSet<bTag> Tags { get; set; }
         public DbSet<BlogTag> BlogTags { get; set; }
         public DbSet<IntroSlider> IntroSliders { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Settings> Settings { get; set; }
+
     }
 }

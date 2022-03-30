@@ -15,10 +15,10 @@ namespace ElectroApp.Models
         [NotMapped]
         public IFormFile BackImageFile { get; set; }
         [Required]
-        [StringLength(maximumLength:50)]
+        [StringLength(maximumLength:25)]
         public string FirstDesc { get; set; }
         [Required]
-        [StringLength(maximumLength: 50)]
+        [StringLength(maximumLength: 30)]
         public string SecDesc { get; set; }
         [Required]
         public decimal Price { get; set; }

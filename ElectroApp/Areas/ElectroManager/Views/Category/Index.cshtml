@@ -1,8 +1,9 @@
-﻿@model List<bTag>
+﻿@model List<Category>
 @{ ViewData["Title"] = "Index"; }
+
 <div class="container">
     <div class="d-flex" style="justify-content:flex-end">
-        <a asp-controller="blgtag" asp-action="create" class="btn btn-primary btn-icon-text">
+        <a asp-controller="category" asp-action="create" class="btn btn-primary btn-icon-text mt-3">
             <i class="mdi mdi-upload btn-icon-prepend"></i>
             Create
         </a>
@@ -15,10 +16,10 @@
                     Id
                 </th>
                 <th>
-                    Tag
+                    Category
                 </th>
                 <th>
-                    Blog Count
+                    Product Count
                 </th>
                 <th>
                     Settings
@@ -26,35 +27,33 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (bTag tag in Model)
+            @foreach (Category category in Model)
             {
 <tr>
     <td>
-        @tag.Id
+        @category.Id
     </td>
     <td>
-        @tag.Name
+        @category.Name
     </td>
     <td>
-        @tag.BlogTags.Count
+        @*@category.ProductCategories.Count*@
     </td>
     <td>
-        <a asp-controller="blgtag" asp-action="edit" asp-route-id="@tag.Id" class="btn btn-primary btn-icon-text ">
+        <a asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="btn btn-primary btn-icon-text ">
             <i class="fas fa-edit"></i>
             Edit
         </a>
-        <a asp-controller="blgtag" asp-action="delete" asp-route-id="@tag.Id" class="btn btn-primary btn-icon-text delete-item">
+        <a asp-controller="category" asp-action="delete" asp-route-id="@category.Id" class="btn btn-primary btn-icon-text delete-item">
             <i class="fas fa-trash-alt"></i>
             Delete
         </a>
 
     </td>
-</tr>
-}
+</tr>            }
 
         </tbody>
     </table>
-    @*pagination*@
     <div class="container" style="display:flex;justify-content:center">
         <div class="row justify-content-center mt-5">
             <nav aria-label="...">
@@ -62,40 +61,40 @@
                     @if (ViewBag.CurrentPage == 1)
                     {
         <li class="page-item disabled">
-            <a class="page-link" asp-controller="tag" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+            <a class="page-link" asp-controller="categoty" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
         </li> }
                     else
                     {
         <li class="page-item">
-            <a class="page-link" asp-controller="tag" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+            <a class="page-link" asp-controller="categoty" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
         </li>}
 
                     @for (int i = 1; i <= ViewBag.TotalPage; i++)
                     {
         <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")
-                                " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="tag" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>}
+                                " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="categoty" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>}
 
                     @if (ViewBag.CurrentPage == ViewBag.TotalPage)
                     {
         <li class="page-item disabled">
-            <a class="page-link" asp-controller="tag" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+            <a class="page-link" asp-controller="categoty" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
         </li> }
                     else
                     {
         <li class="page-item">
-            <a class="page-link" asp-controller="tag" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+            <a class="page-link" asp-controller="categoty" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
         </li>}
                 </ul>
             </nav>
         </div>
     </div>
 
+
 </div>
 
 @section Scripts{
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(".delete-item").click(function (e) {
+    <script>$(".delete-item").click(function (e) {
             e.preventDefault();
 
             Swal.fire({
@@ -115,7 +114,7 @@
                         }
                         else {
                             Swal.fire(
-                                'Tag not found!',
+                                'categoty not found!',
                                 'Your file can not be deleted.',
                                 'Failed'
                             )
