@@ -12,10 +12,14 @@ namespace ElectroApp.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _usermanager;
+        private readonly SignInManager<AppUser> _signinmanager;
+        private readonly RoleManager<IdentityRole> _rolemanager;
 
-        public AccountController(UserManager<AppUser> userManager)
+        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager)
         {
             _usermanager = userManager;
+            _signinmanager = signInManager;
+            _rolemanager = roleManager;
         }
         public IActionResult Register()
         {
@@ -51,9 +55,56 @@ namespace ElectroApp.Controllers
             await _usermanager.AddToRoleAsync(user, "Member");
             return RedirectToAction("Index","Home");
         }
+
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        
+        //public async Task<IActionResult> ForgotPassword()
+        //{
+
+        //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM login)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            AppUser user = await _usermanager.FindByEmailAsync(login.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email or Passord is wrong.");
+                return View();
+            }
+            //bu result user login ola bilir ya yox odu
+
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signinmanager.PasswordSignInAsync(user.UserName, login.Password, login.Remember, true);
+            if (!result.Succeeded)
+            {
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "Your account has been blocked for 5 minutes due to multiple login attempts.");
+                    return View();
+                }
+                ModelState.AddModelError("", "Email or Password is wrong.");
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signinmanager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

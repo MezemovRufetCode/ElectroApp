@@ -1,4 +1,5 @@
 ﻿using ElectroApp.Models;
+using ElectroApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,13 +24,36 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             _rolemanager = roleManager;
             _signinresult = signInResult;
         }
-        //public IActionResult Login()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Login()
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM login)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            AppUser user = await _usermanager.FindByEmailAsync(login.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email or password is wrong");
+                return View();
+            }
+            if (!user.IsAdmin)
+            {
+                ModelState.AddModelError("", "Email or password is wrong");
+                return View();
+            }
+
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signinresult.PasswordSignInAsync(user, login.Password, login.Remember, true);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Email or password is wrong");
+                return View();
+            }
+            return RedirectToAction("Index", "Product");
+        }
 
         //public async Task CreateRole()
         //{

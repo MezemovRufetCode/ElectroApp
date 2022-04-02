@@ -60,12 +60,11 @@
                                             <input asp-for="ConfirmPassword"><br />
                                             <span class="text text-danger" asp-validation-for="ConfirmPassword"></span>
                                         </div>
-                                        <div class="inputwrapper" style="display:flex;align-items:center">
-                                            <input style="height:16px;width:16px;margin-right:10px" asp-for="Terms"><br />
-                                            <label style="margin-bottom:0px" asp-for="Terms">I agree to all Terms & Condition</label>
+                                        <div class="inputwrapper trminput">
+                                            <input style="height: 16px; width: 16px; margin-right: 10px; vertical-align: middle;" asp-for="Terms">
+                                            <label style="margin-bottom:0px;vertical-align:middle;" asp-for="Terms">I agree to all <a href="" class="termsCondAnc">Terms & Condition</a></label><br />
                                             <span class="text text-danger" asp-validation-for="Terms"></span>
                                         </div>
-
                                         <input class="inpSubmit" type="submit" value="Register">
                                     </form>
                                     <div class="info">

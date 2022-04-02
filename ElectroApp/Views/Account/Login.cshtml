@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LoginVM
+@{
     ViewData["Title"] = "Login";
 }
 <body>
@@ -30,19 +31,28 @@
                                     <h4 class="nameofdiv">Login</h4>
                                 </div>
                                 <div class="content">
-                                    <p class="description">Welcome back! Sign in yo your account</p>
-                                    <form action="">
-                                        <label for="">Email Address *</label>
+                                    <div class="returnToStore">
+                                        <p class="description">Welcome back! Sign in yo your account</p>
+                                        <a href="">Return to Store</a>
+                                    </div>
+                                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                                    <form method="post">
                                         <div class="inputwrapper">
-                                            <input type="text" id="email">
+                                            <label asp-for="Email">Email</label>
+                                            <input asp-for="Email"><br />
+                                            <span class="text text-danger" asp-validation-for="Email"></span>
                                         </div>
-                                        <label for="">Password *</label>
                                         <div class="inputwrapper">
-                                            <input type="text" id="password">
+                                            <label asp-for="Password">Password*</label>
+                                            <input asp-for="Password"><br />
+                                            <span class="text text-danger" asp-validation-for="Password"></span>
                                         </div>
                                         <div class="bottomlogin">
-                                            <a href="#">Return to Store</a>
-                                            <a href="#" class="forgonpass">Forgotten Password ?</a>
+                                            <div class="" style="display:flex;align-items:center;">
+                                                <input style="margin-right:5px;width:16px;height:16px;" asp-for="Remember" />
+                                                <label style="margin-bottom:0px;" asp-for="Remember">Remember me</label>
+                                            </div>
+                                            <a asp-controller="account" asp-action="forgotpassword" class="forgonpass">Forgotten Password ?</a>
                                         </div>
                                         <input class="inpSubmit" type="submit" value="Login">
                                     </form>

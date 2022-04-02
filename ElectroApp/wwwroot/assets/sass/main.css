@@ -125,7 +125,7 @@ header .topheader .topheadElements .top-header__right .language .languageCard .l
 }
 
 header .topheader .topheadElements .top-header__right .language .languageCard .lang {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,7 +137,13 @@ header .topheader .topheadElements .top-header__right .language .languageCard .l
 header .topheader .topheadElements .top-header__right .language .languageCard .lang:last-child {
   margin-bottom: 0px;
 }
-
+    header .topheader .topheadElements .top-header__right .language .languageCard .lang span {
+        margin-left:5px;
+        transition:0.2s ease-in-out;
+    }
+    header .topheader .topheadElements .top-header__right .language .languageCard .lang span:hover {
+        color: #fed700;
+    }
 header .topheader .topheadElements .top-header__right .language .langactive {
   visibility: visible;
   opacity: 1;
@@ -161,7 +167,64 @@ header .topheader .topheadElements .elementAnc {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.671);
 }
+    header .topheader .topheadElements .profmenu {
+        position: relative;
+    }
 
+        header .topheader .topheadElements .profmenu:hover .profile {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        header .topheader .topheadElements .profmenu .profile {
+            visibility: hidden;
+            opacity: 0;
+            -webkit-transition: 0.3s ease-in;
+            transition: 0.3s ease-in;
+            margin-top: 8px;
+            z-index: 9999999;
+            position: absolute;
+            left: auto;
+            top: 100%;
+            right: -15px;
+            border: 1px solid #dddddd;
+            border-top: 3px solid #fed700;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: white;
+            display: block;
+            width: 150px;
+            padding: 5px;
+        }
+
+            header .topheader .topheadElements .profmenu .profile .profwrapper {
+                padding: 10px;
+                display: block;
+            }
+
+                header .topheader .topheadElements .profmenu .profile .profwrapper .myprof {
+                    padding-left: 0px;
+                    display: block;
+                }
+
+                    header .topheader .topheadElements .profmenu .profile .profwrapper .myprof li {
+                        list-style: none;
+                        display: block;
+                        padding: 3px 0px;
+                    }
+
+                        header .topheader .topheadElements .profmenu .profile .profwrapper .myprof li a {
+                            padding: 5px 0px;
+                            text-decoration: none;
+                            color: #333e48;
+                            font-family: "Roboto", sans-serif;
+                            font-size: 15px;
+                            transition:0.2s ease-in-out;
+                        }
+
+                            header .topheader .topheadElements .profmenu .profile .profwrapper .myprof li a:hover {
+                                color: #fed700;
+                            }
 header .topheader .topheadElements .elementName {
   margin-bottom: 0px;
   font-size: 14px;
@@ -4935,7 +4998,7 @@ header .activeShoppingcart {
   position: absolute;
   background-color: #fed700;
   height: 2px;
-  width: 115px;
+  width: 155px;
   left: 0px;
   bottom: -1px;
   -webkit-transition: 0.3s;
@@ -9193,7 +9256,10 @@ header .activeShoppingcart {
 #registerPage #account .account form .inputwrapper:last-of-type {
   margin-bottom: 0px;
 }
-
+    #registerPage #account .account form .inputwrapper a {
+        text-decoration:none;
+        color:mediumblue;
+    }
 #registerPage #account .account form .inputwrapper input {
   height: 47px;
   border: 1px solid #e6e6e6;
@@ -9407,11 +9473,26 @@ header .activeShoppingcart {
   transition: 0.3s ease-in;
   font-size: 14px;
 }
-
+    #loginPage #account .account .loginwrapper .login .content .returnToStore  {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
+    }
+    #loginPage #account .account .loginwrapper .login .content .returnToStore a {
+        text-decoration: none;
+        font-family: "Open Sans", sans-serif;
+        color: #333e48;
+        -webkit-transition: 0.3s ease-in;
+        transition: 0.3s ease-in;
+        font-size: 14px;
+    }
 #loginPage #account .account .loginwrapper .login .content .bottomlogin a:hover {
   color: #fed700;
 }
-
+    #loginPage #account .account .loginwrapper .login .content .returnToStore a:hover {
+        color: #fed700;
+    }
 footer {
   background-color: white;
 }
