@@ -1,0 +1,1095 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+@section CSS
+{
+    <style>
+
+        .pagination a {
+            border-radius: 50% !important;
+        }
+
+        .pagination .page-item {
+            outline: none !important;
+        }
+
+            .pagination .page-item .page-link {
+                width: 40px;
+                height: 40px;
+                background-color: #fed700 !important;
+                border: none;
+                outline: none !important;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                margin: 0px 2px;
+                color: white;
+            }
+
+                .pagination .page-item .page-link:hover {
+                    color: #333e48 !important;
+                }
+
+        .pagination .disabled a {
+            color: #333e48 !important;
+        }
+
+            .pagination .disabled a i {
+                color: #333e48 !important;
+            }
+
+        .pagination .active .page-link {
+            background-color: #fed700 !important;
+            color: #333e48 !important;
+        }
+    </style>
+}
+<section id="productlistPage">
+    <body>
+        <section id="brdcrumb">
+            <div class="container">
+                <div class="row">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <div class="display">
+                                    <div class="syllabus">
+                                        <a href="#">Home > All In One</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section id="productList">
+            <div class="container">
+                <div class="row">
+                    <div class="productlistpageLeftside col-lg-3">
+                        <div class="productfilter">
+                            <div class="opncloseSide d-lg-none">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                     viewBox="0 0 64 64">
+                                    <path d="M57.6 53.12l-21.248-21.248 20.864-21.248-4.096-4.224-21.248 20.992-20.992-20.992-4.48 4.224 21.248 21.248-21.248 21.248 4.48 4.224 20.992-20.992 21.248 20.992 4.48-4.224z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="heading d-lg-block d-md-none d-sm-none">
+                                <h4 class="nameofdiv">Filter</h4>
+                            </div>
+                            <ul class="mylist">
+                                <div class="listelement">
+                                <li class="filters">
+                                    <div class="filtername">
+                                        <h6>
+                                            Color
+                                        </h6>
+                                        <span class="Icon zerodeg">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <div class="filterelement">
+                                        <ul class="advanced-filter">
+                                            <li class="filtercolorelement">
+                                                <a href="" style="background-color:rgb(29, 29, 29);"></a>
+                                            </li>
+                                            <li class="filtercolorelement">
+                                                <a href="" style="background-color:rgb(56, 56, 134);"></a>
+                                            </li>
+                                            <li class="filtercolorelement">
+                                                <a href="" style="background-color:rgb(185, 52, 52) ;"></a>
+                                            </li>
+                                            <li class="filtercolorelement">
+                                                <a href="" style="background-color:rgb(245, 237, 237) ;"></a>
+                                            </li>
+                                            <li class="filtercolorelement">
+                                                <a href="" style="background-color:rgb(247, 247, 126) ;"></a>
+                                            </li>
+                                        </ul>
+                                        <!-- <label class="customradiobtn" for="">
+                                            <input type="radio" id="radio1">
+                                            <span class="checked1"></span>
+                                        </label>
+                                        <label class="customradiobtn" for="">
+                                            <input type="radio" id="radio2">
+                                            <span class="checked2"></span>
+                                        </label>
+                                        <label class="customradiobtn" for="">
+                                            <input type="radio" id="radio2">
+                                            <span class="checked3"></span>
+                                        </label>
+                                        <label class="customradiobtn" for="">
+                                            <input type="radio" id="radio2">
+                                            <span class="checked4"></span>
+                                        </label>
+                                        <label class="customradiobtn" for="">
+                                            <input type="radio" id="radio2">
+                                            <span class="checked5"></span>
+                                        </label> -->
+                                    </div>
+                                </li>
+                        </div>
+
+                        <div class="listelement">
+                            <li class="filters">
+                                <div class="filtername">
+                                    <h6>
+                                        Brand1
+                                    </h6>
+                                    <span class="Icon zerodeg">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                                <div class="filterelement">
+                                    <!-- <input type="checkbox" id="scales" name="scales" checked>
+                                    <label for="scales">Scales</label> -->
+                                    <ul class="advanced-filter">
+                                        <li class="checkfilter"><a href="">Apple</a></li>
+                                        <li class="checkfilter"><a href="">Samsung</a></li>
+                                        <li class="checkfilter"><a href="">Xiaomi</a></li>
+                                        <li class="checkfilter"><a href="">Nokia</a></li>
+                                        <li class="checkfilter"><a href="">Oppo</a></li>
+                                        <li class="checkfilter"><a href="">Huawei</a></li>
+                                        <li class="checkfilter"><a href="">Oneplus</a></li>
+                                        <li class="checkfilter"><a href="">Rampage</a></li>
+                                        <li class="checkfilter"><a href="">Intel</a></li>
+                                        <li class="checkfilter"><a href="">Amd</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="listelement">
+                            <li class="filters">
+                                <div class="filtername">
+                                    <h6>
+                                        Brand2
+                                    </h6>
+                                    <span class="Icon zerodeg">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                                <div class="filterelement chcbx">
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Apple
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Samsung
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Huawei
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Honor
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Nokia
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Sony
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        HTC
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        ZTE
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        Oppo
+                                    </label>
+                                    <label for="">
+                                        <input type="checkbox" class="option-input checkbox">
+                                        OnePlus
+                                    </label>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="listelement">
+                            <li class="filters">
+                                <div class="filtername">
+                                    <h6>
+                                        Price1
+                                    </h6>
+                                    <span class="Icon zerodeg">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                                <div class="filterelement">
+                                    <ul class="advanced-filter">
+                                        <li class="checkfilter"><a href="">Under $100</a></li>
+                                        <li class="checkfilter"><a href="">$100-$300</a></li>
+                                        <li class="checkfilter"><a href="">Above $300</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="listelement priceFilter">
+                            <li class="filters">
+                                <div class="filtername">
+                                    <h6>
+                                        Price2
+                                    </h6>
+                                    <span class="Icon zerodeg">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                                <div class="filterelement">
+                                    <input type="number" placeholder="$100">
+                                    <span>to</span>
+                                    <input type="number" placeholder="$500">
+                                </div>
+                            </li>
+                        </div>
+                        </ul>
+                    </div>
+                    <div class="banner d-lg-block d-md-none d-sm-none d-none">
+                        <a href="">
+                            <img src="~/assets/images/banner/sidebar-banner_270x_caf21969-17c3-44e7-a84a-b10fc5e8a4be_320x.jpg"
+                                 alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="productlistpageRightside col-lg-9 col-md-12 col-sm-12">
+                    <div class="topofrightside">
+                        <div class="categoryname">
+                            <h6>All in One</h6>
+                        </div>
+                        <div class="settingsforProducts">
+                            <div class="toolbargroup">
+                                <div class="openfilterside d-lg-none">
+                                    <span class="bars"><i class="fa-solid fa-filter"></i></span>
+                                    <span class="fltr">Filter</span>
+                                </div>
+                                <div class="lookingProducts leftside">
+
+                                    <span class="grid grid-4 activelooking d-xl-block d-lg-none d-md-none d-sm-none d-none"
+                                          title="Grid" data-grid="grid-4">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="th"
+                                             role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                             class="svg-inline--fa fa-th fa-w-16 fa-2x">
+                                            <path fill="currentColor"
+                                                  d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z"
+                                                  class=""></path>
+                                        </svg>
+                                    </span>
+                                    <span class="grid grid-3" title="Large" data-grid="grid-3">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fad"
+                                             data-icon="th-large" role="img" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 512 512" class="svg-inline--fa fa-th-large fa-w-16 fa-2x">
+                                            <g class="fa-group">
+                                                <path fill="currentColor"
+                                                      d="M488 272H296a24 24 0 0 0-24 24v160a24 24 0 0 0 24 24h192a24 24 0 0 0 24-24V296a24 24 0 0 0-24-24zm-272 0H24a24 24 0 0 0-24 24v160a24 24 0 0 0 24 24h192a24 24 0 0 0 24-24V296a24 24 0 0 0-24-24z"
+                                                      class="fa-secondary"></path>
+                                                <path fill="currentColor"
+                                                      d="M488 32H296a24 24 0 0 0-24 24v160a24 24 0 0 0 24 24h192a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zm-272 0H24A24 24 0 0 0 0 56v160a24 24 0 0 0 24 24h192a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24z"
+                                                      class="fa-primary"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="grid grid-2" title="List" data-grid="grid-2">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list"
+                                             role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                             class="svg-inline--fa fa-list fa-w-16 fa-2x">
+                                            <path fill="currentColor"
+                                                  d="M80 368H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 64v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16zm0 160H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm416 176H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"
+                                                  class=""></path>
+                                        </svg>
+                                    </span>
+                                    <!-- <span class="grid grid-1 d-lg-block d-md-none d-sm-none d-none" title="List Small" data-grid="grid-1">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                            data-icon="th-list" role="img" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512" class="svg-inline--fa fa-th-list fa-w-16 fa-2x">
+                                            <path fill="currentColor"
+                                                d="M149.333 216v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-80c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zM125.333 32H24C10.745 32 0 42.745 0 56v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24zm80 448H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm-24-424v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24zm24 264H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24z"
+                                                class=""></path>
+                                        </svg>
+                                    </span> -->
+                                </div>
+                                <div class="sortByProduct">
+                                    <div class="sortingFilter">
+                                        <div class="filterName">
+                                            <span class="d-lg-block d-md-block d-sm-none d-none">Sort by</span>
+                                            <button id="sort_by_button">
+                                                <span class="name">Name, A-Z</span><svg version="1.1"
+                                                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                        viewBox="0 0 37 64">
+                                                    <path d="M36.544 25.152q0 0.896-0.64 1.6l-16 16q-0.704 0.704-1.6 0.704t-1.6-0.704l-16-16q-0.704-0.704-0.704-1.6t0.704-1.6 1.6-0.704h32q0.896 0 1.6 0.704t0.64 1.6z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <ul class="sortList">
+                                            <li class="sortlistItem activefilterItem">Name, A-Z</a></li>
+                                            <li class="sortlistItem">Name, Z-A</li>
+                                            <li class="sortlistItem">Featured</li>
+                                            <li class="sortlistItem">Price, Low To High</a></li>
+                                            <li class="sortlistItem">Price, High To Low</a></li>
+                                            <li class="sortlistItem">Date, Old To New</a></li>
+                                            <li class="sortlistItem">Date, New To Old</a></li>
+                                            <li class="sortlistItem">Best Selling</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="rightside">
+                                    <p class="productCount">Showing all 12 Items</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="productsection">
+                        <div class="content">
+                            <div class="contenybyCat">
+                                <div class="bestdeals">
+                                    <div class="productsByCat">
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/ActionCamera_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">$350.00</p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName"><a href="">Bulgari</a></p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Faxtex Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/Printer_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $110.00 <span class="oldPrice">$19.00</span>
+                                                                </p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName">
+                                                            <a href="">
+                                                                Christian
+                                                                Dior
+                                                            </a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Finity Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/Smartwatch_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $90.00 <span class="oldPrice">$120.00</span>
+                                                                </p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName">
+                                                            <a href="">
+                                                                Dolce &
+                                                                Gabanna
+                                                            </a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Fixair Product
+                                                                Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/Tablet_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">$210.00</p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Freecof
+                                                                Product Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/ActionCamera_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">$450.00</p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName"><a href="">Bulgari</a></p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Bag
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/Earphones_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">$150.00</p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName"><a href="">Armani</a></p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Freshkix
+                                                                Product Sample
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">
+                                                                    $120.00 <span class="oldPrice">$150.00</span>
+                                                                </p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="productWrapper col-lg-3 col-sm-6">
+                                            <div class="product">
+                                                <div class="productContent">
+                                                    <div class="topProduct">
+                                                        <p class="brandName">
+                                                            <a href="">
+                                                                Dolce &
+                                                                Gabanna
+                                                            </a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Gold Diamond
+                                                                Chain
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="productImage">
+                                                        <div class="image">
+                                                            <a href="">
+                                                                <img src="~/assets/images/featuredProducts/GameStation_180x.jpg"
+                                                                     alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bottomProduct">
+                                                        <div class="contforBotPr">
+                                                            <div class="productPrice">
+                                                                <p class="CurrentPrice">$399.00</p>
+                                                            </div>
+                                                            <a href="">
+                                                                <div class="selectOption">
+                                                                    <svg version="1.1"
+                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                         width="14" height="14" viewBox="0 0 64 64">
+                                                                        <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="specifications">
+                                                    <div class="wrapperspcy col-lg-6 col-md-6">
+                                                        <p class="brandName">
+                                                            <a href="">Donna Karan</a>
+                                                        </p>
+                                                        <p class="productName">
+                                                            <a href="">
+                                                                Georgeus White
+                                                                Dresses
+                                                            </a>
+                                                        </p>
+                                                        <ul class="specy">
+                                                            <li>4.5 inch HD Screen</li>
+                                                            <li>Android 4.4 KitKat OS</li>
+                                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                                            <li>20 MP front Camera</li>
+                                                            <li>Cloud storage</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
+                                                        <p class="price">$20.00</p>
+                                                        <a href="" class="selectop">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="productButton">
+                                                    <div class="quickView productBtnEl">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                             width="18" height="18" viewBox="0 0 64 64">
+                                                            <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                            </path>
+                                                        </svg>
+                                                        <span>View</span>
+                                                    </div>
+                                                    <div class="whishlist productBtnEl">
+                                                        <a href="">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                            <span>Wishlist</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="container" style="display:flex;justify-content:center">
+                            <div class="row justify-content-center mt-5">
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-center">
+                                        @if (ViewBag.CurrentPage == 1)
+                                        {
+                                            <li class="page-item disabled">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+                                            </li>
+                                        }
+
+                                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                        {
+                                            <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")
+                                " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="product" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>
+                            }
+
+                                        @if (ViewBag.CurrentPage == ViewBag.TotalPage)
+                                        {
+                                            <li class="page-item disabled">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+        </section>
+        <!-- jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- owl carousel -->
+        <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+        <!-- ---------------- -->
+        <!-- ------progressbar---- -->
+        <script src="~/assets/JS/skill.bars.jquery.js"></script>
+
+        <script src="~/assets/js/productlist.js"></script>
+
+
+        <!-- ----------------- -->
+        <script src="~/assets/js/script.js"></script>
+    </body>
+</section>

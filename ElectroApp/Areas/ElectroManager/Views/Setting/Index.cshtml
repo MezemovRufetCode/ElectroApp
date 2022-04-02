@@ -1,0 +1,50 @@
+﻿@model Setting
+@{ ViewData["Title"] = "Index"; }
+
+<div class="container">
+    <div class="d-flex" style="justify-content:flex-end">
+        <a asp-controller="Setting" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-icon-text mt-3">
+            <i class="fas fa-edit"></i>
+            Edit
+        </a>
+    </div>
+
+    <table class="table table-dark mt-3">
+        <thead>
+            <tr>
+                <th>
+                    Logo
+                </th>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div style="background-color:white;width:fit-content;padding:10px">
+                        <svg version="1.1" x="0px" y="0px" width="125px" height="30px"
+                             viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
+                            <ellipse class="ellipse-bg" fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700"
+                                     cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
+                            <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48"
+                                  d="@Model.Logo">
+                            </path>
+                        </svg>
+                    </div>
+                </td>
+                <td>
+                  @Model.hContact
+                </td>
+
+                <td>
+                    @Model.hEmail
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

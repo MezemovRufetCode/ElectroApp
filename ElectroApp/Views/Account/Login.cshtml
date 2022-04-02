@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<body>
+    <div id="loginPage">
+        <section id="brdcrumb">
+            <div class="container">
+                <div class="row">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <div class="display">
+                                    <div class="syllabus">
+                                        <a href="#">Home > Login</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section id="account">
+            <div class="container">
+                <div class="row">
+                    <div class="account">
+                        <div class="loginwrapper">
+                            <div class="login">
+                                <div class="heading">
+                                    <h4 class="nameofdiv">Login</h4>
+                                </div>
+                                <div class="content">
+                                    <p class="description">Welcome back! Sign in yo your account</p>
+                                    <form action="">
+                                        <label for="">Email Address *</label>
+                                        <div class="inputwrapper">
+                                            <input type="text" id="email">
+                                        </div>
+                                        <label for="">Password *</label>
+                                        <div class="inputwrapper">
+                                            <input type="text" id="password">
+                                        </div>
+                                        <div class="bottomlogin">
+                                            <a href="#">Return to Store</a>
+                                            <a href="#" class="forgonpass">Forgotten Password ?</a>
+                                        </div>
+                                        <input class="inpSubmit" type="submit" value="Login">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    @*jquery*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*owl carousel*@
+    <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+    @*----------------*@
+    @*------progressbar----*@
+    <script src="~/assets/JS/skill.bars.jquery.js"></script>
+    @*-----------------*@
+    <script src="~/assets/js/script.js"></script>
+</body>

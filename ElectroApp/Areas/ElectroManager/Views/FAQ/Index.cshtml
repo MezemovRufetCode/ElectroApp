@@ -1,0 +1,208 @@
+﻿@model List<FAQ>
+@{ ViewData["Title"] = "Index"; }
+@section CSS
+{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /*        #productlistPage #productList .productlistpageRightside .pagination {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center !important;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+            width: 100%;
+        }*/
+        .pagination a {
+            border-radius: 50% !important;
+        }
+
+        .pagination .page-item {
+            outline: none !important;
+        }
+
+            .pagination .page-item .page-link {
+                width: 40px;
+                height: 40px;
+                background-color: #fed700 !important;
+                border: none;
+                outline: none !important;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                margin: 0px 2px;
+                color: white;
+            }
+
+                .pagination .page-item .page-link:hover {
+                    color: #333e48 !important;
+                }
+
+        .pagination .disabled a {
+            color: #333e48 !important;
+        }
+
+            .pagination .disabled a i {
+                color: #333e48 !important;
+            }
+
+        .pagination .active .page-link {
+            background-color: #fed700 !important;
+            color: #333e48 !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="d-flex" style="justify-content:flex-end">
+        <a asp-controller="faq" asp-action="create" class="btn btn-primary btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Create
+        </a>
+    </div>
+
+    <table class="table table-dark mt-3">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Anwer
+                </th>
+                <th>
+                    Question
+                </th>
+                <th>
+                    Settings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FAQ faq in Model)
+            {
+<tr>
+    <td>
+        @faq.Id
+    </td>
+    @if (faq.Question.Length > 40)
+    {
+<td>
+    @faq.Question.Substring(0, 37)...
+</td> }
+                else
+                {
+<td>
+    @faq.Question
+</td>}
+    @if (faq.Answer.Length > 50)
+    {
+<td>
+    @faq.Answer.Substring(0, 47)...
+</td>
+ }
+else
+{
+<td>
+    @faq.Answer
+</td>}
+
+    <td>
+        <a asp-controller="faq" asp-action="edit" asp-route-id="@faq.Id" class="btn btn-primary btn-icon-text ">
+            <i class="fas fa-edit"></i>
+            Edit
+        </a>
+        <a asp-controller="faq" asp-action="delete" asp-route-id="@faq.Id" class="btn btn-primary btn-icon-text delete-item">
+            <i class="fas fa-trash-alt"></i>
+            Delete
+        </a>
+
+    </td>
+</tr>}
+
+        </tbody>
+    </table>
+    @*pagination*@
+    <div class="pagination">
+        <div class="container" style="display:flex;justify-content:center">
+            <div class="row justify-content-center mt-5">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        @if (ViewBag.CurrentPage == 1)
+                        {
+            <li class="page-item disabled">
+                <a class="page-link" asp-controller="faq" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+            </li> }
+                        else
+                        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="faq" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+            </li>}
+
+                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                        {
+            <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")
+                                " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="faq" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>}
+
+                        @if (ViewBag.CurrentPage == ViewBag.TotalPage)
+                        {
+            <li class="page-item disabled">
+                <a class="page-link" asp-controller="faq" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+            </li> }
+                        else
+                        {
+            <li class="page-item">
+                <a class="page-link" asp-controller="faq" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+            </li>}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-item").click(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var link = $(this).attr("href");
+                    fetch(link).then(response => response.json()).then(data => {
+                        if (data.status == 200) {
+                            location.reload(true)
+                        }
+                        else {
+                            Swal.fire(
+                                'FAQ not found!',
+                                'Your file can not be deleted.',
+                                'Failed'
+                            )
+                        }
+                    }
+
+                    );
+
+                }
+            })
+        })</script>
+}

@@ -29,10 +29,15 @@ namespace ElectroApp.Controllers
                 return View();
             AppUser user = new AppUser
             {
-                Fullname = register.Fullname,
-                Email=register.Email,
-                UserName=register.Username
+                Email = register.Email,
+                UserName = register.Username,
+                Fullname = register.Fullname
             };
+            if (!register.Terms)
+            {
+                ModelState.AddModelError("Terms", "Please agree to all the terms and conditions before registration.");
+                return View();
+            }
             IdentityResult result = await _usermanager.CreateAsync(user, register.Password);
 
             if (!result.Succeeded)
@@ -43,7 +48,12 @@ namespace ElectroApp.Controllers
                 }
                 return View();
             }
+            await _usermanager.AddToRoleAsync(user, "Member");
             return RedirectToAction("Index","Home");
+        }
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }

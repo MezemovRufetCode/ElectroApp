@@ -1,5 +1,6 @@
 using ElectroApp.DAL;
 using ElectroApp.Models;
+using ElectroApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,19 +29,22 @@ namespace ElectroApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
-            //services.AddScoped<LayoutServices>();
+            services.AddScoped<LayoutServices>();
             services.AddIdentity<AppUser, IdentityRole>(option =>
             {
+                option.User.RequireUniqueEmail = true;
                 option.Password.RequireDigit = true;
                 option.Password.RequiredLength = 8;
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireLowercase = false;
                 option.Password.RequireUppercase = false;
+                option.Lockout.MaxFailedAccessAttempts = 5;
+                option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                option.Lockout.AllowedForNewUsers = true;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
         }
 
@@ -62,6 +66,7 @@ namespace ElectroApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

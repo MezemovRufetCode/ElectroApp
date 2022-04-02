@@ -59,7 +59,7 @@
                     <img src="~/admin/assets/dist/img/avatar-1.jpg" class="img-fluid rounded-circle" alt="">
                 </div>
                 <div class="profile-text">
-                    <h6 class="m-0">Naeem Khan</h6>
+                    <h6 class="m-0">Rufet Mezemov</h6>
                     <span><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="87e2ffe6eaf7ebe2c7e0eae6eeeba9e4e8ea">[email&#160;protected]</a></span>
                 </div>
             </div><!--/.profile element-->
@@ -86,12 +86,13 @@
                         <li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-mail mr-2"></i>
-                                Product
+                                Products
                             </a>
                             <ul class="nav-second-level">
+                                <li><a asp-controller="product" asp-action="index">Product</a></li>
                                 <li><a asp-controller="brand" asp-action="index">Brands</a></li>
                                 <li><a asp-controller="category" asp-action="index">Categories</a></li>
-                                <li><a href="compose.html">Compose</a></li>
+                                <li><a asp-controller="campaign" asp-action="index">Campaign</a></li>
                             </ul>
                         </li>
                         <li>
@@ -102,16 +103,11 @@
                             <ul class="nav-second-level">
                                 <li><a asp-controller="blog" asp-action="index">Blog</a></li>
                                 <li><a asp-controller="blgtag" asp-action="index">Tags</a></li>
-                                @*<li><a asp-controller="blgtag" asp-action="create">Create Tag</a></li>
-                                <li><a asp-controller="blgtag" asp-action="edit">Edit Tag</a></li>*@
-                                <li><a href="charts_sparkline.html">Sparkline Charts</a></li>
-                                <li><a href="charts_am.html">Am Charts</a></li>
-                                <li><a href="charts_apex.html">Chart Apex</a></li>
                             </ul>
                         </li>
-                        <li><a href="chat.html"><i class="typcn typcn-messages mr-2"></i> Chat</a></li>
+                        <li><a asp-controller="faq" asp-action="index"><i class="typcn typcn-messages mr-2"></i> FAQs</a></li>
 
-                        <li>
+                        @*<li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-archive mr-2"></i>
                                 Tables
@@ -277,7 +273,7 @@
                             </ul>
                         </li>
                         <li><a href="changelog.html"><i class="typcn typcn-attachment-outline mr-2"></i>Changelog<span class="badge badge-success ml-auto">v1.1.0</span></a></li>
-                        <li><a href="#"><i class="typcn typcn-support mr-2"></i>Documentation</a></li>
+                        <li><a href="#"><i class="typcn typcn-support mr-2"></i>Documentation</a></li>*@
                     </ul>
                 </nav>
             </div><!-- sidebar-body -->
@@ -377,9 +373,9 @@
                                     </div>
                                     <div class="user-header">
                                         <div class="img-user">
-                                            <img src="assets/dist/img/avatar-1.jpg" alt="">
+                                            <img src="assets/dist/img/" alt="">
                                         </div><!-- img-user -->
-                                        <h6>Naeem Khan</h6>
+                                        <h6>Rufet Mezemov</h6>
                                         <span><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="294c51484459454c694e44484045074a4644">[email&#160;protected]</a></span>
                                     </div><!-- user-header -->
                                     <a href="#" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>

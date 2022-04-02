@@ -1,0 +1,67 @@
+﻿@model List<FAQ>
+@{
+    ViewData["Title"] = "Index";
+}
+<body>
+    <section id="FAQPage">
+        <section id="brdcrumb">
+            <div class="container">
+                <div class="row">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <div class="display">
+                                    <div class="syllabus">
+                                        <a href="#">Home > FAQ</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section id="faq">
+            <div class="container">
+                <div class="row">
+                    <div class="FAQ">
+                        <div class="headinfo">Frequently Asked Questions</div>
+                        <ul class="mylist">
+                            @foreach (FAQ faq in Model)
+                            {
+                                <li class="questions">
+
+                                    <div class="Quest">
+                                        <h6>
+                                            @faq.Question
+                                        </h6>
+                                        <span class="Icon zerodeg"><i class="fas fa-chevron-up"></i></span>
+                                    </div>
+
+                                    <div class="answer">
+                                        <p>
+                                            @faq.Answer
+                                        </p>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- owl carousel -->
+    <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+    <!-- ---------------- -->
+    <!-- ------progressbar---- -->
+    <script src="~/assets/JS/skill.bars.jquery.js"></script>
+    <!-- ----------------- -->
+    <script src="~/assets/js/script.js"></script>
+</body>

@@ -164,6 +164,10 @@ namespace ElectroApp.Migrations
                     b.Property<int>("DiscountPercent")
                         .HasColumnType("int");
 
+                    b.Property<string>("WhatFor")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
                     b.HasKey("Id");
 
                     b.ToTable("Campaigns");
@@ -184,6 +188,24 @@ namespace ElectroApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ElectroApp.Models.FAQ", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FAQs");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.IntroSlider", b =>
@@ -231,25 +253,33 @@ namespace ElectroApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(600)")
+                        .HasMaxLength(600);
 
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<string>("SkuCode")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
-                    b.Property<int>("SpecsId")
+                    b.Property<int?>("SpecsId")
                         .HasColumnType("int");
 
                     b.Property<string>("Videolink")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
@@ -284,7 +314,30 @@ namespace ElectroApp.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("ElectroApp.Models.Settings", b =>
+            modelBuilder.Entity("ElectroApp.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("ElectroApp.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -295,10 +348,14 @@ namespace ElectroApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("hContact")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("hEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -497,9 +554,7 @@ namespace ElectroApp.Migrations
 
                     b.HasOne("ElectroApp.Models.Specs", "Specs")
                         .WithMany("Products")
-                        .HasForeignKey("SpecsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpecsId");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.ProductCategory", b =>
@@ -512,6 +567,15 @@ namespace ElectroApp.Migrations
 
                     b.HasOne("ElectroApp.Models.Product", "Product")
                         .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ElectroApp.Models.ProductImage", b =>
+                {
+                    b.HasOne("ElectroApp.Models.Product", "Product")
+                        .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

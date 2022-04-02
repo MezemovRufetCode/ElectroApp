@@ -1,0 +1,163 @@
+.fancybox__backdrop,
+.fancybox__caption,
+.fancybox__nav,
+.carousel__dots,
+.carousel__button.is-close {
+  opacity: var(--fancybox-opacity, 1);
+}
+
+/* Opening */
+.fancybox__container.is-animated[aria-hidden="false"] .fancybox__backdrop,
+.fancybox__container.is-animated[aria-hidden="false"] .fancybox__caption,
+.fancybox__container.is-animated[aria-hidden="false"] .fancybox__nav,
+.fancybox__container.is-animated[aria-hidden="false"] .carousel__dots,
+.fancybox__container.is-animated[aria-hidden="false"] .carousel__button.is-close {
+  -webkit-animation: 0.15s ease backwards fancybox-fadeIn;
+          animation: 0.15s ease backwards fancybox-fadeIn;
+}
+
+/* Closing */
+.fancybox__container.is-animated.is-closing .fancybox__backdrop,
+.fancybox__container.is-animated.is-closing .fancybox__caption,
+.fancybox__container.is-animated.is-closing .fancybox__nav,
+.fancybox__container.is-animated.is-closing .carousel__dots,
+.fancybox__container.is-animated.is-closing .carousel__button.is-close {
+  -webkit-animation: 0.15s ease both fancybox-fadeOut;
+          animation: 0.15s ease both fancybox-fadeOut;
+}
+
+.fancybox-fadeIn {
+  -webkit-animation: 0.15s ease both fancybox-fadeIn;
+          animation: 0.15s ease both fancybox-fadeIn;
+}
+
+.fancybox-fadeOut {
+  -webkit-animation: 0.1s ease both fancybox-fadeOut;
+          animation: 0.1s ease both fancybox-fadeOut;
+}
+
+.fancybox-zoomInUp {
+  -webkit-animation: 0.2s ease both fancybox-zoomInUp;
+          animation: 0.2s ease both fancybox-zoomInUp;
+}
+
+.fancybox-zoomOutDown {
+  -webkit-animation: 0.15s ease both fancybox-zoomOutDown;
+          animation: 0.15s ease both fancybox-zoomOutDown;
+}
+
+/* Both `throwOut` classes are for closing animation after dragging up/down */
+.fancybox-throwOutUp {
+  -webkit-animation: 0.15s ease both fancybox-throwOutUp;
+          animation: 0.15s ease both fancybox-throwOutUp;
+}
+
+.fancybox-throwOutDown {
+  -webkit-animation: 0.15s ease both fancybox-throwOutDown;
+          animation: 0.15s ease both fancybox-throwOutDown;
+}
+
+@-webkit-keyframes fancybox-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fancybox-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fancybox-fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fancybox-fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fancybox-zoomInUp {
+  from {
+    -webkit-transform: scale(0.97) translate3d(0, 16px, 0);
+            transform: scale(0.97) translate3d(0, 16px, 0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+            transform: scale(1) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fancybox-zoomInUp {
+  from {
+    -webkit-transform: scale(0.97) translate3d(0, 16px, 0);
+            transform: scale(0.97) translate3d(0, 16px, 0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+            transform: scale(1) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fancybox-zoomOutDown {
+  to {
+    -webkit-transform: scale(0.97) translate3d(0, 16px, 0);
+            transform: scale(0.97) translate3d(0, 16px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fancybox-zoomOutDown {
+  to {
+    -webkit-transform: scale(0.97) translate3d(0, 16px, 0);
+            transform: scale(0.97) translate3d(0, 16px, 0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fancybox-throwOutUp {
+  to {
+    -webkit-transform: translate3d(0, -30%, 0);
+            transform: translate3d(0, -30%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fancybox-throwOutUp {
+  to {
+    -webkit-transform: translate3d(0, -30%, 0);
+            transform: translate3d(0, -30%, 0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fancybox-throwOutDown {
+  to {
+    -webkit-transform: translate3d(0, 30%, 0);
+            transform: translate3d(0, 30%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fancybox-throwOutDown {
+  to {
+    -webkit-transform: translate3d(0, 30%, 0);
+            transform: translate3d(0, 30%, 0);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=animations.css.map */

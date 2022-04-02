@@ -4879,187 +4879,6 @@ header .activeShoppingcart {
   background-color: black;
 }
 
-#accountPage #account .account {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-#accountPage #account .account .heading {
-  position: relative;
-}
-
-#accountPage #account .account .heading .nameofdiv {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 25px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 0px;
-}
-
-#accountPage #account .account .heading .nameofdiv:after {
-  content: "";
-  position: absolute;
-  background-color: #fed700;
-  height: 2px;
-  width: 115px;
-  left: 0px;
-  bottom: -1px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-#accountPage #account .account .description {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  color: #333e48;
-}
-
-#accountPage #account .account form label {
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: #333e48;
-  margin-bottom: 8px;
-}
-
-#accountPage #account .account form .inputwrapper {
-  display: block;
-  margin-bottom:20px;
-}
-
-#accountPage #account .account form .inputwrapper input {
-  height: 47px;
-  border: 1px solid #e6e6e6;
-  border-radius: 25px;
-  width: 100%;
-  width: 100%;
-  padding: 13px 30px;
-  outline: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  color: #848484;
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 5px;
-}
-
-#accountPage #account .account form .inputwrapper:last-of-type {
-  margin-bottom: 0px;
-}
-
-#accountPage #account .account form .inputwrapper input:focus {
-  border: 1px solid #fed700;
-}
-
-#accountPage #account .account form .inpSubmit {
-  background-color: #fed700;
-  padding: 12px 35px;
-  color: #333e48;
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  margin-top: 20px;
-}
-
-#accountPage #account .account form .inpSubmit:hover {
-  background-color: #333e48;
-  color: white;
-}
-
-#accountPage #account .account .registerwrapper {
-  border-right: 1px solid #e6e6e6;
-  position: relative;
-}
-
-#accountPage #account .account .registerwrapper:after {
-  content: "or";
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  font-style: italic;
-  border: 1px solid #eaebec;
-  background: white;
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  border-radius: 50% 50% 50% 50%;
-}
-
-#accountPage #account .account .registerwrapper .register {
-  padding: 0 9.65%;
-}
-
-#accountPage #account .account .registerwrapper .register .info {
-  margin-top: 50px;
-}
-
-#accountPage #account .account .registerwrapper .register .info h5 {
-  font-size: 18px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  margin-bottom: 15px;
-}
-
-#accountPage #account .account .registerwrapper .register .info ul {
-  padding-left: 0px;
-}
-
-#accountPage #account .account .registerwrapper .register .info ul li {
-  list-style: none;
-  padding: 2px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#accountPage #account .account .registerwrapper .register .info ul li svg {
-  fill: #28a745;
-  margin-right: 5px;
-}
-
-#accountPage #account .account .loginwrapper .login {
-  position: relative;
-  padding: 0 9.65%;
-}
-
-#accountPage #account .account .loginwrapper .login .content .bottomlogin {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-top: 25px;
-}
-
-#accountPage #account .account .loginwrapper .login .content .bottomlogin a {
-  text-decoration: none;
-  font-family: "Open Sans", sans-serif;
-  color: #333e48;
-  -webkit-transition: 0.3s ease-in;
-  transition: 0.3s ease-in;
-  font-size: 14px;
-}
-
-#accountPage #account .account .loginwrapper .login .content .bottomlogin a:hover {
-  color: #fed700;
-}
-
 #productlistPage #productList .activefilterside {
   -webkit-transform: translateX(0px);
           transform: translateX(0px);
@@ -5527,6 +5346,57 @@ header .activeShoppingcart {
 
 #productlistPage #productList .productlistpageRightside .productsection {
   z-index: 0;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  width: 100%;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .page-item {
+  outline: none !important;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .page-item .page-link {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: #fed700 !important;
+  border: none;
+  outline: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px 2px;
+  color: white;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .page-item .page-link:hover {
+  color: #333e48 !important;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .disabled a {
+  color: #333e48 !important;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .disabled a i {
+  color: #333e48 !important;
+}
+
+#productlistPage #productList .productlistpageRightside .pagination .active .page-link {
+  background-color: #fed700 !important;
+  color: #333e48;
 }
 
 #productlistPage #productList .zerodeg {
@@ -9261,6 +9131,287 @@ header .activeShoppingcart {
   z-index: 2;
 }
 
+#registerPage #account .account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#registerPage #account .account .heading {
+  position: relative;
+}
+
+#registerPage #account .account .heading .nameofdiv {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+
+#registerPage #account .account .heading .nameofdiv:after {
+  content: "";
+  position: absolute;
+  background-color: #fed700;
+  height: 2px;
+  width: 115px;
+  left: 0px;
+  bottom: -1px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#registerPage #account .account .description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333e48;
+}
+
+#registerPage #account .account form label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333e48;
+  margin-bottom: 8px;
+}
+
+#registerPage #account .account form .inputwrapper {
+  display: block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+#registerPage #account .account form .inputwrapper:last-of-type {
+  margin-bottom: 0px;
+}
+
+#registerPage #account .account form .inputwrapper input {
+  height: 47px;
+  border: 1px solid #e6e6e6;
+  border-radius: 25px;
+  width: 100%;
+  width: 100%;
+  padding: 13px 30px;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #848484;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+#registerPage #account .account form .inputwrapper input:focus {
+  border: 1px solid #fed700;
+}
+
+    #registerPage #account .account form .inpSubmit {
+        background-color: #fed700;
+        padding: 12px 35px;
+        color: #333e48;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        border-radius: 25px;
+        border: none;
+        outline: none;
+        margin-top: 30px;
+        transition: 0.2s;
+    }
+
+#registerPage #account .account form .inpSubmit:hover {
+  background-color: #333e48;
+  color: white;
+}
+
+#registerPage #account .account .registerwrapper {
+  position: relative;
+  width: 70%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+#registerPage #account .account .registerwrapper .register {
+  padding: 70px 9.65%;
+}
+
+#registerPage #account .account .registerwrapper .register .info {
+  margin-top: 50px;
+}
+
+#registerPage #account .account .registerwrapper .register .info h5 {
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+#registerPage #account .account .registerwrapper .register .info ul {
+  padding-left: 0px;
+}
+
+#registerPage #account .account .registerwrapper .register .info ul li {
+  list-style: none;
+  padding: 2px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#registerPage #account .account .registerwrapper .register .info ul li svg {
+  fill: #28a745;
+  margin-right: 5px;
+}
+
+/*#loginPage #account {
+  margin: 50px 0px;
+}*/
+
+#loginPage #account .account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#loginPage #account .account .heading {
+  position: relative;
+}
+
+#loginPage #account .account .heading .nameofdiv {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+
+#loginPage #account .account .heading .nameofdiv:after {
+  content: "";
+  position: absolute;
+  background-color: #fed700;
+  height: 2px;
+  width: 115px;
+  left: 0px;
+  bottom: -1px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#loginPage #account .account .description {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333e48;
+}
+
+#loginPage #account .account form label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333e48;
+  margin-bottom: 8px;
+}
+
+#loginPage #account .account form .inputwrapper {
+  display: block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+#loginPage #account .account form .inputwrapper:last-of-type {
+  margin-bottom: 0px;
+}
+
+#loginPage #account .account form .inputwrapper input {
+  height: 47px;
+  border: 1px solid #e6e6e6;
+  border-radius: 25px;
+  width: 100%;
+  width: 100%;
+  padding: 13px 30px;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #848484;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+#loginPage #account .account form .inputwrapper input:focus {
+  border: 1px solid #fed700;
+}
+
+#loginPage #account .account form .inpSubmit {
+  background-color: #fed700;
+  padding: 12px 35px;
+  color: #333e48;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  margin-top: 30px;
+  transition:0.2s;
+}
+
+#loginPage #account .account form .inpSubmit:hover {
+  background-color: #333e48;
+  color: white;
+}
+
+#loginPage #account .account .loginwrapper {
+  width: 70%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+#loginPage #account .account .loginwrapper .login {
+  position: relative;
+  padding: 70px 9.65%;
+
+}
+
+#loginPage #account .account .loginwrapper .login .content .bottomlogin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 25px;
+}
+
+#loginPage #account .account .loginwrapper .login .content .bottomlogin a {
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  color: #333e48;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+  font-size: 14px;
+}
+
+#loginPage #account .account .loginwrapper .login .content .bottomlogin a:hover {
+  color: #fed700;
+}
+
 footer {
   background-color: white;
 }
@@ -9648,6 +9799,22 @@ footer .footerbottom p {
   #blogdetailPage #blog .leftSide .blogwrapper .emailwrapper {
     padding-left: 0px !important;
   }
+  #loginPage .loginwrapper {
+    width: 100% !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+  #loginPage .loginwrapper .login {
+    padding: 0px !important;
+  }
+  #registerPage .registerwrapper {
+    width: 100% !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+  #registerPage .registerwrapper .register {
+    padding: 0px !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -9690,11 +9857,11 @@ footer .footerbottom p {
     font-size: 13px !important;
     white-space: pre-wrap !important;
   }
-  #account .account .registerwrapper {
+  #accountPage #account .account .registerwrapper {
     border: none !important;
     border-bottom: 1px solid #e6e6e6 !important;
   }
-  #account .account .registerwrapper:after {
+  #accountPage #account .account .registerwrapper:after {
     content: "or";
     width: 50px;
     height: 50px;
@@ -9710,16 +9877,16 @@ footer .footerbottom p {
             transform: translate(-50%, -50%);
     border-radius: 50% 50% 50% 50%;
   }
-  #account .account .registerwrapper .register {
+  #accountPage #account .account .registerwrapper .register {
     padding: 0px !important;
   }
-  #account .account .registerwrapper .register .info {
+  #accountPage #account .account .registerwrapper .register .info {
     margin-bottom: 50px !important;
   }
-  #account .account .loginwrapper {
+  #accountPage #account .account .loginwrapper {
     margin-top: 50px;
   }
-  #account .account .loginwrapper .login {
+  #accountPage #account .account .loginwrapper .login {
     padding: 0px !important;
   }
   #Intro .IntroSlider {
@@ -10030,6 +10197,9 @@ footer .footerbottom p {
         -ms-flex-pack: center !important;
             justify-content: center !important;
   }
+    #account .account form .inpSubmit{
+        width:100% !important;
+    }
 }
 
 @media (max-width: 450px) {
