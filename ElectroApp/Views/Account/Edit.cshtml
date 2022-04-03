@@ -1,0 +1,90 @@
+﻿@model UserEditVM
+@{
+    ViewData["Title"] = "Register";
+}
+<body>
+    <div id="registerPage">
+        <section id="brdcrumb">
+            <div class="container">
+                <div class="row">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <div class="display">
+                                    <div class="syllabus">
+                                        <a href="#">Home > Edit Account</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section id="account">
+            <div class="container">
+                <div class="row">
+                    <div class="account">
+                        <div class="registerwrapper">
+                            <div class="register">
+                                <div class="heading">
+                                    <h4 class="nameofdiv">Edit Account</h4>
+                                </div>
+                                <div class="content">
+                                    <p class="description">Create your own Account</p>
+                                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                                    <form method="post">
+                                        <div class="inputwrapper">
+                                            <label asp-for="Fullname">Fullname</label>
+                                            <input asp-for="Fullname" placeholder="Fullname"><br />
+                                            <span class="text text-danger" asp-validation-for="Fullname"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="Username">Username</label>
+                                            <input asp-for="Username" placeholder="Username"><br />
+                                            <span class="text text-danger" asp-validation-for="Username"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="Email">Email Address</label>
+                                            <input asp-for="Email" placeholder="someone@example.com"><br />
+                                            <span class="text text-danger" asp-validation-for="Email"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="CurrentPassword">Current Password</label>
+                                            <input asp-for="CurrentPassword" placeholder="Password"><br />
+                                            <span class="text text-danger" asp-validation-for="CurrentPassword"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="Password">New Password</label>
+                                            <input asp-for="Password" placeholder="New password"><br />
+                                            <span class="text text-danger" asp-validation-for="Password"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="ComfirmPassword">Comfirm New Password</label>
+                                            <input asp-for="ComfirmPassword" placeholder="Repeat new password"><br />
+                                            <span class="text text-danger" asp-validation-for="ComfirmPassword"></span>
+                                        </div>
+                                        <input class="inpSubmit" type="submit" value="Save Changes">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- owl carousel -->
+    <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+    <!-- ---------------- -->
+    <!-- ------progressbar---- -->
+    <script src="~/assets/JS/skill.bars.jquery.js"></script>
+    <!-- ----------------- -->
+    <script src="~/assets/js/script.js"></script>
+</body>
