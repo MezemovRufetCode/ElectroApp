@@ -36,6 +36,7 @@ namespace ElectroApp
             services.AddScoped<LayoutServices>();
             services.AddIdentity<AppUser, IdentityRole>(option =>
             {
+                //option.SignIn.RequireConfirmedEmail = true;
                 option.User.RequireUniqueEmail = true;
                 option.Password.RequireDigit = true;
                 option.Password.RequiredLength = 8;

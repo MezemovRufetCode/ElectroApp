@@ -89,7 +89,7 @@ namespace ElectroApp.Controllers
             string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("mezemovrufet2020@gmail.com", "Electro");
+            mail.From = new MailAddress("mezemovrufetcode@gmail.com", "Electro");
             mail.To.Add(new MailAddress(user.Email));
             mail.Subject=("Reset Password");
             mail.Body= $"<a href='{link}'> Please click here to reset your password </a>";
@@ -98,7 +98,7 @@ namespace ElectroApp.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("mezemovrufet2020@gmail.com", "mezemov15032000");
+            smtp.Credentials = new NetworkCredential("mezemovrufetcode@gmail.com", "Mezemov15032000Code");
             smtp.Send(mail);
             return RedirectToAction("Index", "Home");
         }
