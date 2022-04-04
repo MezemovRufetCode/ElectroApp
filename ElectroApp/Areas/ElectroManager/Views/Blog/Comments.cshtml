@@ -20,6 +20,12 @@
                 <th>
                     Write date
                 </th>
+                <th>
+                    Access
+                </th>
+                <th>
+                    Settings
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +53,23 @@
                     }
                     <td>
                         @comment.WriteTime.ToString("dd MMMM yyyy HH:mm")
+                    </td>
+                    <td>
+                        @comment.IsAccess
+                    </td>
+                    <td>
+                        @if (!comment.IsAccess)
+                        {
+                            <a asp-controller="blog" asp-action="CommentStatus" asp-route-id="@comment.Id" class="btn btn-success btn-icon-text">
+                                Accept
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="blog" asp-action="CommentStatus" asp-route-id="@comment.Id" class="btn btn-danger btn-icon-text">
+                                Reject
+                            </a>
+                        }
                     </td>
                 </tr>
             }

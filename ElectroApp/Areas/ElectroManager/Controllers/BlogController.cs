@@ -152,6 +152,14 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             List<BlogComment> comments = _context.BlogComments.Include(c => c.AppUser).Where(b => b.BlogId == BlogId).ToList();
             return View(comments);
         }
+        public IActionResult CommentStatus(int id) 
+        {
+            if (!_context.BlogComments.Any(c => c.Id == id)) return RedirectToAction("Index", "Blog");
+            BlogComment comment = _context.BlogComments.SingleOrDefault(c => c.Id == id);
+            comment.IsAccess = comment.IsAccess ? false : true;
+            _context.SaveChanges();
+            return RedirectToAction("Comments", "Blog", new { BlogId = comment.BlogId });
+        }
         public IActionResult Delete(int id)
         {
             Blog blog = _context.Blogs.FirstOrDefault(b => b.Id == id);

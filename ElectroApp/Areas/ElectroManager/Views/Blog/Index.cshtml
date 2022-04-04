@@ -79,7 +79,7 @@
                     </a>
                     <a asp-controller="blog" asp-action="comments" asp-route-BlogId="@blog.Id" class="btn btn-primary btn-icon-text">
                         <i class="fas fa-comments"></i>
-                        Comments (@blog.Comments.Count)
+                        (@blog.Comments.Count(c=>c.IsAccess==true)) Comments (@blog.Comments.Count)
                     </a>
                 </td>
             </tr>

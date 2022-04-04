@@ -8066,6 +8066,7 @@ header .activeShoppingcart {
 
 #blogdetailPage #blog .leftSide .blogwrapper .commentSection .comment:last-child {
   border-bottom: none;
+  padding-bottom:0px !important;
 }
 
 #blogdetailPage #blog .leftSide .blogwrapper .commentSection .comment p {

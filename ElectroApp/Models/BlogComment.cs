@@ -14,6 +14,7 @@ namespace ElectroApp.Models
         public string Text { get; set; }
         public DateTime WriteTime { get; set; }
         public double Star { get; set; }
+        public bool IsAccess { get; set; }
         public Blog Blog { get; set; }
         [Required]
         public int BlogId { get; set; }

@@ -38,10 +38,6 @@
                                         {
                                             <li><a href="">@tag.Tag.Name&nbsp;&nbsp;</a></li>
                                         }
-                                        @*<li><a href="">Art, </a></li>
-                                            <li><a href="">Classic, </a></li>
-                                            <li><a href="">Design, </a></li>
-                                            <li><a href="">Photography</a></li>*@
                                     </ul>
                                 </li>
                                 <li class="detail shareDate">
@@ -77,10 +73,10 @@
                         </div>
                         <div class="commentSection">
                             <div class="countInfo heading">
-                                <p>@Model.Comments.Count Comments</p>
+                                <p>@Model.Comments.Count(c => c.IsAccess == true) Comments</p>
                             </div>
                             <div class="allcomment">
-                                @foreach (var bcomment in Model.Comments.OrderBy(c => c.WriteTime))
+                                @foreach (var bcomment in Model.Comments.Where(c => c.IsAccess == true).OrderBy(c => c.WriteTime))
                                 {
                                     if (bcomment.AppUser.UserName == User.Identity.Name)
                                     {
@@ -114,33 +110,33 @@
                                 }
                             </div>
                             @if (User.Identity.IsAuthenticated)
-            {
-                        <div class="writingComment">
-                            <div class="desc heading">
-                                <p>Leave a comment</p>
-                            </div>
-                            <form asp-controller="blog" asp-action="addcomment" method="post">
-                                @*<div class="nameemail">
-                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div class="namewrapper">
-                                            <input type="text" placeholder="Name">
-                                        </div>
-
+                            {
+                                <div class="writingComment" style="margin-top:50px;">
+                                    <div class="desc heading">
+                                        <p>Leave a comment</p>
                                     </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div class="emailwrapper">
-                                            <input type="email" placeholder="E-mail">
-                                        </div>
+                                    <form asp-controller="blog" asp-action="addcomment" method="post">
+                                        @*<div class="nameemail">
+                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="namewrapper">
+                                                        <input type="text" placeholder="Name">
+                                                    </div>
 
-                                    </div>
-                                </div>*@
-                                <textarea name="text" id="" cols="20" rows="6" placeholder="Comment"></textarea>
-                                <input type="hidden" name="BlogId" value="@Model.Id" />
-                                <input type="submit" name="" id="" value="Post Comment">
-                            </form>
-                        </div>
-            }
-                            
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="emailwrapper">
+                                                        <input type="email" placeholder="E-mail">
+                                                    </div>
+
+                                                </div>
+                                            </div>*@
+                                        <textarea name="text" id="" cols="20" rows="6" placeholder="Comment"></textarea>
+                                        <input type="hidden" name="BlogId" value="@Model.Id" />
+                                        <input type="submit" name="" id="" value="Post Comment">
+                                    </form>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>
