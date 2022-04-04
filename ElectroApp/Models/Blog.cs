@@ -26,5 +26,6 @@ namespace ElectroApp.Models
         public List<BlogTag> BlogTags { get; set; }
         [NotMapped]
         public List<int> TagIds { get; set; }
+        public List<BlogComment> Comments { get; set; }
     }
 }

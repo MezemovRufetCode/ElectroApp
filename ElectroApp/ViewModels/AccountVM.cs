@@ -12,9 +12,11 @@ namespace ElectroApp.ViewModels
         public AppUser AppUser { get; set; }
         public string Token { get; set; }
         [DataType(DataType.Password)]
+        [Required(ErrorMessage ="Please fill this field")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Please fill this field")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password))]
+        [Compare(nameof(Password), ErrorMessage = "Password and confirm password is not match,please check it again")]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Areas\ElectroManager\Data\" />
     <Folder Include="Areas\ElectroManager\Models\" />
+    <Folder Include="wwwroot\verifypage\" />
   </ItemGroup>
 
   <ItemGroup>

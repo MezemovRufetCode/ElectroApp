@@ -39,11 +39,11 @@
         @tag.BlogTags.Count
     </td>
     <td>
-        <a asp-controller="blgtag" asp-action="edit" asp-route-id="@tag.Id" class="btn btn-primary btn-icon-text ">
+        <a asp-controller="blgtag" asp-action="edit" asp-route-id="@tag.Id" class="btn btn-warning btn-icon-text">
             <i class="fas fa-edit"></i>
             Edit
         </a>
-        <a asp-controller="blgtag" asp-action="delete" asp-route-id="@tag.Id" class="btn btn-primary btn-icon-text delete-item">
+        <a asp-controller="blgtag" asp-action="delete" asp-route-id="@tag.Id" class="btn btn-danger btn-icon-text delete-item">
             <i class="fas fa-trash-alt"></i>
             Delete
         </a>

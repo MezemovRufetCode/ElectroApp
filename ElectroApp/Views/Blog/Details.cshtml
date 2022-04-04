@@ -39,9 +39,9 @@
                                             <li><a href="">@tag.Tag.Name&nbsp;&nbsp;</a></li>
                                         }
                                         @*<li><a href="">Art, </a></li>
-                                        <li><a href="">Classic, </a></li>
-                                        <li><a href="">Design, </a></li>
-                                        <li><a href="">Photography</a></li>*@
+                                            <li><a href="">Classic, </a></li>
+                                            <li><a href="">Design, </a></li>
+                                            <li><a href="">Photography</a></li>*@
                                     </ul>
                                 </li>
                                 <li class="detail shareDate">
@@ -77,70 +77,70 @@
                         </div>
                         <div class="commentSection">
                             <div class="countInfo heading">
-                                <p>2 Comments</p>
+                                <p>@Model.Comments.Count Comments</p>
                             </div>
                             <div class="allcomment">
-                                <div class="comment">
-                                    <p class="cmntInfo">
-                                        <span class="username">
-                                            Elbrus
-                                            Hasanzade&nbsp;-&nbsp;
-                                        </span><span class="commentDate">
-                                            Dec
-                                            30,2022
-                                        </span>
-                                    </p>
-                                    <div class="cmntContent">
-                                        <p class="cntnt">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor numquam
-                                            incidunt
-                                            quis obcaecati iste? Magnam, provident sequi impedit iure excepturi
-                                            natus,
-                                            neque
-                                            sunt autem aspernatur ea illum similique esse sit.
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div class="comment">
-                                    <p class="cmntInfo">
-                                        <span class="username">
-                                            Elbrus Hasanzade
-                                            &nbsp;-&nbsp;
-                                        </span><span class="commentDate">Dec 30,2022</span>
-                                    </p>
-                                    <div class="cmntContent">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor numquam
-                                        incidunt
-                                        quis obcaecati iste? Magnam, provident sequi impedit iure excepturi natus,
-                                        neque
-                                        sunt autem aspernatur ea illum similique esse sit.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="writingComment">
-                                <div class="desc heading">
-                                    <p>Leave a comment</p>
-                                </div>
-                                <form action="">
-                                    <div class="nameemail">
-                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                            <div class="namewrapper">
-                                                <input type="text" placeholder="Name">
+                                @foreach (var bcomment in Model.Comments.OrderBy(c => c.WriteTime))
+                                {
+                                    if (bcomment.AppUser.UserName == User.Identity.Name)
+                                    {
+                                        <div class="comment">
+                                            <p class="cmntInfo">
+                                                <span class="username">@bcomment.AppUser.Fullname&nbsp;-&nbsp;</span>
+                                                <span class="commentDate">@bcomment.WriteTime.ToString("dd MMMM yyyy HH:mm") </span>
+                                            </p>
+                                            <div class="cmntContent">
+                                                <p class="cntnt">
+                                                    @bcomment.Text
+                                                </p>
+                                                <a style="color:red;" asp-controller="blog" asp-action="deletecomment" asp-route-id="@bcomment.Id">Delete</a>
                                             </div>
-
                                         </div>
-                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                            <div class="emailwrapper">
-                                                <input type="email" placeholder="E-mail">
+                                    }
+                                    else
+                                    {
+                                        <div class="comment">
+                                            <p class="cmntInfo">
+                                                <span class="username">@bcomment.AppUser.Fullname&nbsp;-&nbsp;</span>
+                                                <span class="commentDate">@bcomment.WriteTime.ToString("dd MMMM yyyy HH:mm") </span>
+                                            </p>
+                                            <div class="cmntContent">
+                                                <p class="cntnt">
+                                                    @bcomment.Text
+                                                </p>
                                             </div>
-
                                         </div>
-                                    </div>
-                                    <textarea name="" id="" cols="20" rows="6" placeholder="Comment"></textarea>
-                                    <input type="submit" name="" id="" value="Post Comment">
-                                </form>
+                                    }
+                                }
                             </div>
+                            @if (User.Identity.IsAuthenticated)
+            {
+                        <div class="writingComment">
+                            <div class="desc heading">
+                                <p>Leave a comment</p>
+                            </div>
+                            <form asp-controller="blog" asp-action="addcomment" method="post">
+                                @*<div class="nameemail">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="namewrapper">
+                                            <input type="text" placeholder="Name">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="emailwrapper">
+                                            <input type="email" placeholder="E-mail">
+                                        </div>
+
+                                    </div>
+                                </div>*@
+                                <textarea name="text" id="" cols="20" rows="6" placeholder="Comment"></textarea>
+                                <input type="hidden" name="BlogId" value="@Model.Id" />
+                                <input type="submit" name="" id="" value="Post Comment">
+                            </form>
+                        </div>
+            }
+                            
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                                         <div class="postinfo">
                                             @if (blog.Title.Length > 30)
                                             {
-                                            <a href="" class="postname"> @blog.Title.Substring(0, 30)</a>
+                                                <a href="" class="postname"> @blog.Title.Substring(0, 30)</a>
                                             }
                                             else
                                             {

@@ -1,6 +1,7 @@
 ﻿using ElectroApp.DAL;
 using ElectroApp.Extentions;
 using ElectroApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace ElectroApp.Areas.ElectroManager.Controllers
 {
     [Area("ElectroManager")]
+    [Authorize(Roles ="Admin,SuperAdmin")]
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
@@ -26,7 +28,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 6);
-            List<Blog> model = _context.Blogs.Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).Skip((page - 1) * 6).Take(6).ToList();
+            List<Blog> model = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).Skip((page - 1) * 6).Take(6).ToList();
             return View(model);
         }
         public IActionResult Create()
@@ -70,16 +72,16 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             }
             blog.Image = blog.ImageFile.SaveImg(_env.WebRootPath, "assets/images/blog");
 
-            //Blog blg = new Blog
-            //{
-            //    Title = blog.Title,
-            //    Desc = blog.Desc,
-            //    PublishDate = DateTime.Now,
-            //    Image = blog.Image,
-            //    WrittenBy = "Admin"
-            //};
-            blog.PublishDate = DateTime.Now;
-            _context.Blogs.Add(blog);
+            Blog blg = new Blog
+            {
+                Title = blog.Title,
+                Desc = blog.Desc,
+                PublishDate = DateTime.Now,
+                Image = blog.Image,
+                WrittenBy = User.Identity.Name
+            };
+            //blog.PublishDate = DateTime.Now;
+            _context.Blogs.Add(blg);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -141,6 +143,14 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existBlog.WrittenBy = blog.WrittenBy;
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Comments(int BlogId)
+        {
+            if (!_context.BlogComments.Any(c => c.BlogId == BlogId))
+                return RedirectToAction("Index", "Blog");
+            List<BlogComment> comments = _context.BlogComments.Include(c => c.AppUser).Where(b => b.BlogId == BlogId).ToList();
+            return View(comments);
         }
         public IActionResult Delete(int id)
         {

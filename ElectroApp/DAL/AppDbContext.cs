@@ -17,6 +17,7 @@ namespace ElectroApp.DAL
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<bTag> Tags { get; set; }
         public DbSet<BlogTag> BlogTags { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<IntroSlider> IntroSliders { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }

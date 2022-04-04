@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -56,18 +57,40 @@ namespace ElectroApp.Controllers
                 return View();
             }
             await _usermanager.AddToRoleAsync(user, "Member");
+            //string token = await _usermanager.GenerateEmailConfirmationTokenAsync(user);
+            //string link = Url.Action(nameof(VerifyEmail), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
+            //MailMessage mail = new MailMessage();
+            //mail.From = new MailAddress("mezemovrufetcode@gmail.com", "Electro");
+            //mail.To.Add(new MailAddress(user.Email));
+            //mail.Subject = "Verify Email";
+            //string body = string.Empty;
+            //using(StreamReader reader=new StreamReader("wwwroot/assets/verifypage/verifyemail.html"))
+            //{
+            //    body = reader.ReadToEnd();
+            //}
+            //string about = $"Welcome <strong>{user.Fullname}</strong> to Electro shopping,please click the link in below to verify your account";
+            //body = body.Replace("{{link}}", link);
+            //mail.Body = body.Replace("{{About}}", about);
+            //mail.IsBodyHtml = true;
+            //SmtpClient smtp = new SmtpClient();
+            //smtp.Host = "smtp.gmail.com";
+            //smtp.Port = 587;
+            //smtp.EnableSsl = true;
+            //smtp.Credentials = new NetworkCredential("mezemovrufetcode@gmail.com", "Mezemov15032000Code");
+            //smtp.Send(mail);
+            //TempData["Verify"] = true;
             return RedirectToAction("Index","Home");
         }
 
-        public async Task<IActionResult> VerifyEmail(string email,string token)
-        {
-            AppUser user = await _usermanager.FindByEmailAsync(email);
-            if (user == null) return BadRequest();
-            await _usermanager.ConfirmEmailAsync(user, token);
-            await _signinmanager.SignInAsync(user, true);
-            TempData["Verified"] = true;
-            return RedirectToAction("Index", "Home");
-        }
+        //public async Task<IActionResult> VerifyEmail(string email,string token)
+        //{
+        //    AppUser user = await _usermanager.FindByEmailAsync(email);
+        //    if (user == null) return BadRequest();
+        //    await _usermanager.ConfirmEmailAsync(user, token);
+        //    await _signinmanager.SignInAsync(user, true);
+        //    TempData["Verified"] = true;
+        //    return RedirectToAction("Index", "Home");
+        //}
 
 
         public IActionResult Login()
@@ -85,7 +108,12 @@ namespace ElectroApp.Controllers
         public async Task<IActionResult> ForgotPassword(AccountVM account)
         {
             AppUser user = await _usermanager.FindByEmailAsync(account.AppUser.Email);
-            if (user == null) return BadRequest();
+            if (user == null)
+            {
+                ModelState.AddModelError("", "User is not existed");
+                return View();
+            } 
+                //return BadRequest();
             string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();

@@ -61,16 +61,16 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         //    await _rolemanager.CreateAsync(new IdentityRole("Admin"));
         //    await _rolemanager.CreateAsync(new IdentityRole("Member"));
         //}
-        //public async Task CreateAdmin()
-        //{
-        //    AppUser user = new AppUser
-        //    {
-        //        UserName = "RufetAdmin",
-        //        Email = "rufatam@code.edu.az",
-        //        Fullname = "Rufet Mezemov"
-        //    };
-        //    await _usermanager.CreateAsync(user, "mezemov15032000");
-        //    await _usermanager.AddToRoleAsync(user, "SuperAdmin");
-        //}
+        public async Task CreateAdmin()
+        {
+            AppUser user = new AppUser
+            {
+                UserName = "Admin2",
+                Email = "mezemovadmin@gmail.com",
+                Fullname = "Admin Mezemov"
+            };
+            await _usermanager.CreateAsync(user, "mezemov15032000");
+            await _usermanager.AddToRoleAsync(user, "Admin");
+        }
     }
 }
