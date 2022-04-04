@@ -32,6 +32,7 @@ namespace ElectroApp.Controllers
 
         public IActionResult Details(int id)
         {
+            ViewBag.Tags = _context.Tags.ToList();
             ViewBag.LatestBlogs = _context.Blogs.OrderBy(b => b.PublishDate).Take(3).ToList();
             Blog blog = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).FirstOrDefault(b => b.Id == id);
             if (blog == null)
@@ -40,7 +41,15 @@ namespace ElectroApp.Controllers
             }
             return View(blog);
         }
-        
+        //public IActionResult RelatedBlogs(int id)
+        //{
+        //    List<Blog> blogs = _context.Blogs.Include(b => b.BlogTags).ThenInclude(bt => bt.Tag).Where(b => b.TagIds.Contains(id)).ToList();
+        //    if (blogs == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(blogs);
+        //}
         [Authorize]
         [AutoValidateAntiforgeryToken]
         [HttpPost]

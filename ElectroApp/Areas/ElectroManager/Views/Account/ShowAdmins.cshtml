@@ -1,0 +1,81 @@
+﻿@model List<AppUser>
+@{ ViewData["Title"] = "Index"; }
+<div class="container">
+    <h4>All Admins</h4>
+    <table class="table table-dark mt-3">
+        <thead>
+            <tr>
+                <th>
+                    Fullname
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Settings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var admin in Model)
+            {
+            <tr>
+                <td>
+                    @admin.Fullname
+                </td>
+                <td>
+                    @admin.UserName
+                </td>
+                <td>
+                    @admin.Email
+                </td>
+                <td>
+                    <a asp-controller="account" asp-action="DeleteAdmin" asp-area="ElectroManager" asp-route-id="@admin.Id" class="btn btn-danger btn-icon-text">
+                        <i class="fas fa-edit"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>}
+
+        </tbody>
+    </table>
+</div>
+
+@*@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>$(".delete-item").click(function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var link = $(this).attr("href");
+                    fetch(link).then(response => response.json()).then(data => {
+                        if (data.status == 200) {
+                            location.reload(true)
+                        }
+                        else {
+                            Swal.fire(
+                                'Admin not found!',
+                                'Your file can not be deleted.',
+                                'Failed'
+                            )
+                        }
+                    }
+
+                    );
+
+                }
+            })
+        })</script>
+}*@

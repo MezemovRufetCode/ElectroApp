@@ -203,7 +203,7 @@
                             <ul class="taglist">
                                 @foreach (var tag in Model.BlogTags)
                                 {
-                                    <li><a href="">@tag.Tag.Name</a></li>
+                                    <li><a asp-controller="blog" asp-action="relatedblogs" asp-route-id="@tag.Id">@tag.Tag.Name</a></li>
                                 }
                             </ul>
                         </div>

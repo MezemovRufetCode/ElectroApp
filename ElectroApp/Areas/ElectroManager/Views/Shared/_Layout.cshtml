@@ -56,10 +56,10 @@
             </div><!--/.sidebar header-->
             <div class="profile-element d-flex align-items-center flex-shrink-0">
                 <div class="avatar online">
-                    <img src="~/admin/assets/dist/img/avatar-1.jpg" class="img-fluid rounded-circle" alt="">
+                    <img src="~/admin/assets/dist/img/avatar-3.jpg" class="img-fluid rounded-circle" alt="">
                 </div>
                 <div class="profile-text">
-                    <h6 class="m-0">Rufet Mezemov</h6>
+                    <h6 class="m-0">@User.Identity.Name</h6>
                     <span><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="87e2ffe6eaf7ebe2c7e0eae6eeeba9e4e8ea">[email&#160;protected]</a></span>
                 </div>
             </div><!--/.profile element-->
@@ -108,7 +108,17 @@
                         <li><a asp-controller="slider" asp-action="index"><i class="typcn typcn-messages mr-2"></i> Slider</a></li>
                         <li><a asp-controller="faq" asp-action="index"><i class="typcn typcn-messages mr-2"></i> FAQs</a></li>
                         <li><a asp-controller="setting" asp-action="index"><i class="typcn typcn-messages mr-2"></i> Settings</a></li>
-
+                         <li>
+                            <a class="has-arrow material-ripple" href="#">
+                                <i class="typcn typcn-chart-pie-outline mr-2"></i>
+                                Account
+                            </a>
+                            <ul class="nav-second-level">
+                                <li><a asp-controller="account" asp-action="Edit">Edit Account</a></li>
+                                <li><a asp-controller="account" asp-action="ShowAdmins">All Admins</a></li>
+                                <li><a asp-controller="account" asp-action="logout">Logout</a></li>
+                            </ul>
+                        </li>
                         @*<li>
             <a class="has-arrow material-ripple" href="#">
                 <i class="typcn typcn-archive mr-2"></i>
@@ -377,7 +387,7 @@
                                         <div class="img-user">
                                             <img src="assets/dist/img/" alt="">
                                         </div><!-- img-user -->
-                                        <h6>Rufet Mezemov</h6>
+                                        <h6>@User.Identity.Name</h6>
                                         <span><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="294c51484459454c694e44484045074a4644">[email&#160;protected]</a></span>
                                     </div><!-- user-header -->
                                     <a href="#" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>

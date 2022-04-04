@@ -78,7 +78,8 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 Desc = blog.Desc,
                 PublishDate = DateTime.Now,
                 Image = blog.Image,
-                WrittenBy = User.Identity.Name
+                WrittenBy = User.Identity.Name,
+                TagIds=blog.TagIds
             };
             //blog.PublishDate = DateTime.Now;
             _context.Blogs.Add(blg);
@@ -140,7 +141,6 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
 
             existBlog.Title = blog.Title;
             existBlog.Desc = blog.Desc;
-            existBlog.WrittenBy = blog.WrittenBy;
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
