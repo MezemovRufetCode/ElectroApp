@@ -4,14 +4,16 @@ using ElectroApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElectroApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220405140043_poductComments")]
+    partial class poductComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,8 +395,6 @@ namespace ElectroApp.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("ProductComments");
                 });
 
@@ -678,12 +678,6 @@ namespace ElectroApp.Migrations
                     b.HasOne("ElectroApp.Models.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("AppUserId");
-
-                    b.HasOne("ElectroApp.Models.Product", null)
-                        .WithMany("ProductComments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ElectroApp.Models.ProductImage", b =>

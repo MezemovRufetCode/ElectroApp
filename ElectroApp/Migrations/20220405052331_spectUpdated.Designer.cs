@@ -4,14 +4,16 @@ using ElectroApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElectroApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220405052331_spectUpdated")]
+    partial class spectUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,6 +327,9 @@ namespace ElectroApp.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
+                    b.Property<int?>("SpecsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Videolink")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
@@ -334,6 +339,8 @@ namespace ElectroApp.Migrations
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CampaignId");
+
+                    b.HasIndex("SpecsId");
 
                     b.ToTable("Products");
                 });
@@ -358,44 +365,6 @@ namespace ElectroApp.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductCategories");
-                });
-
-            modelBuilder.Entity("ElectroApp.Models.ProductComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsAccess")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(600)")
-                        .HasMaxLength(600);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<DateTime>("WriteDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductComments");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.ProductImage", b =>
@@ -456,15 +425,10 @@ namespace ElectroApp.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Specs");
                 });
@@ -656,6 +620,10 @@ namespace ElectroApp.Migrations
                     b.HasOne("ElectroApp.Models.Campaign", "Campaign")
                         .WithMany("Products")
                         .HasForeignKey("CampaignId");
+
+                    b.HasOne("ElectroApp.Models.Specs", "Specs")
+                        .WithMany("Products")
+                        .HasForeignKey("SpecsId");
                 });
 
             modelBuilder.Entity("ElectroApp.Models.ProductCategory", b =>
@@ -673,32 +641,10 @@ namespace ElectroApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ElectroApp.Models.ProductComment", b =>
-                {
-                    b.HasOne("ElectroApp.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("ElectroApp.Models.Product", null)
-                        .WithMany("ProductComments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ElectroApp.Models.ProductImage", b =>
                 {
                     b.HasOne("ElectroApp.Models.Product", "Product")
                         .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ElectroApp.Models.Specs", b =>
-                {
-                    b.HasOne("ElectroApp.Models.Product", "Product")
-                        .WithMany("Specs")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

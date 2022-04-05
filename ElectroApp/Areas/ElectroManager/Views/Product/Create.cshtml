@@ -93,6 +93,11 @@
                 <input asp-for="@Model.InStock"><br />
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.InStock"></span>
             </div>
+            <div class="mb-3">
+                <label asp-for="@Model.AvaliableCount" class="form-label">Avaliable</label><br />
+                <input asp-for="@Model.AvaliableCount" placeholder="Product count"><br />
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.AvaliableCount"></span>
+            </div>
         </div>
 
         <div class="mb-3">
@@ -126,30 +131,27 @@
 
 
 
-        <!--<div style="border:1px solid lightgray" class="col-xs-12 mb-3">
+        @*<div style="border:1px solid lightgray" class="col-xs-12 mb-3">
             <div class="col-md-12">
                 <h3 style="margin:10px 0px"> Features</h3>
                 <div id="field">
-                    <div id="field0" style="display:flex">-->
-                        <!-- Text input-->
-                        <!--<div class="form-group col-5" style="padding-left:0px !important;">
+                    <div id="field0" style="display:flex">
+                        <div class="form-group col-5" style="padding-left:0px !important;">
                             <label style="padding-left:0px !important;"  class="col-md-4 control-label" for="action_id">Feature</label>
                             <div class="col-12" style="padding-left:0px !important;">
-                                <input id="action_id" name="action_id" type="text" placeholder="" class="form-control input-md">
+                                <input id="action_id" asp-for="@Model.Specs" placeholder="" class="form-control input-md">
                             </div>
-                        </div>-->
-                        <!-- Text input-->
-                        <!--<div class="form-group col-5">
+                        </div>
+                        <div class="form-group col-5">
                             <label  class="control-label" for="action_name">Value</label>
                             <div style="padding-left:0px !important;">
-                                <input id="action_name" name="action_name" type="text" placeholder="" class="form-control input-md">
+                                <input id="action_name" placeholder="" class="form-control input-md">
                             </div>
                         </div>
                         <br><br>
                     </div>
-                </div>-->
-                <!-- Button -->
-                <!--<div class="form-group">
+                </div>
+                <div class="form-group">
                     <div class="col-md-4" style="padding-left:0px !important;">
                         <button  id="add-more" name="add-more" class="btn btn-primary">Add More</button>
                     </div>
@@ -157,7 +159,7 @@
                 <br><br>
 
             </div>
-        </div>-->
+        </div>*@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
@@ -189,7 +191,7 @@
                 var addto = "#field" + next;
                 var addRemove = "#field" + (next);
                 next = next + 1;
-                var newIn = ' <div id="field' + next + '" name="field' + next + '" style="display:flex"><!-- Text input--><div class="form-group col-5" style="padding-left:0px !important;"> <label class="col-md-4 control-label" for="action_id" style="margin-top:10px;padding-left:0px !important;">Feature</label> <div class="col-12" style="padding-left:0px !important;"> <input id="action_id" name="action_id" type="text" placeholder="" class="form-control input-md"> </div></div><!-- Text input--><div class="form-group col-5" style="margin-top:9px;"> <label style="padding-left:0px !important;" class="col-md-4 control-label" for="action_name" style="margin-top:10px">Value</label> <div style="padding-left:0px !important;"> <input id="action_name" name="action_name" min="0" max="100" type="number" placeholder="" class="form-control input-md"> </div></div><br><br></div></div>';
+                var newIn = ' <div id="field' + next + '" name="field' + next + '" style="display:flex"><!-- Text input--><div class="form-group col-5" style="padding-left:0px !important;"> <label class="col-md-4 control-label" for="action_id" style="margin-top:10px;padding-left:0px !important;">Feature</label> <div class="col-12" style="padding-left:0px !important;"> <input id="action_id" asp-for="&#x00040;Model.Specs.Name" placeholder="" class="form-control input-md"> </div></div><!-- Text input--><div class="form-group col-5" style="margin-top:9px;"> <label style="padding-left:0px !important;" class="col-md-4 control-label" for="action_name" style="margin-top:10px">Value</label> <div style="padding-left:0px !important;"> <input id="action_name" asp-for="&#x00040;Model.Specs.Value" placeholder="" class="form-control input-md"> </div></div><br><br></div></div>';
                 var newInput = $(newIn);
                 var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div><div id="field">';
                 var removeButton = $(removeBtn);

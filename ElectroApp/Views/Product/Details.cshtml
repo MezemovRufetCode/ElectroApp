@@ -1,7 +1,903 @@
-﻿
+﻿@model Product
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<section id="brdcrumb">
+    <div class="container">
+        <div class="row">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <div class="display">
+                            <div class="syllabus">
+                                <a href="#">Home > Product</a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<section id="detailspage">
+    <div class="container">
+        <div class="row">
+            <div class="productdetails">
+                <div class="productcontent-wrapper">
+                    <div class="left col-lg-5 col-md-6 col-12">
+                        <div class="imagewrapper">
+                            <div class="product-imgs">
+                                <div class="img-display">
+                                    <div class="img-showcase">
+                                        <a href="~/assets/images/featuredProducts/1_540x.jpg"
+                                           data-fancybox="gallery" data-caption="Optional caption">
+                                            <img src="~/assets/images/featuredProducts/1_540x.jpg" alt="">
+                                        </a>
+                                        <a href="~/assets/images/featuredProducts/2_540x.jpg"
+                                           data-fancybox="gallery" data-caption="Optional caption">
+                                            <img src="~/assets/images/featuredProducts/2_540x.jpg" alt="">
+                                        </a>
+                                        <a href="~/assets/images/featuredProducts/3_540x.jpg"
+                                           data-fancybox="gallery" data-caption="Optional caption">
+                                            <img src="~/assets/images/featuredProducts/3_540x.jpg" alt="">
+                                        </a>
+                                        <a href="~/assets/images/featuredProducts/4_540x.jpg"
+                                           data-fancybox="gallery" data-caption="Optional caption">
+                                            <img src="~/assets/images/featuredProducts/4_540x.jpg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="img-select">
+                                    <div class="img-item">
+                                        <a href="#" data-id="1">
+                                            <img src="~/assets/images/featuredProducts/1_540x.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="img-item">
+                                        <a href="#" data-id="2">
+                                            <img src="~/assets/images/featuredProducts/2_540x.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="img-item">
+                                        <a href="#" data-id="3">
+                                            <img src="~/assets/images/featuredProducts/3_540x.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="img-item">
+                                        <a href="#" data-id="4">
+                                            <img src="~/assets/images/featuredProducts/4_540x.jpg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="middle col-lg-4 col-md-6 col-12">
+                        <div class="productwrapper">
+                            <div class="product-text-details">
+                                <div class="topdetails">
+                                    <div class="name">
+                                        <a href="" class="brandname">Dolce & Gabbana</a>
+                                        <p class="productname">Gold Diamond Chain</p>
+                                    </div>
+                                    <div class="addreview">
+                                        <div class="stars"></div><a class="toreview" href="">Add Your Review</a>
+                                    </div>
+                                    <div class="share">
+                                        <a href="" class="social">
+                                            <svg version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg" width="11" height="14"
+                                                 viewBox="0 0 37 64">
+                                                <path d="M34.24 0.448v9.408h-5.568q-3.072 0-4.16 1.28t-1.088 3.84v6.784h10.496l-1.408 10.56h-9.088v27.136h-10.944v-27.136h-9.088v-10.56h9.088v-7.808q0-6.656 3.712-10.304t9.92-3.648q5.248 0 8.128 0.448z">
+                                                </path>
+                                            </svg><span>Share</span>
+                                        </a>
+                                        <a href="" class="social">
+                                            <svg version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg" width="11" height="14"
+                                                 viewBox="0 0 48 64">
+                                                <path d="M47.936 56c0 2.176-0.832 4.096-2.368 5.632-1.6 1.6-3.456 2.368-5.696 2.368h-15.872c-6.592 0-12.288-2.304-16.96-7.040-4.672-4.672-7.040-10.304-7.040-16.896v-32.064c0-2.24 0.768-4.16 2.368-5.696 1.536-1.536 3.456-2.304 5.696-2.304 2.176 0 4.096 0.768 5.632 2.368 1.6 1.536 2.368 3.456 2.368 5.632v11.584h22.592c2.048 0 3.84 0.768 5.312 2.24 1.408 1.408 2.176 3.136 2.176 5.184s-0.768 3.776-2.176 5.248c-1.472 1.472-3.264 2.176-5.248 2.176h-22.656v5.632c0 2.176 0.768 4.096 2.304 5.632s3.456 2.304 5.632 2.304h15.872c2.24 0 4.096 0.768 5.696 2.368 1.536 1.536 2.368 3.456 2.368 5.632">
+                                                </path>
+                                            </svg><span>Tweet</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bodydetails">
+                                    <div class="features">
+                                        <ul>
+                                            <li>
+                                                Play online with your friends, get free games, save games online and
+                                                more with PlayStation
+                                            </li>
+                                            <li>
+                                                Cutting edge graphics bring game worlds to life like never before,
+                                                and next gen
+                                            </li>
+                                            <li>
+                                                Connect with your friends to broadcast and celebrate your epic
+                                                moments
+                                            </li>
+                                            <li>Perfect for both new players and players new to PS4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bottomdetails">
+                                    <ul>
+                                        <li>Product SKU: gold-chain-93az-1</li>
+                                        <li>
+                                            <span>Category:</span>
+                                            <a href="">Accessories,</a>
+                                            <a href="">All in One,</a>
+                                            <a href="">Gaming,</a>
+                                            <a href="">Headphone,</a>
+                                            <a href="">Music</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="people-in-cart">
+                                    <div class="img-user">
+                                        <img src="~/assets/images/banner/in_cart.png" alt="Image">
+                                    </div>
+                                    <div class="people-block-text">
+                                        <span>Other people want this.</span> 11 people
+                                        have this in their carts right now.
+                                    </div>
+                                </div>
+                                <ul class="shipping-time" data-gmt="" data-deliverytime="2" data-deadline="14">
+                                    <li class="delivery-time">
+                                        Want it delivered
+                                        by&nbsp;<strong>Tuesday,&nbsp;22&nbsp;March</strong>
+                                    </li>
+                                    <li class="deadline">
+                                        <span class="text">Order within&nbsp;</span>
+                                        <div class="countdown_deadline is-countdown">
+                                            <span class="countdown-row countdown-show3">
+                                                <span class="countdown-section">
+                                                    <span class="countdown-amount">43</span>
+                                                    <span class="countdown-period">Hours</span>
+                                                </span><span class="countdown-section">
+                                                    <span class="countdown-amount">55</span>
+                                                    <span class="countdown-period">Minutes</span>
+                                                </span>
+                                                <span class="countdown-section">
+                                                    <span class="countdown-amount">22</span>
+                                                    <span class="countdown-period">Seconds</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right col-lg-3 col-md-12 col-12">
+                        <div class="right-action-wrapper">
+                            <div class="product-info">
+                                <div class="product-info-inner">
+                                    <div class="instock">
+                                        <span>Avaliable:</span> <span class="stock">In Stock</span>
+                                    </div>
+                                </div>
+                                <div class="productprice">
+                                    <span class="price">$399.00</span>
+                                </div>
+                                <form action="">
+                                    <p class="smdesc">Quantity</p>
+                                    <div class="quantity2">
+                                        <input type="number" class="" id="quantity2" value="1" pattern="[0-9]*"
+                                               min="1">
+                                        <div class="qty-wrapper">
+                                            <span class="qty-inner">
+                                                <button type="button" class="qty-up2">
+                                                    <svg version="1.1"
+                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                         viewBox="0 0 37 64">
+                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="qty-down2">
+                                                    <svg version="1.1"
+                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                         viewBox="0 0 37 64">
+                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="options">
+                                        <p class="choosever">Choose Version</p>
+                                        <div class="versionwrapper">
+                                            <select name="" id="adress-country" data-defeault="United Stated">
+                                                <option value="United States">240gb Memory</option>
+                                                <option value="England">500Gb Memory</option>
+                                                <option value="Ukraine">1Tb Memory,CoD Edition</option>
+                                                <option value="France">1Tb Memory,basic </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="action-button">
+                                        <button id="add-to-cart" class="add-to-cart btn-1" type="button">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                 height="18" viewBox="0 0 68 64">
+                                                <path d="M2.24 0.576c3.52-0.704 7.168 0.192 10.24 1.792 2.624 1.344 4.224 4.096 5.056 6.848 0.96 3.008 1.344 6.144 1.92 9.216 0.96 5.056 2.304 10.048 3.072 15.104 0.384 2.048 0.704 4.224 2.112 5.888 1.408 1.6 3.776 1.664 5.824 1.728 5.376 0 10.816-0.256 16.192 0.128 1.344 0.064 2.88 0 3.648-1.344 3.52-5.312 6.464-11.008 9.28-16.768 0.576-1.152 1.28-2.368 2.56-2.816 1.344-0.448 3.008-0.256 4.032 0.768 1.152 1.28 1.344 3.2 0.704 4.736-2.688 5.376-5.184 10.816-8.512 15.872-1.472 2.176-3.008 4.544-5.184 6.144-1.792 1.28-4.096 0.832-6.144 0.768-6.272-0.064-12.544 0.384-18.752 0-4.16-0.32-8.256-2.368-10.624-5.888-1.728-2.752-2.368-6.080-3.008-9.216-1.28-6.784-2.624-13.504-3.904-20.288-0.384-1.6-0.896-3.392-2.304-4.352-2.24-1.6-5.376-0.256-7.552-1.984-1.344-0.96-0.704-2.688-0.832-4.096-0.128-1.216 1.152-1.984 2.176-2.24zM34.432 4.928c-0.064-1.216 1.408-1.536 2.368-1.792 2.048-0.32 4.608-0.384 6.208 1.152 0.448 3.776 0.64 7.616 0.768 11.392 1.92 0.128 3.84-0.256 5.76-0.064 0.704 0.064 1.536 0.512 1.472 1.344-0.32 1.472-1.472 2.56-2.368 3.712-2.688 3.456-5.76 6.528-8.832 9.536-0.448 0.448-1.024 0.704-1.6 0.448-1.216-0.512-1.984-1.728-2.88-2.688-2.112-2.304-4.224-4.544-6.144-6.912-0.96-1.216-2.176-2.24-2.624-3.712-0.256-0.832 0.512-1.6 1.344-1.664 1.92-0.256 3.84 0.128 5.76 0 0.256-3.584 0.384-7.168 0.768-10.752zM25.28 51.584c2.432-0.704 5.184 0 6.784 1.856 2.368 2.624 1.984 7.232-0.96 9.216-3.136 2.304-8.448 1.216-9.92-2.56-1.664-3.328 0.64-7.616 4.096-8.512zM45.376 53.504c2.432-2.88 7.36-2.944 9.856-0.128 2.112 2.304 2.048 6.208-0.064 8.512-1.216 1.28-2.944 2.048-4.672 2.112h-0.128c-1.856-0.064-3.776-0.832-4.928-2.24-2.048-2.304-2.112-6.016-0.064-8.256z">
+                                                </path>
+                                            </svg>Add to cart
+                                        </button>
+                                    </div>
+                                    <div class="bottomform">
+                                        <div class="whishlist productBtnEl">
+                                            <a href="">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <span>Wishlist</span>
+                                            </a>
+                                        </div>
+                                        <div class="Compare productBtnEl">
+                                            <i class="fa-solid fa-code-compare"></i>
+                                            <span>Compare</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="fullinfo">
+        <div class="container">
+            <div class="row">
+                <div class="wrapperfull">
+                    <div class="bannerforFatured">
+                        <div class="productsBy">
+                            <div class="productsCat">
+                                <ul>
+                                    <div class="category activeDetailsCatName" id="description">
+                                    <li>
+                                        <p>Description</p>
+                                    </li>
+                            </div>
+                            <div class="category" id="specifications">
+                                <li>
+                                    <p>Specifications</p>
+                                </li>
+                            </div>
+                            <div class="category" id="pvideo">
+                                <li>
+                                    <p>Video</p>
+                                </li>
+                            </div>
+                            <div class="category" id="shipping">
+                                <li>
+                                    <p>Shipping & Return</p>
+                                </li>
+                            </div>
+                            <div class="category" id="review">
+                                <li>
+                                    <p>Product reviews</p>
+                                </li>
+                            </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contenybyCat">
+                        <div class="all description activeDetailsContent">
+                            <p>
+                                <span>Our new </span><b>HPB12 / A12</b><b> battery</b><span>
+                                    is rated at 2000mAh
+                                    and
+                                    designed to power up Black and Decker / FireStorm line of 12V tools allowing
+                                    users to run multiple devices off the same battery pack. The HPB12 is
+                                    compatible
+                                    with the following Black and Decker power tool models:
+                                </span><br><br><b>
+                                    Black
+                                    &amp; Decker Drills and Drivers:<br>
+                                </b><span>
+                                    BD12PSK, BDG1200K, BDGL12K,
+                                    BDID1202, CD1200SK, CD12SFK, CDC1200K, CDC120AK, CDC120ASB, CP122K, CP122KB,
+                                    CP12K, CP12KB, EPC12, EPC126, EPC126BK, EPC12CA, EPC12CABK, HP122K, HP122KD,
+                                    HP126F2B, HP126F2K, HP126F3B, HP126F3K, HP126FBH, HP126FSC, HP126FSH,
+                                    HP126K,
+                                    HP128F3B, HP12K, HP12KD, HPD1200, HPD1202, HPD1202KF, HPD12K-2, PS122K,
+                                    PS122KB,
+                                    PS12HAK, SS12, SX3000, SX3500, XD1200, XD1200K,
+                                    XTC121&nbsp;
+                                </span><br><br><b>
+                                    Black &amp; Decker Impact
+                                    Wrenches:<br>
+                                </b><span>
+                                    SX5000, XTC12IK,
+                                    XTC12IKH&nbsp;
+                                </span><br><br><b>
+                                    Black
+                                    &amp; Decker
+                                    Multi-Tools:<br>
+                                </b><span>KC2000FK&nbsp;</span><br><b><br></b><b>
+                                    Black &amp;
+                                    Decker Nailers:
+                                </b><br><span>BDBN1202 &nbsp;</span><b><br></b><b>
+                                    <br>Black
+                                    &amp;
+                                    Decker
+                                    Screwdrivers:<br>
+                                </b><span>HP9019K&nbsp;</span><b><br></b><b><br></b><span>
+                                    and
+                                    other 12V tools.
+                                </span><br><br><span>
+                                    Best replacement for the following
+                                    Black
+                                    and Decker OEM battery part numbers:
+                                </span><br><span>
+                                    HPB12, A12, A12EX,
+                                    A12-XJ,
+                                    A1712, B-8315, BD1204L, BD-1204L, BPT1047, FS120B, FS120BX, FSB12.
+                                </span>
+                            </p>
+                            <!-- <div class="productsByCat">
+                                <div class="byCat">
+                                    <div class="productWrapper">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="productName"><a href="">Faxtex Product Sample</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <img src="~/assets/images/featuredProducts/Printer_180x.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">$110.00</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="all specifications">
+                            <ul>
+                                <li>Chemistry: Ni-CD</li>
+                                <li>Voltage: 12V</li>
+                                <li>AmpHours: 2000mAh</li>
+                                <li>Dimensions: 109.75x79.55x62.20mm</li>
+                            </ul>
+                        </div>
+                        <div class="all pvideo">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/c8mkGJxeMUQ"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="all shipping">
+                            <div>
+                                <h4>RETURNS POLICY</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut blandit
+                                    risus.
+                                    Donec mollis nec tellus et rutrum. Orci varius natoque penatibus et magnis
+                                    dis
+                                    parturient montes, nascetur ridiculus mus. Ut consequat quam a purus
+                                    faucibus
+                                    scelerisque. Mauris ac dui ante. Pellentesque congue porttitor tempus. Donec
+                                    sodales dapibus urna sed dictum. Duis congue posuere libero, a aliquam est
+                                    porta
+                                    quis.
+                                </p>
+                                <p>
+                                    Donec ullamcorper magna enim, vitae fermentum turpis elementum quis. Interdum
+                                    et
+                                    malesuada fames ac ante ipsum primis in faucibus.
+                                </p>
+                                <p>
+                                    Curabitur vel sem mi. Proin in lobortis ipsum. Aliquam rutrum tempor ex ac
+                                    rutrum. Maecenas nunc nulla, placerat at eleifend in, viverra etos sem. Nam
+                                    sagittis lacus metus, dignissim blandit magna euismod eget. Suspendisse a
+                                    nisl
+                                    lacus. Phasellus eget augue tincidunt, sollicitudin lectus sed, convallis
+                                    desto.
+                                    Pellentesque vitae dui lacinia, venenatis erat sit amet, fringilla felis.
+                                    Nullam
+                                    maximus nisi nec mi facilisis.
+                                </p>
+                                <h4>SHIPPING</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut blandit
+                                    risus.
+                                    Donec mollis nec tellus et rutrum. Orci varius natoque penatibus et magnis
+                                    dis
+                                    parturient montes, nascetur ridiculus mus. Ut consequat quam a purus
+                                    faucibus
+                                    scelerisque. Mauris ac dui ante. Pellentesque congue porttitor tempus. Donec
+                                    sodales dapibus urna sed dictum. Duis congue posuere libero, a aliquam est
+                                    porta
+                                    quis.
+                                </p>
+                                <p>
+                                    Donec ullamcorper magna enim, vitae fermentum turpis elementum quis. Interdum
+                                    et
+                                    malesuada fames ac ante ipsum primis in faucibus.
+                                </p>
+                                <p>
+                                    Curabitur vel sem mi. Proin in lobortis ipsum. Aliquam rutrum tempor ex ac
+                                    rutrum. Maecenas nunc nulla, placerat at eleifend in, viverra etos sem. Nam
+                                    sagittis lacus metus, dignissim blandit magna euismod eget. Suspendisse a
+                                    nisl
+                                    lacus. Phasellus eget augue tincidunt, sollicitudin lectus sed, convallis
+                                    desto.
+                                    Pellentesque vitae dui lacinia, venenatis erat sit amet, fringilla felis.
+                                    Nullam
+                                    maximus nisi nec mi facilisis.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="all review">
+                            <div class="reviewWrapper">
+                                <div class="topofreviews">
+                                    <h4 class="desc">Customer Reviews</h4>
+                                </div>
+                                <div class="writereview">
+                                    <div class="overallstar col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="my-rating"></div>
+                                        <p class="revcount">Based on 6 reviews</span>
+                                    </div>
+                                    <div class="writeopenclose col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <p class="opclsbtn">Write a review</p>
+                                    </div>
+                                </div>
+                                <div class="writingsection">
+                                    <p class="announce">Write a review</p>
+                                    <form action="">
+                                        <div class="name similarEach">
+                                            <label for="name">Name</label><br>
+                                            <input type="text" id="name" class="name"
+                                                   placeholder="Enter your name">
+                                        </div>
+                                        <div class="email similarEach">
+                                            <label for="email">Email</label><br>
+                                            <input type="email" id="email" placeholder="someone@example.com">
+                                        </div>
+                                        <div class="title similarEach">
+                                            <label for="title">Review Title</label><br>
+                                            <input type="text" name="title" id="title"
+                                                   placeholder="Give your review a title">
+                                        </div>
+                                        <div class="textareaRev similarEach">
+                                            <label for="message">Body of Review (1500)</label><br>
+                                            <textarea name="" id="message"
+                                                      placeholder="Write your comments here"></textarea>
+                                        </div>
+                                        <div class="submitmes">
+                                            <input type="submit" value="Submit Review">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="allcomments">
+                                    <div class="comment">
+                                        <div class="stars">
+                                            <p>***** Helekilik</p>
+                                        </div>
+                                        <div class="commentBy">
+                                            <p class="commentinfo">
+                                                <span class="Username">Bailey&nbsp;</span>on
+                                                <span class="date">jun 15,2021</span>
+                                            </p>
+                                        </div>
+                                        <p class="shippinInfo">Free shipping</p>
+                                        <p class="commentitself">
+                                            Excellent customer service! Whenever I needed something they were
+                                            there
+                                            for me.
+                                        </p>
+                                        <div class="anverbyAdmin">
+                                            <div class="anserWrapper">
 
+                                                <p class="adminUsername">- Rufet Mezemov</p>
+                                                <p class="messageContent">
+                                                    Thank you for making your first
+                                                    purchase.
+                                                    We’re so glad that you found what you were looking for.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment">
+                                        <div class="stars">
+                                            <p>***** Helekilik</p>
+                                        </div>
+                                        <div class="commentBy">
+                                            <p class="commentinfo">
+                                                <span class="Username">Bailey&nbsp;</span>on
+                                                <span class="date">jun 15,2021</span>
+                                            </p>
+                                        </div>
+                                        <p class="shippinInfo">Free shipping</p>
+                                        <p class="commentitself">
+                                            Excellent customer service! Whenever I needed something they were
+                                            there
+                                            for me.
+                                        </p>
+                                        <div class="anverbyAdmin">
+                                            <div class="anserWrapper">
+
+                                                <p class="adminUsername">- Rufet Mezemov</p>
+                                                <p class="messageContent">
+                                                    Thank you for making your first
+                                                    purchase.
+                                                    We’re so glad that you found what you were looking for.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="relatedproducts">
+        <div class="container">
+            <div class="row">
+                <div class="bannerforFatured">
+                    <div class="productsBy">
+                        <p>Related items</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="contenybyCat">
+                        <div class="all">
+                            <div class="productsByCat">
+                                <div class="byCat">
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Bulgari</a></p>
+                                                    <p class="productName"><a href="">Faxtex Product Sample</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/Printer_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">
+                                                                $110.00 <span class="oldPrice">$19.00</span>
+                                                            </p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Christian Dior</a></p>
+                                                    <p class="productName"><a href="">Finity Product Sample</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/Smartwatch_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">
+                                                                $90.00 <span class="oldPrice">$120.00</span>
+                                                            </p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Dolce & Gabanna</a></p>
+                                                    <p class="productName"><a href="">Fixair Product Sample</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/Tablet_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">$210.00</p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Donna Karan</a></p>
+                                                    <p class="productName"><a href="">Freecof Product Sample</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/ActionCamera_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">$450.00</p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Armani</a></p>
+                                                    <p class="productName">
+                                                        <a href="">Freshkix Product Sample</a>
+                                                    </p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">
+                                                                $120.00 <span class="oldPrice">$150.00</span>
+                                                            </p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
+                                        <div class="product">
+                                            <div class="productContent">
+                                                <div class="topProduct">
+                                                    <p class="brandName"><a href="">Bulgari</a></p>
+                                                    <p class="productName"><a href="">Georgeus White Bag</a></p>
+                                                </div>
+                                                <div class="productImage">
+                                                    <div class="image">
+                                                        <a href="">
+                                                            <img src="~/assets/images/featuredProducts/Earphones_180x.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="bottomProduct">
+                                                    <div class="contforBotPr">
+                                                        <div class="productPrice">
+                                                            <p class="CurrentPrice">$150.00</p>
+                                                        </div>
+                                                        <a href="">
+                                                            <div class="selectOption">
+                                                                <svg version="1.1"
+                                                                     xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                     height="14" viewBox="0 0 64 64">
+                                                                    <path d="M61.696 31.872q0 0.512-0.32 0.896l-13.76 12.608q-0.512 0.512-1.216 0.256-0.704-0.32-0.704-1.088v-8h-44.544q-0.512 0-0.832-0.32t-0.32-0.768v-6.912q0-0.448 0.32-0.768t0.832-0.32h44.544v-8q0-0.768 0.704-1.088t1.216 0.192l13.76 12.48q0.32 0.384 0.32 0.832z">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="productButton">
+                                                <div class="quickView productBtnEl">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18"
+                                                         height="18" viewBox="0 0 64 64">
+                                                        <path d="M32 10.688c-21.312 0-29.312 21.312-29.312 21.312s8 21.312 29.312 21.312 29.312-21.312 29.312-21.312-8-21.312-29.312-21.312zM32 16c14.080 0 21.184 11.392 23.488 16-2.304 4.544-9.472 16-23.488 16-14.080 0-21.184-11.392-23.488-16 2.304-4.544 9.472-16 23.488-16zM32 21.312c-5.903 0-10.688 4.785-10.688 10.688s4.785 10.688 10.688 10.688v0c5.903 0 10.688-4.785 10.688-10.688s-4.785-10.688-10.688-10.688v0zM32 26.688c2.934 0 5.312 2.378 5.312 5.312s-2.378 5.312-5.312 5.312v0c-2.934 0-5.312-2.378-5.312-5.312s2.378-5.312 5.312-5.312v0z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>View</span>
+                                                </div>
+                                                <div class="whishlist productBtnEl">
+                                                    <a href="">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <span>Wishlist</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- owl carousel -->
+<script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+<!-- ---------------- -->
+<!-- ------progressbar---- -->
+<script src="~/assets/JS/skill.bars.jquery.js"></script>
+<script src="~/plugins/star-rating-svg-master/src/jquery.star-rating-svg.js"></script>
+<script src="~/assets/js/detailspg.js"></script>
+<script src="~/plugins/ui-main/dist/fancybox.umd.js"></script>
+<!-- ----------------- -->
+
+<script src="~/assets/js/script.js"></script>

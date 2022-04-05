@@ -34,9 +34,12 @@
                 <th>
                     Profit
                 </th>
+                <th>
+                    Avaliable
+                </th>
                 @*<th>
-                    Description
-                </th>*@
+            Description
+        </th>*@
                 <th>
                     Settings
                 </th>
@@ -71,7 +74,7 @@
                     @product.Price&#x20BC
                     @if (product.CampaignId != null)
                     {
-                    <span>(</span><span title="Price after discount" class="text-success">@(product.Price * (100 - product.Campaign.DiscountPercent) / 100 )</span><span class="text-success">&#x20BC)</span>
+                        <span>(</span><span title="Price after discount" class="text-success">@(product.Price * (100 - product.Campaign.DiscountPercent) / 100 )</span><span class="text-success">&#x20BC)</span>
                     }
                 </td>
                 <td>
@@ -80,13 +83,13 @@
                 @if (product.CampaignId != null)
                 {
                     <td>
-                        @((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice)&#x20BC
+                        @Math.Round(((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice), 2)&#x20BC
                     </td>
                 }
                 else
                 {
                     <td>
-                        @(product.Price-product.CostPrice)&#x20BC
+                        @Math.Round((product.Price - product.CostPrice), 2)&#x20BC
                     </td>
                 }
 
@@ -102,7 +105,9 @@
                 @product.Description
             </td>
         }*@
-
+                <td style="text-align:center;">
+                    @product.AvaliableCount
+                </td>
                 <td>
                     <a asp-controller="product" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
                         <i class="mdi mdi-file-check btn-icon-append"></i>
@@ -111,6 +116,10 @@
                     <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
                         <i class="mdi mdi-alert btn-icon-prepend"></i>
                         Delete
+                    </a>
+                    <a asp-controller="product" asp-action="comments" asp-route-ProductId="@product.Id" class="btn btn-primary btn-icon-text">
+                        <i class="fas fa-comments"></i>
+                        @*(@product.ProductComments.Count(c => c.IsAccess == true))*@ Comments @*(@product.ProductComments.Count)*@
                     </a>
                 </td>
             </tr>

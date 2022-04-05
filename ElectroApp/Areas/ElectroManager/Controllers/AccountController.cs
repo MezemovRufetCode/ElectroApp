@@ -291,8 +291,8 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             AppUser user = new AppUser
             {
-                UserName = "Rufet Mezemov",
-                Email = "mezemovrufet@gmail.com",
+                UserName = "mezemov2020",
+                Email = "mezemovrufet2020@gmail.com",
                 Fullname = "Rufet Mezemov"
             };
             await _usermanager.CreateAsync(user, "mezemov15032000");

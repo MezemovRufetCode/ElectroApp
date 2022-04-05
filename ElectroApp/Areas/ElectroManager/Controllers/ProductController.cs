@@ -25,10 +25,10 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         public IActionResult Index(int page = 1)
         {
             ViewBag.CurrentPage = page;
-            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 4);
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 5);
             List<Product> model = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
                 Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).
-                Skip((page - 1) * 4).Take(4).ToList();
+                Skip((page - 1) * 5).Take(5).ToList();
             return View(model);
         }
         public IActionResult Create()
@@ -66,9 +66,9 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 product.ProductCategories.Add(prCat);
             }
 
-            if (product.ImageFiles.Count > 6)
+            if (product.ImageFiles.Count > 6 || product.ImageFiles.Count<1)
             {
-                ModelState.AddModelError("ImageFiles", "You can choose only 6 images");
+                ModelState.AddModelError("ImageFiles", "You can choose min-1,max 6 images");
                 return View();
             }
             foreach (var image in product.ImageFiles)
@@ -208,6 +208,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existProduct.CostPrice = product.CostPrice;
             existProduct.Name = product.Name;
             existProduct.Videolink = product.Videolink;
+            existProduct.AvaliableCount = product.AvaliableCount;
             existProduct.BrandId = product.BrandId;
             if (product.CampaignId == 0)
             {
@@ -217,7 +218,21 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Product");
         }
-
+        public IActionResult Comments(int ProductId)
+        {
+            if (!_context.ProductComments.Any(c => c.ProductId == ProductId))
+                return RedirectToAction("Index", "Product");
+            List<ProductComment> comments = _context.ProductComments.Include(p => p.AppUser).Where(p => p.ProductId == ProductId).ToList();
+            return View(comments);
+        }
+        public IActionResult CommentStatus(int id)
+        {
+            if (!_context.ProductComments.Any(c => c.Id == id)) return RedirectToAction("Index", "Product");
+            ProductComment comment = _context.ProductComments.SingleOrDefault(c => c.Id == id);
+            comment.IsAccess = comment.IsAccess ? false : true;
+            _context.SaveChanges();
+            return RedirectToAction("Comments", "Product", new { ProductId = comment.ProductId });
+        }
         public IActionResult Delete(int id)
         {
             Product product = _context.Products.FirstOrDefault(p => p.Id == id);

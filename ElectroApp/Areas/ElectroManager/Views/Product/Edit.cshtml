@@ -76,6 +76,11 @@
                 <input asp-for="@Model.InStock"><br />
                 <span class="mt-2 text text-danger" asp-validation-for="@Model.InStock"></span>
             </div>
+            <div class="mb-3">
+                <label asp-for="@Model.AvaliableCount" class="form-label">Avaliable</label><br />
+                <input asp-for="@Model.AvaliableCount"><br />
+                <span class="mt-2 text text-danger" asp-validation-for="@Model.AvaliableCount"></span>
+            </div>
         </div>
         <div class="mb-3">
             <label asp-for="@Model.ImageFiles" class="form-label">Select images</label>

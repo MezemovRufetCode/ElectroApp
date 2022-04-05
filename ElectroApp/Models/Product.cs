@@ -27,14 +27,17 @@ namespace ElectroApp.Models
         [StringLength(maximumLength:600)]
         public string Description { get; set; }
         public bool InStock { get; set; }
-        public int  AvaliableCount { get; set; }
+        [Required]
+        public int AvaliableCount { get; set; }
         public Campaign Campaign { get; set; }
         public int? CampaignId { get; set; }
-        public Specs Specs { get; set; }
-        public int? SpecsId { get; set; }
+        public List<Specs> Specs { get; set; }
+        [NotMapped]
+        public List<int> SpecIds { get; set; }
         public List<ProductCategory> ProductCategories { get; set; }
         [NotMapped]
         public List<int> CategoryIds { get; set; }
+        public List<ProductComment> ProductComments { get; set; }
 
         public List<ProductImage> ProductImages { get; set; }
         [NotMapped]
