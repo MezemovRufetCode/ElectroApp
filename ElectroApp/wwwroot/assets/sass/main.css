@@ -2190,6 +2190,7 @@ header .activeShoppingcart {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+          margin-bottom:5px;
 }
 
 #shoplistBannerfirst .bannerforFatured .productsBy .productsCat {
@@ -2507,9 +2508,10 @@ header .activeShoppingcart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center !important;
+  justify-content:flex-start !important;
+/*  -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
-          justify-content: center !important;
+          justify-content: center !important;*/
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -2518,7 +2520,7 @@ header .activeShoppingcart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product {

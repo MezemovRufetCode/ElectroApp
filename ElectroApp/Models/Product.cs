@@ -11,21 +11,23 @@ namespace ElectroApp.Models
     public class Product
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please include product name")]
         [StringLength(maximumLength:50)]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please include product price")]
         public double Price { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please include cost price")]
+        public double CostPrice { get; set; }
+        [Required(ErrorMessage ="Please include SKU code")]
         [StringLength(maximumLength:25)]
         public string SkuCode { get; set; }
-        [Required]
         [StringLength(maximumLength:200)]
         public string Videolink { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please include product description")]
         [StringLength(maximumLength:600)]
         public string Description { get; set; }
         public bool InStock { get; set; }
+        public int  AvaliableCount { get; set; }
         public Campaign Campaign { get; set; }
         public int? CampaignId { get; set; }
         public Specs Specs { get; set; }

@@ -2,6 +2,7 @@
 using ElectroApp.DAL;
 using ElectroApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace ElectroApp.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                IntroSliders=_context.IntroSliders.ToList()
+                IntroSliders=_context.IntroSliders.ToList(),
+                Products=_context.Products.Include(p=>p.ProductCategories).ThenInclude(pc=>pc.Category).Include(p=>p.ProductImages).
+                Include(p=>p.Brand).Include(p=>p.Campaign).ToList()
             };
             return View(homeVM);
         }

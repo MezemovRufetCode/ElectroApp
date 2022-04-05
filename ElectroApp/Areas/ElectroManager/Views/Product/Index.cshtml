@@ -29,8 +29,14 @@
                     Price
                 </th>
                 <th>
-                    Description
+                    Cost price
                 </th>
+                <th>
+                    Profit
+                </th>
+                @*<th>
+                    Description
+                </th>*@
                 <th>
                     Settings
                 </th>
@@ -39,55 +45,75 @@
         <tbody>
             @foreach (Product product in Model)
             {
-                <tr>
+            <tr>
+                <td>
+                    @product.Id
+                </td>
+                @if (product.ProductImages.FirstOrDefault(p => p.IsMain == true).Image.Contains("https://"))
+                {
                     <td>
-                        @product.Id
+                        <img style="width:100px;height:100px;object-fit:contain" src="@product.ProductImages.FirstOrDefault(p=>p.IsMain == true).Image" alt="product image" />
                     </td>
-                    @if (product.ProductImages.FirstOrDefault(p => p.IsMain == true).Image.Contains("https://"))
-                    {
-                        <td>
-                            <img style="width:100px;height:100px;object-fit:contain" src="@product.ProductImages.FirstOrDefault(p=>p.IsMain == true).Image" alt="product image" />
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <img style="width:100px;height:100px;object-fit:contain" src="~/assets/images/featuredProducts/@product.ProductImages.FirstOrDefault(f=>f.IsMain == true).Image" alt="product image" />
-                        </td>
-                    }
+                }
+                else
+                {
                     <td>
-                        @product.Name
+                        <img style="width:100px;height:100px;object-fit:contain" src="~/assets/images/featuredProducts/@product.ProductImages.FirstOrDefault(f=>f.IsMain == true).Image" alt="product image" />
                     </td>
-                    <td>
-                        @product.Brand.Name
-                    </td>
-                    <td>
-                        @product.Price &#x20BC
-                    </td>
-                    @if (product.Description.Length > 25)
+                }
+                <td>
+                    @product.Name
+                </td>
+                <td>
+                    @product.Brand.Name
+                </td>
+                <td>
+                    @product.Price&#x20BC
+                    @if (product.CampaignId != null)
                     {
-                        <td>
-                            @product.Description.Substring(0, 25)...
-                        </td>
+                    <span>(</span><span title="Price after discount" class="text-success">@(product.Price * (100 - product.Campaign.DiscountPercent) / 100 )</span><span class="text-success">&#x20BC)</span>
                     }
-                    else
-                    {
-                        <td>
-                            @product.Description
-                        </td>
-                    }
+                </td>
+                <td>
+                    @product.CostPrice&#x20BC
+                </td>
+                @if (product.CampaignId != null)
+                {
+                    <td>
+                        @((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice)&#x20BC
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @(product.Price-product.CostPrice)&#x20BC
+                    </td>
+                }
 
-                    <td>
-                        <a asp-controller="product" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
-                            <i class="mdi mdi-file-check btn-icon-append"></i>
-                            Edit
-                        </a>
-                        <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
-                            <i class="mdi mdi-alert btn-icon-prepend"></i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
+                @*@if (product.Description.Length > 25)
+        {
+            <td>
+                @product.Description.Substring(0, 25)...
+            </td>
+        }
+        else
+        {
+            <td>
+                @product.Description
+            </td>
+        }*@
+
+                <td>
+                    <a asp-controller="product" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
+                        <i class="mdi mdi-file-check btn-icon-append"></i>
+                        Edit
+                    </a>
+                    <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
+                        <i class="mdi mdi-alert btn-icon-prepend"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

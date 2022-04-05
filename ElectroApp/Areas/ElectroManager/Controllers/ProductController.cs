@@ -27,7 +27,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 4);
             List<Product> model = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).
                 Skip((page - 1) * 4).Take(4).ToList();
             return View(model);
         }
@@ -94,6 +94,12 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 };
                 product.ProductImages.Add(productImage);
             }
+            if (product.Price < product.CostPrice)
+            {
+                ModelState.AddModelError("CostPrice", "Cost Price can not be higher than sale price");
+                return View();
+            }
+                
             _context.Products.Add(product);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -105,7 +111,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product product = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).FirstOrDefault(p=>p.Id==id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).FirstOrDefault(p=>p.Id==id);
             if (product == null)
                 return NotFound();
             return View(product);
@@ -118,7 +124,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product existProduct = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).FirstOrDefault(p => p.Id == product.Id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).FirstOrDefault(p => p.Id == product.Id);
             if (!ModelState.IsValid)
                 return View(existProduct);
             if (existProduct == null)
@@ -199,13 +205,15 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existProduct.InStock = product.InStock;
             existProduct.SkuCode = product.SkuCode;
             existProduct.Price = product.Price;
+            existProduct.CostPrice = product.CostPrice;
             existProduct.Name = product.Name;
             existProduct.Videolink = product.Videolink;
+            existProduct.BrandId = product.BrandId;
             if (product.CampaignId == 0)
             {
                 product.CampaignId = null;
             }
-            existProduct.Campaign = product.Campaign;
+            existProduct.CampaignId = product.CampaignId;
             _context.SaveChanges();
             return RedirectToAction("Index", "Product");
         }

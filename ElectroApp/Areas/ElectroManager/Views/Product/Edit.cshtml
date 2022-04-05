@@ -20,6 +20,11 @@
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Price"></span>
         </div>
         <div class="mb-3">
+            <label asp-for="@Model.CostPrice" class="form-label">Product cost price</label>
+            <input asp-for="@Model.CostPrice" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.CostPrice"></span>
+        </div>
+        <div class="mb-3">
             <label asp-for="@Model.Description" class="form-label">Description</label>
             <input asp-for="@Model.Description" class="form-control">
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Description"></span>
@@ -89,10 +94,10 @@
                         {
                             <h6 style="text-align:center;font-weight:600;">This is main image<span style="margin-left:5px;position:relative;top:5px"><i class="fa-solid fa-arrow-turn-down"></i></span></h6>
                         }
-                else
-                {
-                    <h6 style="visibility:hidden;opacity:0">TOnly for looking</h6>
-                }
+                        else
+                        {
+                            <h6 style="visibility:hidden;opacity:0">TOnly for looking</h6>
+                        }
                         <div style="margin-right: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; ">
                             <img width="200" style="object-fit:contain;" src="~/assets/images/featuredProducts/@productImage.Image" alt="product image" />
                             <i class="fas fa-times close" style="position:absolute;top:30px;right:15px;color:red;font-size:20px"></i>
