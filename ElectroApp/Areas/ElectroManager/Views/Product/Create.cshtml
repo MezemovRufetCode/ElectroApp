@@ -105,109 +105,53 @@
             <input asp-for="@Model.ImageFiles" class="form-control" />
             <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
         </div>
+        <h4 style="border:1px solid lightgray;padding:10px">Specifications</h4>
+        <div class="form-row col-12" id="specs">
+            <div class="form-group">
+                <label for="Name">Specification</label>
+                <input name="Specs[0].Name" type="text" />
+                <span class="text-danger"></span>
 
-        <!--<div class="panel panel-default mt-3">
-            <div class="panel-heading"> Add Specifications </div>
-            <div class="panel-body">
-                <form>
-                    <div class="input-group control-group after-add-more">
-                        <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
-                        <div class="input-group-btn">
-                            <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                        </div>
-                    </div>
-                </form>-->
-                <!-- Copy Fields -->
-                <!--<div class="copy hide">
-                    <div class="control-group input-group" style="margin-top:10px">
-                        <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
-                        <div class="input-group-btn">
-                            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                        </div>
-                    </div>
-                </div>
+                <label for="Value">Value</label>
+                <input name="Specs[0].Value" type="text" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-spec"> </i></span>
             </div>
-        </div>-->
-
-
-
-        @*<div style="border:1px solid lightgray" class="col-xs-12 mb-3">
-            <div class="col-md-12">
-                <h3 style="margin:10px 0px"> Features</h3>
-                <div id="field">
-                    <div id="field0" style="display:flex">
-                        <div class="form-group col-5" style="padding-left:0px !important;">
-                            <label style="padding-left:0px !important;"  class="col-md-4 control-label" for="action_id">Feature</label>
-                            <div class="col-12" style="padding-left:0px !important;">
-                                <input id="action_id" asp-for="@Model.Specs" placeholder="" class="form-control input-md">
-                            </div>
-                        </div>
-                        <div class="form-group col-5">
-                            <label  class="control-label" for="action_name">Value</label>
-                            <div style="padding-left:0px !important;">
-                                <input id="action_name" placeholder="" class="form-control input-md">
-                            </div>
-                        </div>
-                        <br><br>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4" style="padding-left:0px !important;">
-                        <button  id="add-more" name="add-more" class="btn btn-primary">Add More</button>
-                    </div>
-                </div>
-                <br><br>
-
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <button data-nextIndex="1" class="add-spec btn btn-primary">+</button>
             </div>
-        </div>*@
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*<script type="text/javascript">
-
+    <script>
         $(document).ready(function () {
-
-            $(".add-more").click(function () {
-                var html = $(".copy").html();
-                $(".after-add-more").after(html);
-            });
-
-            $("body").on("click", ".remove", function () {
-                $(this).parents(".control-group").remove();
-            });
-
-        });
-
-    </script>*@
-
-    @*<script>
-        $(document).ready(function () {
-            var next = 0;
-            $("#add-more").click(function (e) {
+            $(document).on("click", ".add-spec", function (e) {
                 e.preventDefault();
-                var addto = "#field" + next;
-                var addRemove = "#field" + (next);
-                next = next + 1;
-                var newIn = ' <div id="field' + next + '" name="field' + next + '" style="display:flex"><!-- Text input--><div class="form-group col-5" style="padding-left:0px !important;"> <label class="col-md-4 control-label" for="action_id" style="margin-top:10px;padding-left:0px !important;">Feature</label> <div class="col-12" style="padding-left:0px !important;"> <input id="action_id" asp-for="&#x00040;Model.Specs.Name" placeholder="" class="form-control input-md"> </div></div><!-- Text input--><div class="form-group col-5" style="margin-top:9px;"> <label style="padding-left:0px !important;" class="col-md-4 control-label" for="action_name" style="margin-top:10px">Value</label> <div style="padding-left:0px !important;"> <input id="action_name" asp-for="&#x00040;Model.Specs.Value" placeholder="" class="form-control input-md"> </div></div><br><br></div></div>';
-                var newInput = $(newIn);
-                var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div><div id="field">';
-                var removeButton = $(removeBtn);
-                $(addto).after(newInput);
-                $(addRemove).after(removeButton);
-                $("#field" + next).attr('data-source', $(addto).attr('data-source'));
-                $("#count").val(next);
-
-                $('.remove-me').click(function (e) {
-                    e.preventDefault();
-                    var fieldNum = this.id.charAt(this.id.length - 1);
-                    var fieldID = "#field" + fieldNum;
-                    $(this).remove();
-                    $(fieldID).remove();
-                });
-            });
-        });
-    </script>*@
+                var nextIndex = $(this).attr("data-nextIndex");
+                var inputGroup = ` <div class="form-group col-12" data-index="0">
+                    <label for="Name">Specification</label>
+                    <input name="Specs[`+ nextIndex + `].Name" type="text" />
+                    <span class="text-danger"></span>
+                    <label for="Value">Value</label>
+                    <input name="Specs[`+ nextIndex + `].Value" type="text" />
+                    <span class="text-danger"></span>
+                    <span><i class="fas fa-minus delete-spec"> </i></span>
+                </div>`
+                $("#specs").append($(inputGroup))
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+            $(document).on("click", ".delete-spec", function (e) {
+                e.preventDefault();
+                $(this).parents(".form-group").empty();
+            })
+        })
+    </script>
 }

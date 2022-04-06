@@ -27,14 +27,14 @@ namespace ElectroApp.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
             List<Product> product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p=>p.Campaign).Skip((page-1)*8).Take(8).ToList();
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p=>p.Campaign).Include(p=>p.Specs).Skip((page-1)*8).Take(8).ToList();
             return View(product);
         }
         public IActionResult Details(int id)
         {
             ViewBag.Categories = _context.Categories.ToList();
             Product product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).Include(p=>p.ProductComments).FirstOrDefault(p=>p.Id==id);
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).Include(p=>p.ProductComments).Include(p=>p.Specs).FirstOrDefault(p=>p.Id==id);
             if (product == null)
             {
                 return NotFound();

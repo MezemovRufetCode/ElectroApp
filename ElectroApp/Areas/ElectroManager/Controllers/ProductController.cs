@@ -27,7 +27,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 5);
             List<Product> model = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).
                 Skip((page - 1) * 5).Take(5).ToList();
             return View(model);
         }
@@ -66,7 +66,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 product.ProductCategories.Add(prCat);
             }
 
-            if (product.ImageFiles.Count > 6 || product.ImageFiles.Count<1)
+            if (product.ImageFiles.Count > 6 || product.ImageFiles.Count < 1)
             {
                 ModelState.AddModelError("ImageFiles", "You can choose min-1,max 6 images");
                 return View();
@@ -99,7 +99,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 ModelState.AddModelError("CostPrice", "Cost Price can not be higher than sale price");
                 return View();
             }
-                
+
             _context.Products.Add(product);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -111,7 +111,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product product = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).FirstOrDefault(p=>p.Id==id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).FirstOrDefault(p => p.Id == id);
             if (product == null)
                 return NotFound();
             return View(product);
@@ -124,7 +124,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product existProduct = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p=>p.Campaign).FirstOrDefault(p => p.Id == product.Id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).FirstOrDefault(p => p.Id == product.Id);
             if (!ModelState.IsValid)
                 return View(existProduct);
             if (existProduct == null)
@@ -202,6 +202,16 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                     existProduct.ProductCategories.Add(pCategory);
                 }
             }
+            List<Specs> existSpecs = _context.Specs.Where(x => x.ProductId == product.Id).ToList();
+            List<Specs> specs = product.Specs;
+            if (specs != null)
+            {
+                _context.Products.FirstOrDefault(p => p.Id == product.Id).Specs = specs;
+            }
+            if (existSpecs != null)
+            {
+                _context.Specs.RemoveRange(existSpecs);
+            }
             existProduct.InStock = product.InStock;
             existProduct.SkuCode = product.SkuCode;
             existProduct.Price = product.Price;
@@ -210,6 +220,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existProduct.Videolink = product.Videolink;
             existProduct.AvaliableCount = product.AvaliableCount;
             existProduct.BrandId = product.BrandId;
+            existProduct.Specs = product.Specs;
             if (product.CampaignId == 0)
             {
                 product.CampaignId = null;
@@ -236,8 +247,15 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         public IActionResult Delete(int id)
         {
             Product product = _context.Products.FirstOrDefault(p => p.Id == id);
+            Product existProduct = _context.Products.Include(p => p.ProductImages).FirstOrDefault(p => p.Id == product.Id);
+            if (existProduct == null)
+                return NotFound();
             if (product == null)
                 return Json(new { status = 404 });
+            foreach (var image in existProduct.ProductImages)
+            {
+                Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images/featuredProducts", image.Image);
+            }
             _context.Products.Remove(product);
             _context.SaveChanges();
             return Json(new { status = 200 });

@@ -88,6 +88,33 @@
             <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
         </div>
 
+        <h4 style="padding:10px;text-align:center;">Specifications</h4>
+
+        <div class="form-row col-12" id="spec">
+            @{ int count = 0;
+                @foreach (var item in Model.Specs)
+                {
+                    <div class="form-group">
+                        <label for="specName">Spec Name</label>
+                        <input name="Specs[@count].Name" type="text" value="@item.Name" class="deleting" />
+                        <span class="text-danger"></span>
+
+                        <label for="specValue"> Spec Value</label>
+                        <input name="Specs[@count].Value" type="text" value="@item.Value" class="deleting" />
+                        <span class="text-danger"></span>
+                        <span><i class="fas fa-minus delete-skill"> </i></span>
+                    </div>
+
+                    count++;
+                }
+            }
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <button data-nextIndex="@Model.Specs.Count" class="add-skill btn btn-primary">+</button>
+            </div>
+        </div>
+
         <div class="mb-3">
             <div class="d-flex">
                 @foreach (ProductImage productImage in Model.ProductImages)
@@ -125,5 +152,50 @@
                 $(this).parent().parent().remove();
             })
         })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".add-skill", function (e) {
+                e.preventDefault();
+                var nextIndex = $(this).attr("data-nextIndex");
+                var inputGroup = ` <div class="form-group col-12" data-index="0">
+                    <label for="specName">Spec Name</label>
+                    <input name="Specs[`+ nextIndex + `].Name" type="text" />
+                    <span class="text-danger"></span>
+                    <label for="specValue">Spec Value</label>
+                    <input name="Specs[`+ nextIndex + `].Value" type="text" />
+                    <span  class="text-danger"></span>
+                    <span><i class="fas fa-minus delete-skill"> </i></span>
+                </div>`
+                $("#spec").append($(inputGroup))
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+            $(document).on("click", ".delete-skill", function (e) {
+                e.preventDefault();
+                console.log("test");
+                $(this).parents(".form-group").empty();
+            })
+        })
+        for (var i = 0; i < document.getElementsByClassName("delete-skill").length; i++) {
+
+            document.getElementsByClassName("delete-skill")[i].onclick = function (e) {
+                e.preventDefault();
+                this.parentElement.parentElement.innerHTML = null;
+
+                for (var z = 0; z < document.getElementsByClassName("deleting").length; z += 2) {
+                    var count = 0;
+                    for (var t = 0; t < 2; t++) {
+                        var name = "Specs[" + (z / 2) + "].Name";
+                        var value = "Specs[" + (z / 2) + "].Value";
+                        document.getElementsByClassName("deleting")[z].setAttribute("name", name);
+                        document.getElementsByClassName("deleting")[z + 1].setAttribute("name", value);
+                        count++;
+                    }
+                }
+            }
+        }
     </script>
 }

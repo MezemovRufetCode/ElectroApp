@@ -414,11 +414,15 @@
                                                                     </a>
                                                                 </p>
                                                                 <ul class="specy">
-                                                                    <li>4.5 inch HD Screen</li>
-                                                                    <li>Android 4.4 KitKat OS</li>
+                                                                    @foreach (var spec in product.Specs)
+                                                                    {
+                                                                        <li>@spec.Name @spec.Value</li>
+                                                                    }
+
+                                                                    @*<li>Android 4.4 KitKat OS</li>
                                                                     <li>1.4 GHz Quad Core™ Processor</li>
                                                                     <li>20 MP front Camera</li>
-                                                                    <li>Cloud storage</li>
+                                                                    <li>Cloud storage</li>*@
                                                                 </ul>
                                                             </div>
                                                            
