@@ -46,5 +46,8 @@ namespace ElectroApp.Models
         public List<int> ImageIds { get; set; }
         public Brand Brand { get; set; }
         public int BrandId { get; set; }
+        public List<Feature> Features { get; set; }
+        [NotMapped]
+        public List<int> FeatureIds { get; set; }
     }
 }

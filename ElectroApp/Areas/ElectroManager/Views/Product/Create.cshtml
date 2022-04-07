@@ -105,22 +105,47 @@
             <input asp-for="@Model.ImageFiles" class="form-control" />
             <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
         </div>
-        <h4 style="border:1px solid lightgray;padding:10px">Specifications</h4>
-        <div class="form-row col-12" id="specs">
-            <div class="form-group">
-                <label for="Name">Specification</label>
-                <input name="Specs[0].Name" type="text" />
-                <span class="text-danger"></span>
-
-                <label for="Value">Value</label>
-                <input name="Specs[0].Value" type="text" />
-                <span class="text-danger"></span>
-                <span><i class="fas fa-minus delete-spec"> </i></span>
+        <div class="mb-3">
+            <h4 style="padding:10px;text-align:center;font-weight:bold;font-size:20px;">Specifications</h4>
+            <div class="form-row col-12" id="specs">
+                <div class="form-group col-12" style="display:flex;">
+                    <div class="col-6" style="padding-left:0px;">
+                        <div>
+                            <input class="form-control" name="Specs[0].Name" type="text" placeholder="Specification name" />
+                        </div>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="col-6" style="padding-right:0px;">
+                        <div style="display:flex;">
+                            <input class="form-control" name="Specs[0].Value" type="text" placeholder="Value" />
+                            <span><button style="height:100%;" class=" delete-spec btn btn-success">Remove</button></span>
+                        </div>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="form-group">
+                    <button style="padding:5px 30px;" data-nextIndex="1" class="add-spec btn btn-primary">Add more</button>
+                </div>
             </div>
         </div>
-        <div class="form-row justify-content-center">
-            <div class="form-group">
-                <button data-nextIndex="1" class="add-spec btn btn-primary">+</button>
+        <div class="mb-3">
+            <h4 style="padding:10px;text-align:center;font-weight:bold;font-size:20px;">Features</h4>
+            <div class="form-row col-12" id="feature">
+                <div class="form-group col-12">
+                    <div style="display:flex;width:100% !important;">
+                        <input name="Feature[0].FeatureName" class="form-control" type="text" placeholder="Include feature" />
+                        <span class="text-danger"></span>
+                        <span><button style="height:100%;" class="delete-feature btn btn-success">Remove</button></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="form-group">
+                    <button style="padding:5px 30px;" data-nextIndex="1" class="add-feature btn btn-primary">Add More</button>
+                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -134,21 +159,51 @@
             $(document).on("click", ".add-spec", function (e) {
                 e.preventDefault();
                 var nextIndex = $(this).attr("data-nextIndex");
-                var inputGroup = ` <div class="form-group col-12" data-index="0">
-                    <label for="Name">Specification</label>
-                    <input name="Specs[`+ nextIndex + `].Name" type="text" />
-                    <span class="text-danger"></span>
-                    <label for="Value">Value</label>
-                    <input name="Specs[`+ nextIndex + `].Value" type="text" />
-                    <span class="text-danger"></span>
-                    <span><i class="fas fa-minus delete-spec"> </i></span>
-                </div>`
+                var inputGroup = ` <div class="form-group col-12" style="display:flex;" data-index="0">
+                                        <div class="col-6" style="padding-left:0px;">
+                                          <div>
+                                               <input class="form-control" name="Specs[`+ nextIndex + `].Name" type="text" placeholder="Specification name" />
+                                          </div>
+                                                 <span class="text-danger"></span>
+                                         </div>
+
+                                     <div class="col-6" style="padding-right:0px;">
+                                         <div style="display:flex;">
+                                             <input  class="form-control" name="Specs[`+ nextIndex + `].Value" type="text" placeholder="Value" />
+                                            <span><button style="height:100%;" class=" delete-spec btn btn-success">Remove</button></span>
+                                            </div>
+                                            <span class="text-danger"></span>
+                                             </div>
+                                </div>`
                 $("#specs").append($(inputGroup))
                 nextIndex = +nextIndex + 1;
                 console.log(nextIndex)
                 $(this).attr("data-nextIndex", nextIndex)
             })
             $(document).on("click", ".delete-spec", function (e) {
+                e.preventDefault();
+                $(this).parents(".form-group").empty();
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".add-feature", function (e) {
+                e.preventDefault();
+                var nextIndex = $(this).attr("data-nextIndex");
+                var inputGroup = ` <div class="form-group col-12" data-index="0">
+                                    <div style="display:flex;width:100% !important;">
+                                    <input class="form-control" name="Feature[`+ nextIndex + `].FeatureName" type="text" placeholder="Include feature" />
+                                    <span class="text-danger"></span>
+                                    <span><button style="height:100%;" class="delete-feature btn btn-success">Remove</button></span>
+                                    </div>
+                                    </div>`
+                $("#feature").append($(inputGroup))
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+            $(document).on("click", ".delete-feature", function (e) {
                 e.preventDefault();
                 $(this).parents(".form-group").empty();
             })

@@ -87,31 +87,61 @@
             <input asp-for="@Model.ImageFiles" class="form-control" />
             <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
         </div>
+        <div class="mb-3">
+            <h4 style="padding:10px;text-align:center;">Specifications</h4>
+            <div style="width:100%;display:flex;justify-content:space-around;">
+                <p style="font-weight:bold;font-size:18px;">Specification name</p>
+                <p style="font-weight:bold;font-size:18px;">Value</p>
+            </div>
+            <div style="padding:0px;" class="form-row col-12" id="spec">
+                @{ int count = 0;
+                    @foreach (var item in Model.Specs)
+                    {
+                        <div class="form-group col-12" style="display:flex;padding:0px;">
+                            <div style="padding-left:0px" class="col-6">
+                                <input name="Specs[@count].Name" type="text" value="@item.Name" class="deleting form-control" placeholder="Specification name" />
+                                <span class="text-danger"></span>
+                            </div>
 
-        <h4 style="padding:10px;text-align:center;">Specifications</h4>
-
-        <div class="form-row col-12" id="spec">
-            @{ int count = 0;
-                @foreach (var item in Model.Specs)
-                {
-                    <div class="form-group">
-                        <label for="specName">Spec Name</label>
-                        <input name="Specs[@count].Name" type="text" value="@item.Name" class="deleting" />
-                        <span class="text-danger"></span>
-
-                        <label for="specValue"> Spec Value</label>
-                        <input name="Specs[@count].Value" type="text" value="@item.Value" class="deleting" />
-                        <span class="text-danger"></span>
-                        <span><i class="fas fa-minus delete-skill"> </i></span>
-                    </div>
-
-                    count++;
+                            <div style="padding-right:0px;" class="col-6">
+                                <div style="display:flex;padding:0px;">
+                                    <input name="Specs[@count].Value" type="text" value="@item.Value" class="deleting form-control" placeholder="Value" />
+                                    <span><button style="height:100%;" class="btn btn-success delete-skill">Remove</button></span>
+                                </div>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        count++;
+                    }
                 }
-            }
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="form-group">
+                    <button data-nextIndex="@Model.Specs.Count" style="padding:5px 30px;" class="add-skill btn btn-primary">Add More</button>
+                </div>
+            </div>
         </div>
-        <div class="form-row justify-content-center">
-            <div class="form-group">
-                <button data-nextIndex="@Model.Specs.Count" class="add-skill btn btn-primary">+</button>
+        <div class="mb-3">
+            <h4 style="padding:10px;text-align:center;">Features</h4>
+            <div style="padding:0px;" class="form-row col-12" id="feature">
+                @{ int countF = 0;
+                    @foreach (var item in Model.Features)
+                    {
+                        <div class="form-group col-12" style="padding:0px;">
+                                <div style="display:flex;padding:0px;" class="col-12">
+                                    <input name="Features[@countF].FeatureName" type="text" value="@item.FeatureName" class="deletingF form-control" placeholder="Feature" />
+                                    <span><button style="height:100%;" class="btn btn-success delete-feature">Remove</button></span>
+                                </div>
+                                <span class="text-danger"></span>
+                        </div>
+                        countF++;
+                    }
+                }
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="form-group">
+                    <button data-nextIndex="@Model.Features.Count" style="padding:5px 30px;" class="add-feature btn btn-primary">Add More</button>
+                </div>
             </div>
         </div>
 
@@ -159,15 +189,19 @@
             $(document).on("click", ".add-skill", function (e) {
                 e.preventDefault();
                 var nextIndex = $(this).attr("data-nextIndex");
-                var inputGroup = ` <div class="form-group col-12" data-index="0">
-                    <label for="specName">Spec Name</label>
-                    <input name="Specs[`+ nextIndex + `].Name" type="text" />
-                    <span class="text-danger"></span>
-                    <label for="specValue">Spec Value</label>
-                    <input name="Specs[`+ nextIndex + `].Value" type="text" />
-                    <span  class="text-danger"></span>
-                    <span><i class="fas fa-minus delete-skill"> </i></span>
-                </div>`
+                var inputGroup = ` <div class="form-group col-12" data-index="0" style="display:flex;padding:0px;">
+                        <div style="padding-left:0px" class="col-6">
+                        <input name="Specs[`+ nextIndex + `].Name" type="text" class="form-control" placeholder="Specification name" />
+                        <span class="text-danger"></span>
+                        </div>
+
+                         <div style="padding-right:0px;" class="col-6">
+                            <div style="display:flex;padding:0px;">
+                                 <input name="Specs[`+ nextIndex + `].Value" type="text" class="form-control" placeholder="Value" />
+                                <span><button style="height:100%;" class="btn btn-success delete-skill">Remove</button></span>
+                            </div>
+                            <span class="text-danger"></span>
+                        </div>`
                 $("#spec").append($(inputGroup))
                 nextIndex = +nextIndex + 1;
                 console.log(nextIndex)
@@ -175,7 +209,6 @@
             })
             $(document).on("click", ".delete-skill", function (e) {
                 e.preventDefault();
-                console.log("test");
                 $(this).parents(".form-group").empty();
             })
         })
@@ -183,7 +216,7 @@
 
             document.getElementsByClassName("delete-skill")[i].onclick = function (e) {
                 e.preventDefault();
-                this.parentElement.parentElement.innerHTML = null;
+                this.parentElement.parentElement.parentElement.parentElement.innerHTML = null;
 
                 for (var z = 0; z < document.getElementsByClassName("deleting").length; z += 2) {
                     var count = 0;
@@ -192,6 +225,46 @@
                         var value = "Specs[" + (z / 2) + "].Value";
                         document.getElementsByClassName("deleting")[z].setAttribute("name", name);
                         document.getElementsByClassName("deleting")[z + 1].setAttribute("name", value);
+                        count++;
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".add-feature", function (e) {
+                e.preventDefault();
+                var nextIndex = $(this).attr("data-nextIndex");
+                var inputGroup = ` <div class="form-group col-12" data-index="0" style="padding:0px;">
+                                         <div style="display:flex;padding:0px;">
+                                          <input name="Features[`+ nextIndex + `].FeatureName" type="text" class="form-control" placeholder="Feature" />
+                                             <span><button style="height:100%;" class="btn btn-success delete-skill">Remove</button></span>
+                                         </div>
+                                        <span class="text-danger"></span>
+                                   </div>`
+                $("#feature").append($(inputGroup))
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+            $(document).on("click", ".delete-feature", function (e) {
+                e.preventDefault();
+                $(this).parents(".form-group").empty();
+            })
+        })
+        for (var i = 0; i < document.getElementsByClassName("delete-feature").length; i++) {
+
+            document.getElementsByClassName("delete-feature")[i].onclick = function (e) {
+                e.preventDefault();
+                this.parentElement.parentElement.parentElement.innerHTML = null;
+
+                for (var z = 0; z < document.getElementsByClassName("deletingF").length; z += 1) {
+                    var count = 0;
+                    for (var t = 0; t < 2; t++) {
+                        var name = "Features[" + z + "].FeatureName";
+                        document.getElementsByClassName("deletingF")[z].setAttribute("name", name);
                         count++;
                     }
                 }

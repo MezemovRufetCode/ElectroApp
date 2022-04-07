@@ -26,6 +26,7 @@ namespace ElectroApp.DAL
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<Specs> Specs { get; set; }
+        public DbSet<Feature> Features { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<FAQ> FAQs { get; set; }

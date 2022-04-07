@@ -27,7 +27,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 5);
             List<Product> model = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).Include(p=>p.Features).
                 Skip((page - 1) * 5).Take(5).ToList();
             return View(model);
         }
@@ -111,7 +111,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product product = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).FirstOrDefault(p => p.Id == id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).Include(p=>p.Features).FirstOrDefault(p => p.Id == id);
             if (product == null)
                 return NotFound();
             return View(product);
@@ -124,7 +124,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Brands = _context.Brands.ToList();
             Product existProduct = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).FirstOrDefault(p => p.Id == product.Id);
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p=>p.Specs).Include(p=>p.Features).FirstOrDefault(p => p.Id == product.Id);
             if (!ModelState.IsValid)
                 return View(existProduct);
             if (existProduct == null)
@@ -212,6 +212,18 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             {
                 _context.Specs.RemoveRange(existSpecs);
             }
+
+            List<Feature> existFeatures = _context.Features.Where(f => f.ProductId == product.Id).ToList();
+            List<Feature> features = product.Features;
+            if (features != null)
+            {
+                _context.Products.FirstOrDefault(p => p.Id == product.Id).Features = features;
+            }
+            if (existFeatures != null)
+            {
+                _context.Features.RemoveRange(existFeatures);
+            }
+
             existProduct.InStock = product.InStock;
             existProduct.SkuCode = product.SkuCode;
             existProduct.Price = product.Price;
@@ -221,6 +233,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existProduct.AvaliableCount = product.AvaliableCount;
             existProduct.BrandId = product.BrandId;
             existProduct.Specs = product.Specs;
+            existProduct.Features = product.Features;
             if (product.CampaignId == 0)
             {
                 product.CampaignId = null;
