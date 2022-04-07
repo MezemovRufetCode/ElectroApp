@@ -6,28 +6,6 @@
 @section CSS{
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <style>
-        select {
-            min-width: 200px !important;
-        }
-
-        .add-more,
-        .remove {
-            height: 100% !important;
-            width: 100px !important;
-        }
-
-        .panel .input-group {
-            width: calc(100% - 100px) !important;
-        }
-
-        .panel-heading {
-            background-color: white !important;
-            font-weight: 600;
-            font-size: 18px;
-        }
-    </style>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -66,48 +44,44 @@
             <textarea asp-for="@Model.Description" class="form-control" rows="3"></textarea>
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Description"></span>
         </div>
-        <h4 class="mt-2 mb-2" style="text-align:center">Selection</h4>
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-            <div class="mb-3">
-                <label asp-for="@Model.CategoryIds" class="form-label">Categories</label><br />
-                <select asp-for="@Model.CategoryIds" class="form-select" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
-                </select>
-                <span class="mt-2 text text-danger" asp-validation-for="@Model.CategoryIds"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="@Model.CampaignId" class="form-label">Campaign</label><br />
-                <select asp-for="@Model.CampaignId" class="form-select" asp-items="@(new SelectList(ViewBag.Campaigns,"Id","DiscountPercent"))">
-                    <option value="0">Select campaign</option>
-                </select>
-                <span class="mt-2 text text-danger" asp-validation-for="@Model.CampaignId"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="@Model.BrandId" class="form-label">Brands</label><br />
-                <select asp-for="@Model.BrandId" class="form-select" asp-items="@(new SelectList(ViewBag.Brands,"Id","Name"))">
-                    <option value="0">Select Option</option>
-                </select>
-                <span class="text text-danger" asp-validation-for="@Model.BrandId"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="@Model.InStock" class="form-label">In stock</label><br />
-                <input asp-for="@Model.InStock"><br />
-                <span class="mt-2 text text-danger" asp-validation-for="@Model.InStock"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="@Model.AvaliableCount" class="form-label">Avaliable</label><br />
-                <input asp-for="@Model.AvaliableCount" placeholder="Product count"><br />
-                <span class="mt-2 text text-danger" asp-validation-for="@Model.AvaliableCount"></span>
-            </div>
-        </div>
-
         <div class="mb-3">
-            <label asp-for="@Model.ImageFiles" class="form-label">Select images</label>
-            <input asp-for="@Model.ImageFiles" class="form-control" />
-            <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
+            <h4 class="mt-2 mb-2" style="padding:10px;text-align:center;font-weight:bold;font-size:20px;">Selection</h4>
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
+                <div class="mb-3">
+                    <label asp-for="@Model.CategoryIds" class="form-label">Categories</label><br />
+                    <select asp-for="@Model.CategoryIds" class="form-select form-control" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+                    </select>
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.CategoryIds"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.CampaignId" class="form-label">Campaign</label><br />
+                    <select asp-for="@Model.CampaignId" class="form-select form-control" asp-items="@(new SelectList(ViewBag.Campaigns,"Id","DiscountPercent"))">
+                        <option value="0">Select campaign</option>
+                    </select>
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.CampaignId"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.BrandId" class="form-label">Brands</label><br />
+                    <select asp-for="@Model.BrandId" class="form-select form-control" asp-items="@(new SelectList(ViewBag.Brands,"Id","Name"))">
+                        <option value="0">Select Option</option>
+                    </select>
+                    <span class="text text-danger" asp-validation-for="@Model.BrandId"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.AvaliableCount" class="form-label">Avaliable</label><br />
+                    <input asp-for="@Model.AvaliableCount" class="form-control" placeholder="Product count"><br />
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.AvaliableCount"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.InStock" class="form-label">In stock</label><br />
+                    <input asp-for="@Model.InStock" class="form-control-sm"><br />
+                    <span class="mt-2 text text-danger" asp-validation-for="@Model.InStock"></span>
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <h4 style="padding:10px;text-align:center;font-weight:bold;font-size:20px;">Specifications</h4>
-            <div class="form-row col-12" id="specs">
+            <div class="form-row col-12" id="specs" style="padding:0px !important;">
                 <div class="form-group col-12" style="display:flex;">
                     <div class="col-6" style="padding-left:0px;">
                         <div>
@@ -132,7 +106,7 @@
         </div>
         <div class="mb-3">
             <h4 style="padding:10px;text-align:center;font-weight:bold;font-size:20px;">Features</h4>
-            <div class="form-row col-12" id="feature">
+            <div class="form-row col-12" id="feature" style="padding:0px !important;">
                 <div class="form-group col-12">
                     <div style="display:flex;width:100% !important;">
                         <input name="Feature[0].FeatureName" class="form-control" type="text" placeholder="Include feature" />
@@ -148,6 +122,11 @@
                 </div>
             </div>
         </div>
+        <div class="mb-3">
+            <label asp-for="@Model.ImageFiles" class="form-label">Select images</label>
+            <input asp-for="@Model.ImageFiles" class="form-control form-control-file" />
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFiles"></span>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
@@ -160,21 +139,21 @@
                 e.preventDefault();
                 var nextIndex = $(this).attr("data-nextIndex");
                 var inputGroup = ` <div class="form-group col-12" style="display:flex;" data-index="0">
-                                        <div class="col-6" style="padding-left:0px;">
-                                          <div>
-                                               <input class="form-control" name="Specs[`+ nextIndex + `].Name" type="text" placeholder="Specification name" />
-                                          </div>
-                                                 <span class="text-danger"></span>
-                                         </div>
-
-                                     <div class="col-6" style="padding-right:0px;">
-                                         <div style="display:flex;">
-                                             <input  class="form-control" name="Specs[`+ nextIndex + `].Value" type="text" placeholder="Value" />
-                                            <span><button style="height:100%;" class=" delete-spec btn btn-success">Remove</button></span>
-                                            </div>
-                                            <span class="text-danger"></span>
+                                            <div class="col-6" style="padding-left:0px;">
+                                              <div>
+                                                   <input class="form-control" name="Specs[`+ nextIndex + `].Name" type="text" placeholder="Specification name" />
+                                              </div>
+                                                     <span class="text-danger"></span>
                                              </div>
-                                </div>`
+
+                                         <div class="col-6" style="padding-right:0px;">
+                                             <div style="display:flex;">
+                                                 <input  class="form-control" name="Specs[`+ nextIndex + `].Value" type="text" placeholder="Value" />
+                                                <span><button style="height:100%;" class=" delete-spec btn btn-success">Remove</button></span>
+                                                </div>
+                                                <span class="text-danger"></span>
+                                                 </div>
+                                    </div>`
                 $("#specs").append($(inputGroup))
                 nextIndex = +nextIndex + 1;
                 console.log(nextIndex)
@@ -192,12 +171,12 @@
                 e.preventDefault();
                 var nextIndex = $(this).attr("data-nextIndex");
                 var inputGroup = ` <div class="form-group col-12" data-index="0">
-                                    <div style="display:flex;width:100% !important;">
-                                    <input class="form-control" name="Feature[`+ nextIndex + `].FeatureName" type="text" placeholder="Include feature" />
-                                    <span class="text-danger"></span>
-                                    <span><button style="height:100%;" class="delete-feature btn btn-success">Remove</button></span>
-                                    </div>
-                                    </div>`
+                                        <div style="display:flex;width:100% !important;">
+                                        <input class="form-control" name="Feature[`+ nextIndex + `].FeatureName" type="text" placeholder="Include feature" />
+                                        <span class="text-danger"></span>
+                                        <span><button style="height:100%;" class="delete-feature btn btn-success">Remove</button></span>
+                                        </div>
+                                        </div>`
                 $("#feature").append($(inputGroup))
                 nextIndex = +nextIndex + 1;
                 console.log(nextIndex)
@@ -208,5 +187,13 @@
                 $(this).parents(".form-group").empty();
             })
         })
+    </script>
+    <script>
+        $('option').mousedown(function (e) {
+            e.preventDefault();
+            $(this).toggleClass('selected');
+            $(this).prop('selected', !$(this).prop('selected'));
+            return false;
+        });
     </script>
 }

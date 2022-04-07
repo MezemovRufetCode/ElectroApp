@@ -37,19 +37,6 @@
                                                 <img src="~/assets/images/featuredProducts/@image.Image" alt="">
                                             </a>
                                         }
-
-                                        @*<a href="~/assets/images/featuredProducts/2_540x.jpg"
-                                               data-fancybox="gallery" data-caption="Optional caption">
-                                                <img src="~/assets/images/featuredProducts/2_540x.jpg" alt="">
-                                            </a>
-                                            <a href="~/assets/images/featuredProducts/3_540x.jpg"
-                                               data-fancybox="gallery" data-caption="Optional caption">
-                                                <img src="~/assets/images/featuredProducts/3_540x.jpg" alt="">
-                                            </a>
-                                            <a href="~/assets/images/featuredProducts/4_540x.jpg"
-                                               data-fancybox="gallery" data-caption="Optional caption">
-                                                <img src="~/assets/images/featuredProducts/4_540x.jpg" alt="">
-                                            </a>*@
                                     </div>
                                 </div>
                                 <div class="img-select">
@@ -64,22 +51,6 @@
                                         </div>
                                         dataId = dataId + 1;
                                     }
-
-                                    @*<div class="img-item">
-            <a href="#" data-id="2">
-                <img src="~/assets/images/featuredProducts/2_540x.jpg" alt="">
-            </a>
-        </div>
-        <div class="img-item">
-            <a href="#" data-id="3">
-                <img src="~/assets/images/featuredProducts/3_540x.jpg" alt="">
-            </a>
-        </div>
-        <div class="img-item">
-            <a href="#" data-id="4">
-                <img src="~/assets/images/featuredProducts/4_540x.jpg" alt="">
-            </a>
-        </div>*@
                                 </div>
                             </div>
                         </div>
@@ -117,32 +88,29 @@
                                 <div class="bodydetails">
                                     <div class="features">
                                         <ul>
-                                            <li>
-                                                Play online with your friends, get free games, save games online and
-                                                more with PlayStation
-                                            </li>
-                                            <li>
-                                                Cutting edge graphics bring game worlds to life like never before,
-                                                and next gen
-                                            </li>
-                                            <li>
-                                                Connect with your friends to broadcast and celebrate your epic
-                                                moments
-                                            </li>
-                                            <li>Perfect for both new players and players new to PS4</li>
+                                            @foreach (var feature in Model.Features)
+                                            {
+                                                <li>
+                                                    @feature.FeatureName
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="bottomdetails">
                                     <ul>
-                                        <li>Product SKU: gold-chain-93az-1</li>
+                                        <li>Product SKU: @Model.SkuCode</li>
                                         <li>
                                             <span>Category:</span>
-                                            <a href="">Accessories,</a>
-                                            <a href="">All in One,</a>
-                                            <a href="">Gaming,</a>
-                                            <a href="">Headphone,</a>
-                                            <a href="">Music</a>
+                                            @foreach (var category in Model.ProductCategories)
+                                            {
+                                                <a href="">@category.Category.Name </a>
+                                            }
+                                            @*<a href="">Accessories,</a>
+                                                <a href="">All in One,</a>
+                                                <a href="">Gaming,</a>
+                                                <a href="">Headphone,</a>
+                                                <a href="">Music</a>*@
                                         </li>
                                     </ul>
                                 </div>
@@ -187,7 +155,16 @@
                             <div class="product-info">
                                 <div class="product-info-inner">
                                     <div class="instock">
-                                        <span>Avaliable:</span> <span class="stock">In Stock</span>
+                                        <span>Avaliable:</span>
+                                        @if (Model.InStock)
+                                        {
+                                            <span class="stock">In Stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="stock" style="color:orangered !important;">Out of Stock</span>
+                                        }
+
                                     </div>
                                 </div>
                                 <div class="productprice">
@@ -300,94 +277,19 @@
                     <div class="contenybyCat">
                         <div class="all description activeDetailsContent">
                             <p>
-                                <span>Our new </span><b>HPB12 / A12</b><b> battery</b><span>
-                                    is rated at 2000mAh
-                                    and
-                                    designed to power up Black and Decker / FireStorm line of 12V tools allowing
-                                    users to run multiple devices off the same battery pack. The HPB12 is
-                                    compatible
-                                    with the following Black and Decker power tool models:
-                                </span><br><br><b>
-                                    Black
-                                    &amp; Decker Drills and Drivers:<br>
-                                </b><span>
-                                    BD12PSK, BDG1200K, BDGL12K,
-                                    BDID1202, CD1200SK, CD12SFK, CDC1200K, CDC120AK, CDC120ASB, CP122K, CP122KB,
-                                    CP12K, CP12KB, EPC12, EPC126, EPC126BK, EPC12CA, EPC12CABK, HP122K, HP122KD,
-                                    HP126F2B, HP126F2K, HP126F3B, HP126F3K, HP126FBH, HP126FSC, HP126FSH,
-                                    HP126K,
-                                    HP128F3B, HP12K, HP12KD, HPD1200, HPD1202, HPD1202KF, HPD12K-2, PS122K,
-                                    PS122KB,
-                                    PS12HAK, SS12, SX3000, SX3500, XD1200, XD1200K,
-                                    XTC121&nbsp;
-                                </span><br><br><b>
-                                    Black &amp; Decker Impact
-                                    Wrenches:<br>
-                                </b><span>
-                                    SX5000, XTC12IK,
-                                    XTC12IKH&nbsp;
-                                </span><br><br><b>
-                                    Black
-                                    &amp; Decker
-                                    Multi-Tools:<br>
-                                </b><span>KC2000FK&nbsp;</span><br><b><br></b><b>
-                                    Black &amp;
-                                    Decker Nailers:
-                                </b><br><span>BDBN1202 &nbsp;</span><b><br></b><b>
-                                    <br>Black
-                                    &amp;
-                                    Decker
-                                    Screwdrivers:<br>
-                                </b><span>HP9019K&nbsp;</span><b><br></b><b><br></b><span>
-                                    and
-                                    other 12V tools.
-                                </span><br><br><span>
-                                    Best replacement for the following
-                                    Black
-                                    and Decker OEM battery part numbers:
-                                </span><br><span>
-                                    HPB12, A12, A12EX,
-                                    A12-XJ,
-                                    A1712, B-8315, BD1204L, BD-1204L, BPT1047, FS120B, FS120BX, FSB12.
-                                </span>
+                                @Model.Description
                             </p>
-                            <!-- <div class="productsByCat">
-                                <div class="byCat">
-                                    <div class="productWrapper">
-                                        <div class="product">
-                                            <div class="productContent">
-                                                <div class="topProduct">
-                                                    <p class="productName"><a href="">Faxtex Product Sample</a></p>
-                                                </div>
-                                                <div class="productImage">
-                                                    <div class="image">
-                                                        <img src="~/assets/images/featuredProducts/Printer_180x.jpg"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="bottomProduct">
-                                                    <div class="contforBotPr">
-                                                        <div class="productPrice">
-                                                            <p class="CurrentPrice">$110.00</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="all specifications">
                             <ul>
-                                <li>Chemistry: Ni-CD</li>
-                                <li>Voltage: 12V</li>
-                                <li>AmpHours: 2000mAh</li>
-                                <li>Dimensions: 109.75x79.55x62.20mm</li>
+                                @foreach (var spec in Model.Specs)
+                                {
+                                    <li>@spec.Name:@spec.Value</li>
+                                }
                             </ul>
                         </div>
                         <div class="all pvideo">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/c8mkGJxeMUQ"
+                            <iframe width="560" height="315" src="@Model.Videolink"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen></iframe>
@@ -462,96 +364,111 @@
                                 <div class="writereview">
                                     <div class="overallstar col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="my-rating"></div>
-                                        <p class="revcount">Based on 6 reviews</span>
+                                        <p class="revcount">Based on 6 reviews</p>
                                     </div>
                                     <div class="writeopenclose col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <p class="opclsbtn">Write a review</p>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <p class="opclsbtn">Write a review</p>
+                                        }
+                                        else
+                                        {
+                                    <a style="text-decoration:none;" asp-controller="account" asp-action="login" class="opclsbtn">Login for to write review</a>
+                                        }
                                     </div>
                                 </div>
                                 <div class="writingsection">
-                                    <p class="announce">Write a review</p>
-                                    <form action="">
-                                        <div class="name similarEach">
-                                            <label for="name">Name</label><br>
-                                            <input type="text" id="name" class="name"
-                                                   placeholder="Enter your name">
-                                        </div>
-                                        <div class="email similarEach">
-                                            <label for="email">Email</label><br>
-                                            <input type="email" id="email" placeholder="someone@example.com">
-                                        </div>
-                                        <div class="title similarEach">
-                                            <label for="title">Review Title</label><br>
-                                            <input type="text" name="title" id="title"
-                                                   placeholder="Give your review a title">
-                                        </div>
-                                        <div class="textareaRev similarEach">
-                                            <label for="message">Body of Review (1500)</label><br>
-                                            <textarea name="" id="message"
-                                                      placeholder="Write your comments here"></textarea>
-                                        </div>
-                                        <div class="submitmes">
-                                            <input type="submit" value="Submit Review">
-                                        </div>
-                                    </form>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <p class="announce">Write a review</p>
+                                        <form action="">
+                                            <div class="name similarEach">
+                                                <label for="name">Name</label><br>
+                                                <input type="text" id="name" class="name"
+                                                       placeholder="Enter your name">
+                                            </div>
+                                            <div class="email similarEach">
+                                                <label for="email">Email</label><br>
+                                                <input type="email" id="email" placeholder="someone@example.com">
+                                            </div>
+                                            <div class="title similarEach">
+                                                <label for="title">Review Title</label><br>
+                                                <input type="text" name="title" id="title"
+                                                       placeholder="Give your review a title">
+                                            </div>
+                                            <div class="textareaRev similarEach">
+                                                <label for="message">Body of Review (1500)</label><br>
+                                                <textarea name="" id="message"
+                                                          placeholder="Write your comments here"></textarea>
+                                            </div>
+                                            <div class="submitmes">
+                                                <input type="submit" value="Submit Review">
+                                            </div>
+                                        </form>
+                                    }
                                 </div>
                                 <div class="allcomments">
-                                    <div class="comment">
-                                        <div class="stars">
-                                            <p>***** Helekilik</p>
-                                        </div>
-                                        <div class="commentBy">
-                                            <p class="commentinfo">
-                                                <span class="Username">Bailey&nbsp;</span>on
-                                                <span class="date">jun 15,2021</span>
-                                            </p>
-                                        </div>
-                                        <p class="shippinInfo">Free shipping</p>
-                                        <p class="commentitself">
-                                            Excellent customer service! Whenever I needed something they were
-                                            there
-                                            for me.
-                                        </p>
-                                        <div class="anverbyAdmin">
-                                            <div class="anserWrapper">
+                                    @foreach (ProductComment comment in Model.ProductComments.Where(c => c.IsAccess == true).OrderBy(c => c.WriteDate))
+                                    {
+                                        if (comment.AppUser.UserName == User.Identity.Name)
+                                        {
+                                            <div class="comment">
+                                                <div class="stars">
+                                                    <p>***** Helekilik</p>
+                                                </div>
+                                                <div class="commentBy">
+                                                    <p class="commentinfo">
+                                                        <span class="Username">@comment.AppUser.UserName&nbsp;</span>on
+                                                        <span class="date">@comment.WriteDate.ToString("dd MMMM yyyy HH:mm")</span>
+                                                    </p>
+                                                </div>
+                                                <p class="shippinInfo">Free shipping</p>
+                                                <p class="commentitself">
+                                                    @comment.Text
+                                                </p>
+                                                <div class="anverbyAdmin">
+                                                    <div class="anserWrapper">
 
-                                                <p class="adminUsername">- Rufet Mezemov</p>
-                                                <p class="messageContent">
-                                                    Thank you for making your first
-                                                    purchase.
-                                                    We’re so glad that you found what you were looking for.
+                                                        <p class="adminUsername">- Rufet Mezemov</p>
+                                                        <p class="messageContent">
+                                                            Thank you for making your first
+                                                            purchase.
+                                                            We’re so glad that you found what you were looking for.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                    @*<div class="comment">
+                                            <div class="stars">
+                                                <p>***** Helekilik</p>
+                                            </div>
+                                            <div class="commentBy">
+                                                <p class="commentinfo">
+                                                    <span class="Username">Bailey&nbsp;</span>on
+                                                    <span class="date">jun 15,2021</span>
                                                 </p>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="stars">
-                                            <p>***** Helekilik</p>
-                                        </div>
-                                        <div class="commentBy">
-                                            <p class="commentinfo">
-                                                <span class="Username">Bailey&nbsp;</span>on
-                                                <span class="date">jun 15,2021</span>
+                                            <p class="shippinInfo">Free shipping</p>
+                                            <p class="commentitself">
+                                                Excellent customer service! Whenever I needed something they were
+                                                there
+                                                for me.
                                             </p>
-                                        </div>
-                                        <p class="shippinInfo">Free shipping</p>
-                                        <p class="commentitself">
-                                            Excellent customer service! Whenever I needed something they were
-                                            there
-                                            for me.
-                                        </p>
-                                        <div class="anverbyAdmin">
-                                            <div class="anserWrapper">
+                                            <div class="anverbyAdmin">
+                                                <div class="anserWrapper">
 
-                                                <p class="adminUsername">- Rufet Mezemov</p>
-                                                <p class="messageContent">
-                                                    Thank you for making your first
-                                                    purchase.
-                                                    We’re so glad that you found what you were looking for.
-                                                </p>
+                                                    <p class="adminUsername">- Rufet Mezemov</p>
+                                                    <p class="messageContent">
+                                                        Thank you for making your first
+                                                        purchase.
+                                                        We’re so glad that you found what you were looking for.
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>*@
                                 </div>
                             </div>
                         </div>

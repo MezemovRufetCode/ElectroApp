@@ -207,59 +207,47 @@
                         <div class="basket tool">
                             <a class="basketOpenClose">
                                 <i class="fa-solid fa-cart-shopping">
-                                    <span class="indicateCount">0</span>
+                                    <span class="indicateCount">@layoutService.ShowBasket().Count</span>
                                 </i>
-                                <p class="baskettotalPrice">$0.00</p>
+                                <p class="baskettotalPrice">$@layoutService.ShowBasket().TotalPrice</p>
                             </a>
                             <div class="shoppingCard">
                                 <div class="cardwrapper">
                                     <div class="productsShC">
-                                        <div class="product">
-                                            <div class="image">
-                                                <a>
-                                                    <img src="~/assets/images/featuredProducts/Phone_180x.jpg"
-                                                         alt="">
+                                        @foreach (var item in layoutService.ShowBasket().BasketItems)
+                                        {
+                                            <div class="product">
+                                                <div class="image">
+                                                    @foreach (var image in item.Product.ProductImages)
+                                                    {
+                                                        if (image.IsMain)
+                                                        {
+                                                            <a>
+                                                                <img src="~/assets/images/featuredProducts/@image.Image"
+                                                                     alt="">
+                                                            </a>
+                                                        }
+                                                    }
+                                                </div>
+                                                <div class="textinfo">
+                                                    <p class="name"><a href="#">@item.Product.Name</a></p>
+                                                    <p class="quantity">QTY: <span>@item.Count</span></p>
+                                                    <p class="productPrice">$@item.Price</p>
+                                                </div>
+                                                <a class="cart-close" title="Remove" href="javascript:;">
+                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="8"
+                                                         height="17" viewBox="0 0 44 64">
+                                                        <path d="M0 48.64q0-2.304 1.664-3.968l12.48-12.48-12.48-12.544q-1.664-1.6-1.664-3.904t1.664-3.904 3.904-1.6 3.904 1.6l12.544 12.544 12.48-12.544q1.6-1.6 3.904-1.6t3.904 1.6 1.6 3.904-1.6 3.904l-12.48 12.544 12.48 12.48q1.6 1.664 1.6 3.968t-1.6 3.904-3.904 1.6-3.904-1.6l-12.48-12.48-12.544 12.48q-1.6 1.6-3.904 1.6t-3.904-1.6q-1.664-1.664-1.664-3.904z">
+                                                        </path>
+                                                    </svg>
                                                 </a>
                                             </div>
-                                            <div class="textinfo">
-                                                <p class="name"><a href="#">Lexiited Product Sample</a></p>
-                                                <p class="quantity">QTY: <span>1</span></p>
-                                                <p class="productPrice">$200.00</p>
-                                            </div>
-                                            <a class="cart-close" title="Remove" href="javascript:;">
-                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="8"
-                                                     height="17" viewBox="0 0 44 64">
-                                                    <path d="M0 48.64q0-2.304 1.664-3.968l12.48-12.48-12.48-12.544q-1.664-1.6-1.664-3.904t1.664-3.904 3.904-1.6 3.904 1.6l12.544 12.544 12.48-12.544q1.6-1.6 3.904-1.6t3.904 1.6 1.6 3.904-1.6 3.904l-12.48 12.544 12.48 12.48q1.6 1.664 1.6 3.968t-1.6 3.904-3.904 1.6-3.904-1.6l-12.48-12.48-12.544 12.48q-1.6 1.6-3.904 1.6t-3.904-1.6q-1.664-1.664-1.664-3.904z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                        <div class="product">
-                                            <div class="image">
-                                                <a>
-                                                    <img src="~/assets/images/featuredProducts/Phone_180x.jpg"
-                                                         alt="">
-                                                </a>
-                                            </div>
-                                            <div class="textinfo">
-                                                <p class="name"><a href="#">Lexiited Product Sample</a></p>
-                                                <p class="quantity">QTY: <span>1</span></p>
-                                                <p class="productPrice">$200.00</p>
-                                            </div>
-                                            <a class="cart-close" title="Remove" href="javascript:;">
-                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="8"
-                                                     height="17" viewBox="0 0 44 64">
-                                                    <path d="M0 48.64q0-2.304 1.664-3.968l12.48-12.48-12.48-12.544q-1.664-1.6-1.664-3.904t1.664-3.904 3.904-1.6 3.904 1.6l12.544 12.544 12.48-12.544q1.6-1.6 3.904-1.6t3.904 1.6 1.6 3.904-1.6 3.904l-12.48 12.544 12.48 12.48q1.6 1.664 1.6 3.968t-1.6 3.904-3.904 1.6-3.904-1.6l-12.48-12.48-12.544 12.48q-1.6 1.6-3.904 1.6t-3.904-1.6q-1.664-1.664-1.664-3.904z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-
+                                        }
                                     </div>
                                     <div class="bottomshCard">
                                         <div class="priceInfo">
                                             <p class="desc">Cart Total</p>
-                                            <p class="info">$350.00</p>
+                                            <p class="info">$@layoutService.ShowBasket().TotalPrice</p>
                                         </div>
                                         <div class="action">
                                             <a href="#" class="gotoCart">Go to Cart</a>

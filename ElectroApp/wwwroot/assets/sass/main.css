@@ -1432,8 +1432,8 @@ header .shoppingCard {
   border-bottom-left-radius: 10px;
   background-color: white;
   display: block;
-  width: 340px;
-  padding: 15px 25px 10px;
+  width: 330px;
+  padding: 10px 15px;
 }
 
 header .shoppingCard .cardwrapper .productsShC {
@@ -1447,13 +1447,12 @@ header .shoppingCard .cardwrapper .productsShC .product {
   width: 100%;
   table-layout: fixed;
   margin: 0;
-  padding: 15px 0;
+  padding: 13px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between;
   border-bottom: 1px solid #dddddd;
 }
 
@@ -1464,6 +1463,7 @@ header .shoppingCard .cardwrapper .productsShC .product .image {
   width: 85px;
   text-align: center;
   padding: 0;
+  padding-right:20px;
 }
 
 header .shoppingCard .cardwrapper .productsShC .product .image img {
@@ -1479,11 +1479,12 @@ header .shoppingCard .cardwrapper .productsShC .product .textinfo {
   vertical-align: top;
   text-align: start;
   -webkit-padding-end: 5px;
-          padding-inline-end: 5px;
+          padding-inline-end: 10px;
+          margin-right:10px !important;
 }
 
 header .shoppingCard .cardwrapper .productsShC .product .textinfo .name {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 header .shoppingCard .cardwrapper .productsShC .product .textinfo .name a {
@@ -1500,37 +1501,41 @@ header .shoppingCard .cardwrapper .productsShC .product .textinfo .name a:hover 
   color: #fed700;
 }
 
-header .shoppingCard .cardwrapper .productsShC .product .textinfo .quantity {
-  margin-bottom: 5px;
-  font-family: "Open Sans", sans-serif;
-  color: #333e48;
-  text-transform: uppercase;
-  font-size: 14px;
-}
+    header .shoppingCard .cardwrapper .productsShC .product .textinfo .quantity {
+        margin-bottom: 2px;
+        font-family: "Open Sans", sans-serif;
+        color: #333e48;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+    }
 
 header .shoppingCard .cardwrapper .productsShC .product .textinfo .productPrice {
   color: #333e48;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   margin-bottom: 0px;
+  font-weight:500;
 }
 
-header .shoppingCard .cardwrapper .productsShC .product .cart-close {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  height: 20px;
-  width: 17px;
-  line-height: 20px;
-  font-size: 12px;
-  cursor: pointer;
-}
+    header .shoppingCard .cardwrapper .productsShC .product .cart-close {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        position: absolute;
+        right: 0px;
+        height: 20px;
+        width: 17px;
+        line-height: 20px;
+        font-size: 12px;
+        cursor: pointer;
+    }
 
 header .shoppingCard .cardwrapper .productsShC .product .cart-close svg {
   margin-left: 5px;
@@ -7172,12 +7177,11 @@ header .activeShoppingcart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content:flex-end;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
-          justify-content: flex-end;
   cursor: pointer;
 }
-
 #detailspage #fullinfo .wrapperfull .content .contenybyCat .review .reviewWrapper .writereview .writeopenclose .opclsbtn {
   margin-bottom: 0px;
   padding: 10px 25px;

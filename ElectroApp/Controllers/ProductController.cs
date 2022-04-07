@@ -1,9 +1,12 @@
 ﻿using ElectroApp.DAL;
 using ElectroApp.Models;
+using ElectroApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,25 +19,27 @@ namespace ElectroApp.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _usermanager;
 
-        public ProductController(AppDbContext context,UserManager<AppUser> userManager)
+        public ProductController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
             List<Product> product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p=>p.Campaign).Include(p=>p.Features).Include(p=>p).Skip((page-1)*8).Take(8).ToList();
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+                Include(p => p.Features).Include(p => p.Specs).Skip((page - 1) * 8).Take(8).ToList();
             return View(product);
         }
         public IActionResult Details(int id)
         {
             ViewBag.Categories = _context.Categories.ToList();
             Product product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).Include(p=>p.ProductComments).Include(p=>p.Specs).Include(p=>p.Features).FirstOrDefault(p=>p.Id==id);
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+                Include(p => p.ProductComments).Include(p => p.Specs).Include(p => p.Features).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -54,17 +59,17 @@ namespace ElectroApp.Controllers
             ProductComment productComment = new ProductComment()
             {
                 Title = comment.Title,
-                ProductId=comment.ProductId,
-                Text=comment.Text,
-                WriteDate=DateTime.Now,
-                AppUserId=comment.AppUserId
+                ProductId = comment.ProductId,
+                Text = comment.Text,
+                WriteDate = DateTime.Now,
+                AppUserId = comment.AppUserId
             };
             _context.ProductComments.Add(productComment);
             _context.SaveChanges();
             return RedirectToAction("Details", "Products", new { id = comment.ProductId });
         }
-       [Authorize]
-       public async Task<IActionResult> DeleteComment(int id)
+        [Authorize]
+        public async Task<IActionResult> DeleteComment(int id)
         {
             AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
             if (!ModelState.IsValid)
@@ -75,6 +80,64 @@ namespace ElectroApp.Controllers
             _context.ProductComments.Remove(comment);
             _context.SaveChanges();
             return RedirectToAction("Details", "Product", new { id = comment.ProductId });
+        }
+        public IActionResult AddBasket(int id)
+        {
+            Product product = _context.Products.Include(p => p.Campaign).Include(p=>p.ProductImages).FirstOrDefault(f => f.Id == id);
+            //if(User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            //{
+            //    AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            //}
+
+
+            string basket = HttpContext.Request.Cookies["Basket"];
+            if (basket == null)
+            {
+                List<BasketCookieItemVM> basketCookieItems = new List<BasketCookieItemVM>();
+                basketCookieItems.Add(new BasketCookieItemVM
+                {
+                    Id = product.Id,
+                    Count = 1
+                });
+                string basketStr = JsonConvert.SerializeObject(basketCookieItems);
+                HttpContext.Response.Cookies.Append("Basket", basketStr);
+            }
+            else
+            {
+                List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
+                BasketCookieItemVM cookieItem = basketCookieItems.FirstOrDefault(c => c.Id == product.Id);
+                if (cookieItem == null)
+                {
+                    cookieItem = new BasketCookieItemVM
+                    {
+                        Id = product.Id,
+                        Count = 1
+                    };
+                    basketCookieItems.Add(cookieItem);
+                }
+                else
+                {
+                    cookieItem.Count++;
+                }
+
+
+                
+                string basketStr = JsonConvert.SerializeObject(basketCookieItems);
+                HttpContext.Response.Cookies.Append("Basket", basketStr);
+            }
+
+
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult ShowBasket()
+        {
+            string basketStr = HttpContext.Request.Cookies["Basket"];
+            if (!string.IsNullOrEmpty(basketStr))
+            {
+                List<BasketCookieItemVM> basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basketStr);
+                return Json(basket);
+            }
+            return Content("Basket is empty");
         }
     }
 }
