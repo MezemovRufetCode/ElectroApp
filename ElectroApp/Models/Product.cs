@@ -24,7 +24,6 @@ namespace ElectroApp.Models
         [StringLength(maximumLength:200)]
         public string Videolink { get; set; }
         [Required(ErrorMessage ="Please include product description")]
-        [StringLength(maximumLength:600)]
         public string Description { get; set; }
         public bool InStock { get; set; }
         [Required]

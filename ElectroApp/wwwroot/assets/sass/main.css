@@ -5832,11 +5832,19 @@ header .activeShoppingcart {
                     justify-content: flex-end;
                 }
 
-                    #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .specifications .wrapperbuyinh .price {
-                        color: #333e48;
-                        font-family: "Open Sans", sans-serif;
-                        font-size: 22px;
+                    #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .specifications .wrapperbuyinh .CurrentPrice {
+                        color: #ee0000;
+                        font-family: "Roboto", sans-serif;
+                        font-size: 23px;
                         margin-bottom: 25px;
+                    }
+                    #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .specifications .wrapperbuyinh .oldPrice {
+                        color: #848484;
+                        font-family: "Roboto", sans-serif;
+                        font-size: 16px;
+                        font-weight: 400;
+                        text-decoration: line-through;
+                        margin-left: 5px;
                     }
 
                     #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .specifications .wrapperbuyinh .selectop {
@@ -5845,6 +5853,10 @@ header .activeShoppingcart {
                         text-decoration: none;
                         color: white;
                         border-radius: 25px;
+                        transition:0.2s ease-in-out;
+                    }
+                    #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .specifications .wrapperbuyinh .selectop:hover {
+                        background-color: #333e48;
                     }
 
         #productlistPage #productList .content .contenybyCat .productsByCat .mod3 .product {

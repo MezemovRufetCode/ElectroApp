@@ -209,7 +209,7 @@
                                 <i class="fa-solid fa-cart-shopping">
                                     <span class="indicateCount">@layoutService.ShowBasket().Count</span>
                                 </i>
-                                <p class="baskettotalPrice">$@layoutService.ShowBasket().TotalPrice</p>
+                                <p class="baskettotalPrice">$@(Math.Floor((layoutService.ShowBasket().TotalPrice)*100)/100)</p>
                             </a>
                             <div class="shoppingCard">
                                 <div class="cardwrapper">
@@ -232,7 +232,7 @@
                                                 <div class="textinfo">
                                                     <p class="name"><a href="#">@item.Product.Name</a></p>
                                                     <p class="quantity">QTY: <span>@item.Count</span></p>
-                                                    <p class="productPrice">$@item.Price</p>
+                                                    <p class="productPrice">$@(Math.Floor((item.Price)*100)/100)</p>
                                                 </div>
                                                 <a class="cart-close" title="Remove" href="javascript:;">
                                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="8"
@@ -247,7 +247,7 @@
                                     <div class="bottomshCard">
                                         <div class="priceInfo">
                                             <p class="desc">Cart Total</p>
-                                            <p class="info">$@layoutService.ShowBasket().TotalPrice</p>
+                                            <p class="info">$@(Math.Floor((layoutService.ShowBasket().TotalPrice)*100)/100)</p>
                                         </div>
                                         <div class="action">
                                             <a href="#" class="gotoCart">Go to Cart</a>

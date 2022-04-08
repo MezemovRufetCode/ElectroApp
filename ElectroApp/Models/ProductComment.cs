@@ -18,7 +18,7 @@ namespace ElectroApp.Models
         public string Text { get; set; }
         public bool IsAccess { get; set; }
         public int ProductId { get; set; }
-        public AppUser AppUser { get; set; }
         public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

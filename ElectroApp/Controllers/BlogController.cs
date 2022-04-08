@@ -71,6 +71,7 @@ namespace ElectroApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Details", "Blog", new { id = comment.BlogId });
         }
+
         [Authorize]
         public async Task<IActionResult> DeleteComment(int id)
         {

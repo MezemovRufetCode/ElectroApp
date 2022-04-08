@@ -157,7 +157,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             if (!_context.BlogComments.Any(c => c.Id == id)) return RedirectToAction("Index", "Blog");
             BlogComment comment = _context.BlogComments.SingleOrDefault(c => c.Id == id);
 
-            //comment.IsAccess = comment.IsAccess ? false : true;
+            comment.IsAccess = comment.IsAccess ? false : true;
             //if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
             //{
             //    comment.IsAccess = true;

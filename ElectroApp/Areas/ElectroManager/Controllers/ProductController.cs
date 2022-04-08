@@ -26,9 +26,8 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 5);
-            List<Product> model = _context.Products.Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).Include(p=>p.Features).
-                Skip((page - 1) * 5).Take(5).ToList();
+            List<Product> model = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).Include(p=>p.Features).Skip((page - 1) * 5).Take(5).ToList();
             return View(model);
         }
         public IActionResult Create()
@@ -226,6 +225,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
 
             existProduct.InStock = product.InStock;
             existProduct.SkuCode = product.SkuCode;
+            existProduct.Description = product.Description;
             existProduct.Price = product.Price;
             existProduct.CostPrice = product.CostPrice;
             existProduct.Name = product.Name;
@@ -246,13 +246,14 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             if (!_context.ProductComments.Any(c => c.ProductId == ProductId))
                 return RedirectToAction("Index", "Product");
-            List<ProductComment> comments = _context.ProductComments.Include(p => p.AppUser).Where(p => p.ProductId == ProductId).ToList();
+            List<ProductComment> comments = _context.ProductComments.Include(c => c.AppUser).Where(b => b.ProductId == ProductId).ToList();
             return View(comments);
         }
         public IActionResult CommentStatus(int id)
         {
             if (!_context.ProductComments.Any(c => c.Id == id)) return RedirectToAction("Index", "Product");
             ProductComment comment = _context.ProductComments.SingleOrDefault(c => c.Id == id);
+
             comment.IsAccess = comment.IsAccess ? false : true;
             _context.SaveChanges();
             return RedirectToAction("Comments", "Product", new { ProductId = comment.ProductId });

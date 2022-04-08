@@ -368,7 +368,7 @@
                                                                 <a href="">@product.Brand.Name</a>
                                                             </p>
                                                             <p class="productName">
-                                                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
+                                                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id" asp-route-categoryId="@product.ProductCategories.FirstOrDefault().CategoryId">
                                                                   @product.Name
                                                                 </a>
                                                             </p>
@@ -379,7 +379,7 @@
                                                                 {
                                                                     if (image.IsMain)
                                                                     {
-                                                                        <a asp-controller="product" asp-action="details" asp-route-id="@product.Id">
+                                                                        <a asp-controller="product" asp-action="details" asp-route-id="@product.Id" asp-route-categoryId="@product.ProductCategories.FirstOrDefault().CategoryId">
                                                                             <img src="~/assets/images/featuredProducts/@image.Image"
                                                                                  alt="">
                                                                         </a>
@@ -391,7 +391,14 @@
                                                         <div class="bottomProduct">
                                                             <div class="contforBotPr">
                                                                 <div class="productPrice">
-                                                                    <p class="CurrentPrice">$@product.Price</p>
+                                                                    @if (product.CampaignId == null)
+                                                                    {
+                                                                        <p class="CurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p class="CurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                                                    }
                                                                 </div>
                                                                 <a asp-controller="product" asp-action="addbasket" asp-route-id="@product.Id">
                                                                     <div class="selectOption" title="Add to cart">
@@ -418,20 +425,22 @@
                                                                     {
                                                                         <li>@spec.Name @spec.Value</li>
                                                                     }
-
-                                                                    @*<li>Android 4.4 KitKat OS</li>
-                                                                    <li>1.4 GHz Quad Core™ Processor</li>
-                                                                    <li>20 MP front Camera</li>
-                                                                    <li>Cloud storage</li>*@
                                                                 </ul>
                                                             </div>
                                                            
                                                         </div>
                                                         <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
-                                                            <div class="cont">
-                                                                <div class="whrby">
-                                                                    <p class="price">$20.00</p>
-                                                                    <a href="" class="selectop">Add to Cart</a>
+                                                            <div>
+                                                                <div>
+                                                                    @if (product.CampaignId == null)
+                                                                    {
+                                                                        <p class="CurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p class="CurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                                                    }
+                                                                    <a asp-controller="product" asp-action="addbasket" asp-route-id="@product.Id" class="selectop">Add to Cart</a>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -74,7 +74,7 @@
                     @product.Price&#x20BC
                     @if (product.CampaignId != null)
                     {
-                        <span>(</span><span title="Price after discount" class="text-success">@(product.Price * (100 - product.Campaign.DiscountPercent) / 100 )</span><span class="text-success">&#x20BC)</span>
+                        <span>(</span><span title="Price after discount" class="text-success">@(Math.Floor((product.Price * (100 - product.Campaign.DiscountPercent) / 100 )*100)/100)</span><span class="text-success">&#x20BC)</span>
                     }
                 </td>
                 <td>
@@ -83,28 +83,15 @@
                 @if (product.CampaignId != null)
                 {
                     <td>
-                        @Math.Round(((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice), 2)&#x20BC
+                        @Math.Floor((((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice)*100)/100)&#x20BC
                     </td>
                 }
                 else
                 {
                     <td>
-                        @Math.Round((product.Price - product.CostPrice), 2)&#x20BC
+                        @Math.Floor(((product.Price - product.CostPrice)*100)/100)&#x20BC
                     </td>
                 }
-
-                @*@if (product.Description.Length > 25)
-        {
-            <td>
-                @product.Description.Substring(0, 25)...
-            </td>
-        }
-        else
-        {
-            <td>
-                @product.Description
-            </td>
-        }*@
                 <td style="text-align:center;">
                     @product.AvaliableCount
                 </td>
@@ -119,7 +106,7 @@
                     </a>
                     <a asp-controller="product" asp-action="comments" asp-route-ProductId="@product.Id" class="btn btn-primary btn-icon-text">
                         <i class="fas fa-comments"></i>
-                        @*(@product.ProductComments.Count(c => c.IsAccess == true))*@ Comments @*(@product.ProductComments.Count)*@
+                        (@product.ProductComments.Count(c => c.IsAccess == true)) Comments (@product.ProductComments.Count)
                     </a>
                 </td>
             </tr>

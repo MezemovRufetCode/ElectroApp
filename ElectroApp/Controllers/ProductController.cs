@@ -29,17 +29,20 @@ namespace ElectroApp.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
-            List<Product> product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
+
+            List<Product> product = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
                 Include(p => p.Features).Include(p => p.Specs).Skip((page - 1) * 8).Take(8).ToList();
             return View(product);
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int id,int categoryId)
         {
+            ViewBag.RelatedProducts = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
+                Include(p => p.ProductImages).Include(p=>p.Campaign).Include(p=>p.Brand).Where(p=>p.ProductCategories.FirstOrDefault().CategoryId==categoryId && p.Id!=id)
+                .OrderByDescending(p=>p.Id).Take(6).ToList();
             ViewBag.Categories = _context.Categories.ToList();
-            Product product = _context.Products.Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-                Include(p => p.ProductComments).Include(p => p.Specs).Include(p => p.Features).FirstOrDefault(p => p.Id == id);
+            Product product = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).Include(p => p.Specs).Include(p => p.Features).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -62,11 +65,11 @@ namespace ElectroApp.Controllers
                 ProductId = comment.ProductId,
                 Text = comment.Text,
                 WriteDate = DateTime.Now,
-                AppUserId = comment.AppUserId
+                AppUserId = user.Id
             };
             _context.ProductComments.Add(productComment);
             _context.SaveChanges();
-            return RedirectToAction("Details", "Products", new { id = comment.ProductId });
+            return RedirectToAction("Details", "Product", new { id = comment.ProductId });
         }
         [Authorize]
         public async Task<IActionResult> DeleteComment(int id)
@@ -88,8 +91,6 @@ namespace ElectroApp.Controllers
             //{
             //    AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
             //}
-
-
             string basket = HttpContext.Request.Cookies["Basket"];
             if (basket == null)
             {
@@ -119,14 +120,9 @@ namespace ElectroApp.Controllers
                 {
                     cookieItem.Count++;
                 }
-
-
-                
                 string basketStr = JsonConvert.SerializeObject(basketCookieItems);
                 HttpContext.Response.Cookies.Append("Basket", basketStr);
             }
-
-
             return RedirectToAction("Index", "Home");
         }
         public IActionResult ShowBasket()
@@ -139,5 +135,7 @@ namespace ElectroApp.Controllers
             }
             return Content("Basket is empty");
         }
+
+
     }
 }

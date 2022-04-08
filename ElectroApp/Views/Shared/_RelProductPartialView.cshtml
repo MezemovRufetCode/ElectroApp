@@ -1,7 +1,7 @@
 ﻿@model List<Product>
 @foreach (Product product in Model)
 {
-    <div class="productWrapper col-lg-3 col-md-4 col-sm-6 col-6">
+    <div class="productWrapper col-lg-2 col-md-3 col-sm-4 col-6">
         <div class="product">
             <div class="productContent">
                 <div class="topProduct">
@@ -27,11 +27,11 @@
                         <div class="productPrice">
                             @if (product.CampaignId == null)
                             {
-                                <p class="CurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                <p class="CurrentPrice">$@product.Price</p>
                             }
                             else
                             {
-                                <p class="CurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                <p class="CurrentPrice">$@(product.Price*(100-product.Campaign.DiscountPercent)/100)<span class="oldPrice">$@product.Price</span></p>
                             }
 
                         </div>
