@@ -135,7 +135,5 @@ namespace ElectroApp.Controllers
             }
             return Content("Basket is empty");
         }
-
-
     }
 }

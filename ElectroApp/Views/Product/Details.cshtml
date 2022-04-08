@@ -289,12 +289,23 @@
                                 }
                             </ul>
                         </div>
-                        <div class="all pvideo">
-                            <iframe width="560" height="315" src="@Model.Videolink"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                        </div>
+                        @if (Model.Videolink == null)
+                        {
+                            <div class="all pvideo" style="padding-bottom:40px !important;">
+                                <h3 style="text-align: center; color: #333e48;">This product has no video</h3>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="all pvideo">
+                                <iframe width="560" height="315" src="@Model.Videolink"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>
+
+                        }
                         <div class="all shipping">
                             <div>
                                 <h4>RETURNS POLICY</h4>
@@ -374,7 +385,7 @@
                                         }
                                         else
                                         {
-                                    <a style="text-decoration:none;" asp-controller="account" asp-action="login" class="opclsbtn">Login for to write review</a>
+                                            <a style="text-decoration:none;" asp-controller="account" asp-action="login" class="opclsbtn">Login for to write review</a>
                                         }
                                     </div>
                                 </div>
@@ -384,14 +395,14 @@
                                         <p class="announce">Write a review</p>
                                         <form asp-controller="product" asp-action="addcomment" method="post">
                                             @*<div class="name similarEach">*@
-                                                @*<label for="name">Name</label><br>
-                                                <input type="text" id="name" class="name"
-                                                       placeholder="Enter your name">
-                                            </div>
-                                            <div class="email similarEach">
-                                                <label for="email">Email</label><br>
-                                                <input type="email" id="email" placeholder="someone@example.com">
-                                            </div>*@
+                                            @*<label for="name">Name</label><br>
+                                                    <input type="text" id="name" class="name"
+                                                           placeholder="Enter your name">
+                                                </div>
+                                                <div class="email similarEach">
+                                                    <label for="email">Email</label><br>
+                                                    <input type="email" id="email" placeholder="someone@example.com">
+                                                </div>*@
                                             <div class="title similarEach">
                                                 <label for="title">Review Title</label><br>
                                                 <input name="title" placeholder="Give your review a title">
@@ -410,12 +421,12 @@
                                 <div class="allcomments">
                                     @foreach (var comment in Model.ProductComments.Where(c => c.IsAccess == true).OrderBy(c => c.WriteDate))
                                     {
-                                        if (comment.AppUser.UserName==User.Identity.Name)
+                                        if (comment.AppUser.UserName == User.Identity.Name)
                                         {
                                             <div class="comment">
-                                                <div class="stars">
-                                                    <p>***** Helekilik</p>
-                                                </div>
+                                                @*<div class="stars">
+                                                        <p>***** Helekilik</p>
+                                                    </div>*@
                                                 <div class="commentBy">
                                                     <p class="commentinfo">
                                                         <span class="Username">@comment.AppUser.UserName&nbsp;</span>on
@@ -426,17 +437,49 @@
                                                 <p class="commentitself">
                                                     @comment.Text
                                                 </p>
-                                                <div class="anverbyAdmin">
-                                                    <div class="anserWrapper">
+                                                <p class="commentitself">
+                                                    <a style="color:red;" asp-controller="product" asp-action="deletecomment" asp-route-id="@comment.Id">Delete</a>
+                                                </p>
+                                                @*<div class="anverbyAdmin">
+                                                        <div class="anserWrapper">
 
-                                                        <p class="adminUsername">- Rufet Mezemov</p>
-                                                        <p class="messageContent">
-                                                            Thank you for making your first
-                                                            purchase.
-                                                            We’re so glad that you found what you were looking for.
-                                                        </p>
-                                                    </div>
+                                                            <p class="adminUsername">- Rufet Mezemov</p>
+                                                            <p class="messageContent">
+                                                                Thank you for making your first
+                                                                purchase.
+                                                                We’re so glad that you found what you were looking for.
+                                                            </p>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="comment">
+                                                @*<div class="stars">
+                                                        <p>***** Helekilik</p>
+                                                    </div>*@
+                                                <div class="commentBy">
+                                                    <p class="commentinfo">
+                                                        <span class="Username">@comment.AppUser.UserName&nbsp;</span>on
+                                                        <span class="date">@comment.WriteDate.ToString("dd MMMM yyyy HH:mm")</span>
+                                                    </p>
                                                 </div>
+                                                <p class="shippinInfo">Free shipping</p>
+                                                <p class="commentitself">
+                                                    @comment.Text
+                                                </p>
+                                                @*<div class="anverbyAdmin">
+                                                        <div class="anserWrapper">
+
+                                                            <p class="adminUsername">- Rufet Mezemov</p>
+                                                            <p class="messageContent">
+                                                                Thank you for making your first
+                                                                purchase.
+                                                                We’re so glad that you found what you were looking for.
+                                                            </p>
+                                                        </div>
+                                                    </div>*@
                                             </div>
                                         }
                                     }
