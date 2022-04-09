@@ -369,10 +369,16 @@
                                                             </p>
                                                             <p class="productName">
                                                                 <a asp-controller="product" asp-action="details" asp-route-id="@product.Id" asp-route-categoryId="@product.ProductCategories.FirstOrDefault().CategoryId">
-                                                                  @product.Name
+                                                                    @product.Name
                                                                 </a>
                                                             </p>
                                                         </div>
+                                                        @if (product.CampaignId != null)
+                                                        {
+                                                            <div class="discountPercentIndic">
+                                                                <span class="percent">-@product.Campaign.DiscountPercent<span>%</span></span>
+                                                            </div>
+                                                        }
                                                         <div class="productImage">
                                                             <div class="image">
                                                                 @foreach (var image in product.ProductImages)

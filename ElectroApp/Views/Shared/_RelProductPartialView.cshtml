@@ -8,6 +8,12 @@
                     <p class="brandName"><a href="#">@product.Brand.Name</a></p>
                     <p class="productName"><a href="#">@product.Name</a></p>
                 </div>
+                @if (product.CampaignId != null)
+                {
+                    <div class="discountPercentIndic">
+                        <span class="percent">-@product.Campaign.DiscountPercent<span>%</span></span>
+                    </div>
+                }
                 <div class="productImage">
                     <div class="image">
                         @foreach (ProductImage image in product.ProductImages)

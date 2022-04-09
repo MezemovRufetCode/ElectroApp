@@ -1,13 +1,20 @@
 ﻿@model List<Product>
-@foreach (Product product in Model)
+@foreach (Product product in Model.Take(8))
 {
-    <div class="productWrapper col-lg-3 col-md-4 col-sm-6 col-6">
+    <div class="productWrapper col-lg-3 col-md-4 col-sm-6 col-6" >
         <div class="product">
             <div class="productContent">
                 <div class="topProduct">
                     <p class="brandName"><a href="#">@product.Brand.Name</a></p>
                     <p class="productName"><a href="#">@product.Name</a></p>
                 </div>
+                @if (product.CampaignId != null)
+                {
+                    <div class="discountPercentIndic">
+                        <span class="percent">-@product.Campaign.DiscountPercent<span>%</span></span>
+                    </div>
+                }
+
                 <div class="productImage">
                     <div class="image">
                         @foreach (ProductImage image in product.ProductImages)

@@ -387,6 +387,14 @@ header .bottomheader .pc-deparment .bottomheadElements .bottomheadTools .tool i 
   width: 24px;
   height: 24px;
 }
+    header .bottomheader .pc-deparment .bottomheadElements .bottomheadTools i:hover .indicateCount {
+        -webkit-animation-name: IndicateMove;
+        animation-name: IndicateMove;
+        -webkit-animation-duration: 2s;
+        animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
 
 header .bottomheader .pc-deparment .bottomheadElements .bottomheadTools .tool .indicateCount {
   position: absolute;
@@ -2141,7 +2149,33 @@ header .activeShoppingcart {
     opacity: 1;
   }
 }
+@-webkit-keyframes IndicateMove {
+    0% {
+        top: 4px;
+    }
 
+    50% {
+        top: 12px;
+    }
+
+    100% {
+        top: 4px;
+    }
+}
+
+@keyframes IndicateMove {
+    0% {
+        top: 4px;
+    }
+
+    50% {
+        top: 12px;
+    }
+
+    100% {
+        top: 4px;
+    }
+}
 #intro-banner {
   margin-top: 40px;
 }
@@ -2177,16 +2211,50 @@ header .activeShoppingcart {
      object-fit: cover;
   height: 100%;
 }
+.discountPercentIndic {
+    position: absolute;
+    top: 45px;
+    left: 0%;
+    z-index: 2;
+    background-color: #fed700;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
 
+.discountPercentIndic .percent {
+        font-size: 12px;
+        font-family: "Open Sans", sans-serif;
+        color: black;
+        font-weight: 600;
+    }
+
+.discountPercentIndic .percent span {
+            position: relative;
+            font-size: 8px;
+            bottom: 5px;
+        }
 #shoplistBannerfirst {
   margin-top: 50px;
 }
 
-#shoplistBannerfirst .activeB1Content {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-}
+    #shoplistBannerfirst .activeB1Content {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: 100% !important;
+    }
 
 #shoplistBannerfirst .bannerforFatured {
   display: -webkit-box;
@@ -2308,12 +2376,14 @@ header .activeShoppingcart {
   position: relative;
 }
 
-#shoplistBannerfirst .content .contenybyCat .all {
-  position: relative;
-  display: none;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
+    #shoplistBannerfirst .content .contenybyCat .all {
+        position: relative;
+        flex-wrap: wrap;
+        visibility: hidden;
+        opacity: 0;
+        height: 0px;
+        transition: visibility 0s, opacity 0.4s ease-in-out;
+    }
 
 #shoplistBannerfirst .content .contenybyCat .all .special-productByCat {
   border: 2px solid #fed700;
@@ -2928,12 +2998,16 @@ header .activeShoppingcart {
   position: relative;
 }
 
-#shoplistBannersecond .content .contenybyCat .all {
-  position: relative;
-  display: none;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
+    #shoplistBannersecond .content .contenybyCat .all {
+        position: relative;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        visibility: hidden;
+        opacity: 0;
+        height: 0px;
+        -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
+        transition: visibility 0s, opacity 0.4s ease-in-out;
+    }
 
 #shoplistBannersecond .content .contenybyCat .all .spProductWrapper .discountSp {
   width: 72px;
@@ -3558,11 +3632,14 @@ header .activeShoppingcart {
   margin-right: 5px;
 }
 
-#shoplistBannersecond .activeB2Content {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-}
+    #shoplistBannersecond .activeB2Content {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: 100% !important;
+    }
 
 #smallbannerfirst .bannerImage {
   width: 100%;
@@ -3693,10 +3770,16 @@ header .activeShoppingcart {
   padding: 0px;
 }
 
-#shoplistBannerthird .content .contenybyCat .all {
-  position: relative;
-  display: none;
-}
+    #shoplistBannerthird .content .contenybyCat .all {
+        position: relative;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        visibility: hidden;
+        opacity: 0;
+        height: 0px;
+        -webkit-transition: visibility 0s, opacity 0.4s ease-in;
+        transition: visibility 0s, opacity 0.4s ease-in;
+    }
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat {
   display: -webkit-box;
