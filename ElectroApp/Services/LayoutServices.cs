@@ -26,6 +26,11 @@ namespace ElectroApp.Services
             Setting data = _context.Settings.FirstOrDefault();
             return data;
         }
+        public List<Product> getProductDatas()
+        {
+            List<Product> prdata = _context.Products.Include(p=>p.Campaign).Include(p=>p.ProductComments).Include(p=>p.ProductImages).ToList();
+            return prdata;
+        }
         public BasketVM ShowBasket()
         {
             string basket = _httpcontext.HttpContext.Request.Cookies["Basket"];
