@@ -29,18 +29,22 @@ namespace ElectroApp.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
-            List<Product> product = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+            ProductVM productVM = new ProductVM
+            {
+                Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-                Include(p => p.Features).Include(p => p.Specs).Skip((page - 1) * 8).Take(8).ToList();
-            return View(product);
+                Include(p => p.Features).Include(p => p.Specs).Skip((page - 1) * 8).Take(8).ToList(),
+                Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList()
+            };
+            return View(productVM);
         }
-        public IActionResult Details(int id,int categoryId)
+        public IActionResult Details(int id, int categoryId)
         {
-            ViewBag.RelatedProducts = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p=>p.Campaign).Include(p=>p.Brand).Where(p=>p.ProductCategories.FirstOrDefault().CategoryId==categoryId && p.Id!=id)
-                .OrderByDescending(p=>p.Id).Take(6).ToList();
+            ViewBag.RelatedProducts = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
+                Include(p => p.ProductImages).Include(p => p.Campaign).Include(p => p.Brand).Where(p => p.ProductCategories.FirstOrDefault().CategoryId == categoryId && p.Id != id)
+                .OrderByDescending(p => p.Id).Take(6).ToList();
             ViewBag.Categories = _context.Categories.ToList();
-            Product product = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+            Product product = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).Include(p => p.Specs).Include(p => p.Features).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
@@ -83,45 +87,66 @@ namespace ElectroApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Details", "Product", new { id = comment.ProductId });
         }
-        public IActionResult AddBasket(int id)
+        public async Task<IActionResult> AddBasket(int id)
         {
-            Product product = _context.Products.Include(p => p.Campaign).Include(p=>p.ProductImages).FirstOrDefault(f => f.Id == id);
-            //if(User.Identity.IsAuthenticated && User.IsInRole("Member"))
-            //{
-            //    AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
-            //}
-            string basket = HttpContext.Request.Cookies["Basket"];
-            if (basket == null)
+            Product product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
             {
-                List<BasketCookieItemVM> basketCookieItems = new List<BasketCookieItemVM>();
-                basketCookieItems.Add(new BasketCookieItemVM
+                AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+
+                BasketItem basketItem = _context.BasketItems.FirstOrDefault(b => b.ProductId == product.Id && b.AppUserId == user.Id);
+                if (basketItem == null)
                 {
-                    Id = product.Id,
-                    Count = 1
-                });
-                string basketStr = JsonConvert.SerializeObject(basketCookieItems);
-                HttpContext.Response.Cookies.Append("Basket", basketStr);
-            }
-            else
-            {
-                List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
-                BasketCookieItemVM cookieItem = basketCookieItems.FirstOrDefault(c => c.Id == product.Id);
-                if (cookieItem == null)
-                {
-                    cookieItem = new BasketCookieItemVM
+                    basketItem = new BasketItem
                     {
-                        Id = product.Id,
+                        AppUserId = user.Id,
+                        ProductId = product.Id,
                         Count = 1
                     };
-                    basketCookieItems.Add(cookieItem);
+                    _context.BasketItems.Add(basketItem);
                 }
                 else
                 {
-                    cookieItem.Count++;
+                    basketItem.Count++;
                 }
-                string basketStr = JsonConvert.SerializeObject(basketCookieItems);
-                HttpContext.Response.Cookies.Append("Basket", basketStr);
+                _context.SaveChanges();
             }
+            else
+            {
+                string basket = HttpContext.Request.Cookies["Basket"];
+                if (basket == null)
+                {
+                    List<BasketCookieItemVM> basketCookieItems = new List<BasketCookieItemVM>();
+                    basketCookieItems.Add(new BasketCookieItemVM
+                    {
+                        Id = product.Id,
+                        Count = 1
+                    });
+                    string basketStr = JsonConvert.SerializeObject(basketCookieItems);
+                    HttpContext.Response.Cookies.Append("Basket", basketStr);
+                }
+                else
+                {
+                    List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
+                    BasketCookieItemVM cookieItem = basketCookieItems.FirstOrDefault(c => c.Id == product.Id);
+                    if (cookieItem == null)
+                    {
+                        cookieItem = new BasketCookieItemVM
+                        {
+                            Id = product.Id,
+                            Count = 1
+                        };
+                        basketCookieItems.Add(cookieItem);
+                    }
+                    else
+                    {
+                        cookieItem.Count++;
+                    }
+                    string basketStr = JsonConvert.SerializeObject(basketCookieItems);
+                    HttpContext.Response.Cookies.Append("Basket", basketStr);
+                }
+            }
+
             return RedirectToAction("Index", "Home");
         }
         public IActionResult ShowBasket()

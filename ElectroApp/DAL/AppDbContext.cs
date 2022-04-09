@@ -30,6 +30,7 @@ namespace ElectroApp.DAL
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
 
     }
 }

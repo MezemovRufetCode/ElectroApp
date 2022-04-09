@@ -2176,41 +2176,51 @@ header .activeShoppingcart {
         top: 4px;
     }
 }
+
 #intro-banner {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
-#intro-banner .banners {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
+    #intro-banner .banners {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
 
-#intro-banner .banners .banner .banner-item {
-  padding: 15px;
-  position: relative;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
+        #intro-banner .banners .banner .banner-item {
+            display: block;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+        }
 
-#intro-banner .banners .banner .banner-item a {
-  -webkit-transition: 0.3s ease-in;
-  transition: 0.3s ease-in;
-  text-decoration: none;
-}
+            #intro-banner .banners .banner .banner-item a:before {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(255, 255, 255, 0.2);
+                content: "";
+                height: 0%;
+                width: 100%;
+                z-index: 15;
+                -webkit-transition: all 0.35s ease-in-out 0s;
+                transition: all 0.35s ease-in-out 0s;
+            }
 
-#intro-banner .banners .banner .banner-item a:hover {
-  opacity: 0.7;
-}
+            #intro-banner .banners .banner .banner-item a:hover:before {
+                height: 100%;
+            }
 
-#intro-banner .banners .banner .banner-item img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 100%;
-}
+            #intro-banner .banners .banner .banner-item a img {
+                width: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+                height: 100%;
+            }
 .discountPercentIndic {
     position: absolute;
     top: 45px;
@@ -3642,18 +3652,42 @@ header .activeShoppingcart {
     }
 
 #smallbannerfirst .bannerImage {
-  width: 100%;
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 10px;
 }
 
-#smallbannerfirst .bannerImage img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-}
+    #smallbannerfirst .bannerImage a:before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.2);
+        content: "";
+        height: 0%;
+        width: 100%;
+        z-index: 15;
+        -webkit-transition: all 0.35s ease-in-out 0s;
+        transition: all 0.35s ease-in-out 0s;
+    }
 
-#smallbannerfirst .bannerImage img:hover {
-  opacity: 0.8;
-}
+    #smallbannerfirst .bannerImage a:hover:before {
+        height: 100%;
+    }
+
+    #smallbannerfirst .bannerImage a img {
+        position: relative;
+        left: 0;
+        top: 0;
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        min-height: 60px;
+    }
 
 #shoplistBannerthird {
   margin-top: 20px;

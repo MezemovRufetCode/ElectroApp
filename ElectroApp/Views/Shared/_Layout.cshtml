@@ -1,4 +1,7 @@
 ﻿@inject ElectroApp.Services.LayoutServices layoutService
+@{
+    BasketVM basket = await layoutService.ShowBasket();
+            }
 <!DOCTYPE html>
 <html lang="en">
 
@@ -185,7 +188,7 @@
                             </a>
                         </div>
                         <div class="likedProduct tool d-none d-lg-inline-block">
-                            <a href="#">
+                            <a asp-controller="wishlist" asp-action="index">
                                 <span>
                                     <i class="fa-regular fa-heart"><span class="indicateCount">0</span></i>
                                 </span>
@@ -208,14 +211,14 @@
                         <div class="basket tool">
                             <a class="basketOpenClose">
                                 <i class="fa-solid fa-cart-shopping">
-                                    <span class="indicateCount">@layoutService.ShowBasket().Count</span>
+                                    <span class="indicateCount">@basket.Count</span>
                                 </i>
-                                <p class="baskettotalPrice">$@(Math.Floor((layoutService.ShowBasket().TotalPrice)*100)/100)</p>
+                                <p class="baskettotalPrice">$@(Math.Floor((basket.TotalPrice)*100)/100)</p>
                             </a>
                             <div class="shoppingCard">
                                 <div class="cardwrapper">
                                     <div class="productsShC">
-                                        @foreach (var item in layoutService.ShowBasket().BasketItems)
+                                        @foreach (var item in basket.BasketItems)
                                         {
                                             <div class="product">
                                                 <div class="image">
@@ -248,7 +251,7 @@
                                     <div class="bottomshCard">
                                         <div class="priceInfo">
                                             <p class="desc">Cart Total</p>
-                                            <p class="info">$@(Math.Floor((layoutService.ShowBasket().TotalPrice)*100)/100)</p>
+                                            <p class="info">$@(Math.Floor((basket.TotalPrice)*100)/100)</p>
                                         </div>
                                         <div class="action">
                                             <a href="#" class="gotoCart">Go to Cart</a>

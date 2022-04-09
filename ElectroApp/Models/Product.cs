@@ -48,5 +48,6 @@ namespace ElectroApp.Models
         public List<Feature> Features { get; set; }
         [NotMapped]
         public List<int> FeatureIds { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
     }
 }

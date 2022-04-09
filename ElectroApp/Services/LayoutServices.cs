@@ -2,6 +2,7 @@
 using ElectroApp.Models;
 using ElectroApp.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -15,11 +16,13 @@ namespace ElectroApp.Services
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpcontext;
+        private readonly UserManager<AppUser> _usermanager;
 
-        public LayoutServices(AppDbContext context, IHttpContextAccessor httpContext)
+        public LayoutServices(AppDbContext context, IHttpContextAccessor httpContext, UserManager<AppUser> userManager)
         {
             _context = context;
             _httpcontext = httpContext;
+            _usermanager = userManager;
         }
         public Setting getSettingsDatas()
         {
@@ -28,10 +31,10 @@ namespace ElectroApp.Services
         }
         public List<Product> getProductDatas()
         {
-            List<Product> prdata = _context.Products.Include(p=>p.Campaign).Include(p=>p.ProductComments).Include(p=>p.ProductImages).ToList();
+            List<Product> prdata = _context.Products.Include(p => p.Campaign).Include(p => p.ProductComments).Include(p => p.ProductImages).ToList();
             return prdata;
         }
-        public BasketVM ShowBasket()
+        public async Task<BasketVM> ShowBasket()
         {
             string basket = _httpcontext.HttpContext.Request.Cookies["Basket"];
             BasketVM basketData = new BasketVM
@@ -40,26 +43,51 @@ namespace ElectroApp.Services
                 BasketItems = new List<BasketItemVM>(),
                 Count = 0
             };
-            if (!string.IsNullOrEmpty(basket))
+            if (_httpcontext.HttpContext.User.Identity.IsAuthenticated)
             {
-                List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
-                foreach (BasketCookieItemVM item in basketCookieItems)
+                AppUser user = await _usermanager.FindByNameAsync(_httpcontext.HttpContext.User.Identity.Name);
+                List<BasketItem> basketItems = _context.BasketItems.Include(b => b.AppUser).Where(b => b.AppUserId == user.Id).ToList();
+                foreach (BasketItem item in basketItems)
                 {
-                    Product product = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                    Product product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.ProductId);
                     if (product != null)
                     {
-                        BasketItemVM basketItem = new BasketItemVM
+                        BasketItemVM basketItemVM = new BasketItemVM
                         {
-                            Product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.Id),
-                            Count = item.Count,
+                            Product = product,
+                            Count = item.Count
                         };
-                        basketItem.Price = basketItem.Product.CampaignId == null ? basketItem.Product.Price : basketItem.Product.Price * (100 - basketItem.Product.Campaign.DiscountPercent) / 100;
-                        basketData.BasketItems.Add(basketItem);
+                        basketItemVM.Price = product.CampaignId == null ? product.Price : product.Price * (100 - product.Campaign.DiscountPercent) / 100;
+                        basketData.BasketItems.Add(basketItemVM);
                         basketData.Count++;
-                        basketData.TotalPrice += basketItem.Price * basketItem.Count;
+                        basketData.TotalPrice += basketItemVM.Price * basketItemVM.Count;
                     }
                 }
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(basket))
+                {
+                    List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
+                    foreach (BasketCookieItemVM item in basketCookieItems)
+                    {
+                        Product product = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                        if (product != null)
+                        {
+                            BasketItemVM basketItem = new BasketItemVM
+                            {
+                                Product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.Id),
+                                Count = item.Count,
+                            };
+                            basketItem.Price = basketItem.Product.CampaignId == null ? basketItem.Product.Price : basketItem.Product.Price * (100 - basketItem.Product.Campaign.DiscountPercent) / 100;
+                            basketData.BasketItems.Add(basketItem);
+                            basketData.Count++;
+                            basketData.TotalPrice += basketItem.Price * basketItem.Count;
+                        }
+                    }
+                }
+            }
+
             return basketData;
         }
     }

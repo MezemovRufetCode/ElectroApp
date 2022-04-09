@@ -1,56 +1,56 @@
-﻿@model List<Product>
+﻿@model ProductVM
 @{
     ViewData["Title"] = "Index";
 }
 @*@section CSS
-{
-    <style>
+    {
+        <style>
 
-        .pagination a {
-            border-radius: 50% !important;
-        }
-
-        .pagination .page-item {
-            outline: none !important;
-        }
-
-            .pagination .page-item .page-link {
-                width: 40px;
-                height: 40px;
-                background-color: #fed700 !important;
-                border: none;
-                outline: none !important;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                margin: 0px 2px;
-                color: white;
+            .pagination a {
+                border-radius: 50% !important;
             }
 
-                .pagination .page-item .page-link:hover {
-                    color: #333e48 !important;
+            .pagination .page-item {
+                outline: none !important;
+            }
+
+                .pagination .page-item .page-link {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #fed700 !important;
+                    border: none;
+                    outline: none !important;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    margin: 0px 2px;
+                    color: white;
                 }
 
-        .pagination .disabled a {
-            color: #333e48 !important;
-        }
+                    .pagination .page-item .page-link:hover {
+                        color: #333e48 !important;
+                    }
 
-            .pagination .disabled a i {
+            .pagination .disabled a {
                 color: #333e48 !important;
             }
 
-        .pagination .active .page-link {
-            background-color: #fed700 !important;
-            color: #333e48 !important;
-        }
-    </style>
-}*@
+                .pagination .disabled a i {
+                    color: #333e48 !important;
+                }
+
+            .pagination .active .page-link {
+                background-color: #fed700 !important;
+                color: #333e48 !important;
+            }
+        </style>
+    }*@
 <section id="productlistPage">
     <body>
         <section id="brdcrumb">
@@ -152,8 +152,12 @@
                                     <!-- <input type="checkbox" id="scales" name="scales" checked>
                                     <label for="scales">Scales</label> -->
                                     <ul class="advanced-filter">
-                                        <li class="checkfilter"><a href="">Apple</a></li>
-                                        <li class="checkfilter"><a href="">Samsung</a></li>
+                                        @foreach (var brand in Model.Brands)
+                                        {
+                                        <li class="checkfilter"><a asp-controller="product" asp-action="index">@brand.Name</a></li>
+                                        }
+                                        
+                                        @*<li class="checkfilter"><a href="">Samsung</a></li>
                                         <li class="checkfilter"><a href="">Xiaomi</a></li>
                                         <li class="checkfilter"><a href="">Nokia</a></li>
                                         <li class="checkfilter"><a href="">Oppo</a></li>
@@ -161,7 +165,7 @@
                                         <li class="checkfilter"><a href="">Oneplus</a></li>
                                         <li class="checkfilter"><a href="">Rampage</a></li>
                                         <li class="checkfilter"><a href="">Intel</a></li>
-                                        <li class="checkfilter"><a href="">Amd</a></li>
+                                        <li class="checkfilter"><a href="">Amd</a></li>*@
                                     </ul>
                                 </div>
                             </li>
@@ -177,46 +181,50 @@
                                     </span>
                                 </div>
                                 <div class="filterelement chcbx">
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Apple
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Samsung
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Huawei
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Honor
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Nokia
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Sony
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        HTC
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        ZTE
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        Oppo
-                                    </label>
-                                    <label for="">
-                                        <input type="checkbox" class="option-input checkbox">
-                                        OnePlus
-                                    </label>
+                                    @foreach (var brand in Model.Brands)
+                                    {
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            @brand.Name
+                                        </label>
+                                    }
+
+                                    @*<label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Samsung
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Huawei
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Honor
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Nokia
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Sony
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            HTC
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            ZTE
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            Oppo
+                                        </label>
+                                        <label for="">
+                                            <input type="checkbox" class="option-input checkbox">
+                                            OnePlus
+                                        </label>*@
                                 </div>
                             </li>
                         </div>
@@ -358,7 +366,7 @@
                             <div class="contenybyCat">
                                 <div class="bestdeals">
                                     <div class="productsByCat">
-                                        @foreach (var product in Model)
+                                        @foreach (var product in Model.Products)
                                         {
                                             <div class="productWrapper col-lg-3 col-sm-6">
                                                 <div class="product">
@@ -433,7 +441,7 @@
                                                                     }
                                                                 </ul>
                                                             </div>
-                                                           
+
                                                         </div>
                                                         <div class="wrapperbuyinh col-lg-6 col-md-6 d-lg-block d-md-block d-sm-none d-none">
                                                             <div>
