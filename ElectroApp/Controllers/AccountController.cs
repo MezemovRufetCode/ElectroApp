@@ -19,7 +19,7 @@ namespace ElectroApp.Controllers
         private readonly SignInManager<AppUser> _signinmanager;
         private readonly RoleManager<IdentityRole> _rolemanager;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _usermanager = userManager;
             _signinmanager = signInManager;
@@ -112,15 +112,15 @@ namespace ElectroApp.Controllers
             {
                 ModelState.AddModelError("", "User is not existed");
                 return View();
-            } 
-                //return BadRequest();
+            }
+            //return BadRequest();
             string token = await _usermanager.GeneratePasswordResetTokenAsync(user);
             string link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token }, Request.Scheme, Request.Host.ToString());
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("mezemovrufetcode@gmail.com", "Electro");
             mail.To.Add(new MailAddress(user.Email));
-            mail.Subject=("Reset Password");
-            mail.Body= $"<a href='{link}'> Please click here to reset your password </a>";
+            mail.Subject = ("Reset Password");
+            mail.Body = $"<a href='{link}'> Please click here to reset your password </a>";
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -131,7 +131,7 @@ namespace ElectroApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> ResetPassword(string email,string token)
+        public async Task<IActionResult> ResetPassword(string email, string token)
         {
             AppUser user = await _usermanager.FindByEmailAsync(email);
             if (user == null) return BadRequest();
@@ -198,7 +198,7 @@ namespace ElectroApp.Controllers
             await _signinmanager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-        
+
         [Authorize]
         public async Task<IActionResult> Edit()
         {
@@ -224,7 +224,7 @@ namespace ElectroApp.Controllers
                 Email = user.Email,
                 Fullname = user.Fullname
             };
-            if(user.UserName!=editedUser.Username && await _usermanager.FindByNameAsync(editedUser.Username) != null)
+            if (user.UserName != editedUser.Username && await _usermanager.FindByNameAsync(editedUser.Username) != null)
             {
                 ModelState.AddModelError("", $"{editedUser.Username} already existed");
                 return View(eUser);
@@ -244,7 +244,7 @@ namespace ElectroApp.Controllers
             }
             else
             {
-                if(editedUser.CurrentPassword==null || editedUser.Password==null || editedUser.ComfirmPassword == null)
+                if (editedUser.CurrentPassword == null || editedUser.Password == null || editedUser.ComfirmPassword == null)
                 {
                     ModelState.AddModelError("", "Fill Password Requirment");
                     return View(eUser);

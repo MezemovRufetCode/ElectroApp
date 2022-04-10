@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<section id="brdcrumb">
+    <div class="container">
+        <div class="row">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <div class="display">
+                            <div class="syllabus">
+                                <a href="#">Home > Shopping Cart</a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<section id="shoppingCartPage">
+    <div class="container">
+        <div class="row">
+            <div class="heading">
+                <h3>Shopping Cart</h3>
+            </div>
+            <div class="shoppingCart">
+                <div class="cart-table">
+                    <form action="">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="remove"></th>
+                                    <th class="item">Product</th>
+                                    <th class="price">Price</th>
+                                    <th class="qty">Quantity</th>
+                                    <th class="total-price">Cart Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart-item">
+                                    <td class="action">
+                                        <a href="" class="cart-remove-btn" type="button" title="Remove">
+                                            <span class="cart-remove-icon">
+                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                     height="16" viewBox="0 0 44 64">
+                                                    <path d="M0 48.64q0-2.304 1.664-3.968l12.48-12.48-12.48-12.544q-1.664-1.6-1.664-3.904t1.664-3.904 3.904-1.6 3.904 1.6l12.544 12.544 12.48-12.544q1.6-1.6 3.904-1.6t3.904 1.6 1.6 3.904-1.6 3.904l-12.48 12.544 12.48 12.48q1.6 1.664 1.6 3.968t-1.6 3.904-3.904 1.6-3.904-1.6l-12.48-12.48-12.544 12.48q-1.6 1.6-3.904 1.6t-3.904-1.6q-1.664-1.664-1.664-3.904z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td class="item-name">
+                                        <div class="item-image">
+                                            <a href="">
+                                                <img src="~/assets/images/featuredProducts/Phone_180x.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="item-title">
+                                            <a href="">
+                                                <span class="item-name">Freshkix Product Sample</span>
+                                            </a>
+                                            <div class="item-price2 d-lg-none d-md-none d-sm-none">
+                                                <span class="money">$120.00</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="item-price"><span class="money">$120.00</span></td>
+                                    <td class="item-qty">
+                                        <div class="quantity">
+                                            <input type="number" class="" id="quantity" value="1" pattern="[0-9]*"
+                                                   min="1">
+                                            <div class="qty-wrapper">
+                                                <span class="qty-inner">
+                                                    <button type="button" class="qty-up">
+                                                        <svg version="1.1"
+                                                             xmlns="http://www.w3.org/2000/svg" width="12"
+                                                             height="12" viewBox="0 0 37 64">
+                                                            <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" class="qty-down">
+                                                        <svg version="1.1"
+                                                             xmlns="http://www.w3.org/2000/svg" width="12"
+                                                             height="12" viewBox="0 0 37 64">
+                                                            <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <span class="cart-item-stock" data-cis="no-check"></span>
+                                        </div>
+                                        <div class="mobile-remove-action">
+                                            <a href="" class="" type="button" title="Remove">
+                                                Remove
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="tprice"><span class="money">$120.00</span></td>
+                                </tr>
+
+                                <tr class="last">
+                                    <td colspan="5">
+                                        <a href="" class="btn1 btncontunie">Continue Shopping</a>
+                                        <a href="" class="btn3 btnupdate">Update cart</a>
+                                        <a class="btn2 btnclear" href="">Clear cart</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="complete-checkout">
+                <div class="adress col-lg-7 col-md-7 col-sm-12 col-12">
+                    <div class="adress-wrapper">
+                        <h6 class="desc">Calculate shipping</h6>
+                        <div class="location">
+                            <div class="country col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="countrywrapper">
+                                    <select name="" id="adress-country" data-defeault="United Stated">
+                                        <option value="United States">United States</option>
+                                        <option value="England">England</option>
+                                        <option value="Ukraine">Ukraine</option>
+                                        <option value="France">France</option>
+                                        <option value="China">China</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="region col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="regionwrapper">
+                                    <select name="" id="adress-country" data-defeault="United Stated">
+                                        <option value="United States">Washington</option>
+                                        <option value="England">Qazax</option>
+                                        <option value="Ukraine">Imishli</option>
+                                        <option value="France">Ismayilli</option>
+                                        <option value="China">Quba</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="zipquote">
+                            <div class="zipcode col-lg-6 col-md-6 col-sm-6 col-6">
+                                <div class="zipcodewrapper">
+                                    <input type="text" placeholder="Zip/Postal Code">
+                                </div>
+                            </div>
+                            <div class="quote col-lg-6 col-md-6 col-sm-6 col-6">
+                                <a href="">Get a quote</a>
+                            </div>
+                        </div>
+                        <div class="ordernote">
+                            <h5 class="desc">Add a note to your order</h5>
+                            <div class="card-note">
+                                <textarea name="note" id="ordermessage"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lastAction col-lg-5 col-md-5 col-sm-12 col-12">
+                    <div class="checkout-wrapper">
+                        <div class="checkout-top">
+                            <p class="desc">Cart Total</p>
+                            <p class="price">$610.00</p>
+                        </div>
+                        <div class="checkout-bottom">
+                            <p class="info">Free shipping for orders over <span>$500.00</span></p>
+                            <button class="btn-checkout" type="submit">Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

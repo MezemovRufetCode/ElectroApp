@@ -181,7 +181,7 @@
                     </div>
                     <div class="bottomheadTools col-lg-3 col-md-3 col-sm-6">
                         <div class="compare tool d-none d-lg-inline-block">
-                            <a href="#">
+                            <a asp-controller="compare" asp-action="index" title="Compare Products">
                                 <i class="fa-solid fa-code-compare">
                                     <span class="indicateCount">1</span>
                                 </i>
@@ -254,8 +254,8 @@
                                             <p class="info">$@(Math.Floor((basket.TotalPrice)*100)/100)</p>
                                         </div>
                                         <div class="action">
-                                            <a href="#" class="gotoCart">Go to Cart</a>
-                                            <button class="checkout">Proceed to Checkout</button>
+                                            <a asp-controller="shoppingcart" asp-action="index" class="gotoCart">Go to Cart</a>
+                                            <a asp-controller="order" asp-action="Checkout" class="checkout">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

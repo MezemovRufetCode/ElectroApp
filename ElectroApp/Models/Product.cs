@@ -49,5 +49,6 @@ namespace ElectroApp.Models
         [NotMapped]
         public List<int> FeatureIds { get; set; }
         public List<BasketItem> BasketItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
     }
 }

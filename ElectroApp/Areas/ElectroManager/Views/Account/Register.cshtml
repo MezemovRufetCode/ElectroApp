@@ -1,11 +1,7 @@
-﻿
+﻿@model RegisterVM
 @{
     Layout = null;
 }
-@inject ElectroApp.Services.LayoutServices layoutService
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,43 +25,52 @@
     <title>Electro</title>
 </head>
 <body>
-    <div id="loginPage" style="height:100vh !important;display:flex;align-items:center !important;">
-        <section id="account" style="width:100%;">
+    <div id="registerPage">
+        <section id="account">
             <div class="container">
                 <div class="row">
                     <div class="account">
-                        <div class="loginwrapper">
-                            <div class="login">
+                        <div class="registerwrapper">
+                            <div class="register">
                                 <div class="heading">
-                                    <h4 class="nameofdiv">Login for Admin</h4>
+                                    <h4 class="nameofdiv">Create New Admin Account</h4>
                                 </div>
                                 <div class="content">
-                                    <div class="returnToStore">
-                                        <p class="description">Welcome back! Sign in yo your account</p>
-                                        <a href="">Return to Store</a>
-                                    </div>
-
-                                    <form action="">
-                                        <label for="">Email Address *</label>
+                                    <p class="description">Create Admin Account</p>
+                                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                                    <form method="post">
                                         <div class="inputwrapper">
-                                            <input type="text" id="email">
+                                            <label asp-for="Fullname">Fullname</label>
+                                            <input asp-for="Fullname"><br />
+                                            <span class="text text-danger" asp-validation-for="Fullname"></span>
                                         </div>
-                                        <label for="">Password *</label>
                                         <div class="inputwrapper">
-                                            <input type="text" id="password">
+                                            <label asp-for="Username">Username</label>
+                                            <input asp-for="Username"><br />
+                                            <span class="text text-danger" asp-validation-for="Username"></span>
                                         </div>
-                                        <div class="bottomlogin">
-
-                                            <div style="display:flex;align-items:center;">
-                                                <input style="margin-right:5px;width:16px;height:16px;" type="checkbox" />
-                                                <label style="margin-bottom:0px;">Remember me</label>
-                                            </div>
-
-                                            <a href="#" class="forgonpass">Forgotten Password ?</a>
+                                        <div class="inputwrapper">
+                                            <label asp-for="Email">Email Address</label>
+                                            <input asp-for="Email"><br />
+                                            <span class="text text-danger" asp-validation-for="Email"></span>
                                         </div>
-                                        <input class="inpSubmit" type="submit" value="Login">
+                                        <div class="inputwrapper">
+                                            <label asp-for="Password">Password</label>
+                                            <input asp-for="Password"><br />
+                                            <span class="text text-danger" asp-validation-for="Password"></span>
+                                        </div>
+                                        <div class="inputwrapper">
+                                            <label asp-for="ConfirmPassword">Comfirm Password</label>
+                                            <input asp-for="ConfirmPassword"><br />
+                                            <span class="text text-danger" asp-validation-for="ConfirmPassword"></span>
+                                        </div>
+                                        <div class="inputwrapper trminput">
+                                            <input style="height: 16px; width: 16px; margin-right: 10px; vertical-align: middle;" asp-for="Terms">
+                                            <label style="margin-bottom:0px;vertical-align:middle;" asp-for="Terms">I agree to all <a href="" class="termsCondAnc">Terms & Condition</a></label><br />
+                                            <span class="text text-danger" asp-validation-for="Terms"></span>
+                                        </div>
+                                        <input class="inpSubmit" type="submit" value="Register">
                                     </form>
-
                                 </div>
                             </div>
                         </div>
@@ -74,17 +79,16 @@
             </div>
         </section>
     </div>
-    @*jquery*@
+
+    <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*owl carousel*@
+    <!-- owl carousel -->
     <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
-    @*----------------*@
-    @*------progressbar----*@
+    <!-- ---------------- -->
+    <!-- ------progressbar---- -->
     <script src="~/assets/JS/skill.bars.jquery.js"></script>
-    @*-----------------*@
+    <!-- ----------------- -->
     <script src="~/assets/js/script.js"></script>
 </body>
-
-</html>

@@ -9651,6 +9651,366 @@ header .activeShoppingcart {
     #loginPage #account .account .loginwrapper .login .content .returnToStore a:hover {
         color: #fed700;
     }
+#checkoutPage .rightside .rigthwrapper {
+    padding: 50px 50px;
+}
+
+    #checkoutPage .rightside .rigthwrapper .products {
+        padding: 20px;
+        overflow-y: scroll;
+        max-height: 300px;
+    }
+
+        #checkoutPage .rightside .rigthwrapper .products .product {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+            #checkoutPage .rightside .rigthwrapper .products .product:last-child {
+                margin: 0px !important;
+            }
+
+            #checkoutPage .rightside .rigthwrapper .products .product .image {
+                border: 1px solid #dddddd;
+                border-radius: 6px;
+                padding: 3px;
+                position: relative;
+                margin-right: 20px;
+            }
+
+                #checkoutPage .rightside .rigthwrapper .products .product .image .count {
+                    position: absolute;
+                    color: white;
+                    background-color: #666666;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    right: -9px;
+                    top: -9px;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    font-size: 15px;
+                }
+
+                #checkoutPage .rightside .rigthwrapper .products .product .image img {
+                    border-radius: 4px;
+                    max-height: 55px;
+                    max-width: 55px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+
+            #checkoutPage .rightside .rigthwrapper .products .product .textinfo {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+                #checkoutPage .rightside .rigthwrapper .products .product .textinfo p {
+                    margin-bottom: 0px;
+                    font-family: "Open Sans", sans-serif;
+                    color: #333e48;
+                }
+
+                #checkoutPage .rightside .rigthwrapper .products .product .textinfo .price {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    justify-self: flex-end;
+                }
+
+                    #checkoutPage .rightside .rigthwrapper .products .product .textinfo .price p {
+                        text-align: end;
+                    }
+
+    #checkoutPage .rightside .rigthwrapper .totalPrice {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+        #checkoutPage .rightside .rigthwrapper .totalPrice p {
+            font-family: "Open Sans", sans-serif;
+            color: #333e48;
+            font-size: 18px;
+        }
+
+        #checkoutPage .rightside .rigthwrapper .totalPrice .total {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+            #checkoutPage .rightside .rigthwrapper .totalPrice .total span {
+                color: #848484;
+                font-size: 14px;
+                font-weight: 400;
+                margin-right: 8px;
+            }
+
+#checkoutPage .leftside {
+    border-right: 1px solid #dddddd;
+}
+
+    #checkoutPage .leftside .lsidewrapper {
+        padding: 50px 70px;
+    }
+
+        #checkoutPage .leftside .lsidewrapper .name {
+            font-size: 32px;
+            font-family: "Open Sans", sans-serif;
+            color: #333e48;
+            font-weight: 500;
+            margin-bottom: 0px;
+        }
+
+        #checkoutPage .leftside .lsidewrapper .gpaywrapper {
+            padding: 30px 0px;
+            border-bottom: 1px solid #dddddd;
+            position: relative;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .gpaywrapper:after {
+                content: "or";
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                background: white;
+                font-size: 12px;
+                color: #848484;
+                text-transform: uppercase;
+                position: absolute;
+                left: 50%;
+                top: 100%;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            #checkoutPage .leftside .lsidewrapper .gpaywrapper .expressCheckout {
+                border: 1px solid #dddddd;
+                padding: 20px 60px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                position: relative;
+                border-radius: 4px;
+            }
+
+                #checkoutPage .leftside .lsidewrapper .gpaywrapper .expressCheckout .info {
+                    position: absolute;
+                    top: -11px;
+                    background-color: white;
+                }
+
+                    #checkoutPage .leftside .lsidewrapper .gpaywrapper .expressCheckout .info span {
+                        padding: 5px 14px;
+                        font-family: "Open Sans", sans-serif;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+
+                #checkoutPage .leftside .lsidewrapper .gpaywrapper .expressCheckout .pay {
+                    padding: 9px 90px;
+                    background-color: black;
+                    text-decoration: none;
+                    color: white;
+                    border-radius: 4px;
+                    font-size: 17px;
+                }
+
+                    #checkoutPage .leftside .lsidewrapper .gpaywrapper .expressCheckout .pay img {
+                        position: relative;
+                        bottom: 2px;
+                    }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .info {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            color: #333e48;
+            margin: 20px 0px;
+        }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo .image {
+                width: 50px;
+                height: 50px;
+                background-color: lightgray;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                border-radius: 4px;
+                margin-right: 20px;
+            }
+
+                #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo .image i {
+                    font-size: 18px;
+                    color: white;
+                }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo .accountActivity p,
+            #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo .accountActivity a {
+                margin-bottom: 0px;
+                font-family: "Open Sans", sans-serif;
+                font-size: 14px;
+                text-decoration: none;
+                color: #333e48;
+            }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .topContactInfo .accountActivity a {
+                color: #ee0000 !important;
+            }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .notify {
+            margin: 20px 0px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .notify span {
+                font-size: 14px;
+                color: #333e48;
+                font-family: "Open Sans", sans-serif;
+            }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .notify input {
+                width: 19px;
+                height: 19px;
+                margin-right: 15px;
+            }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .countreg {
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            height: 50px;
+            display: block;
+            padding: 0 15px;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .countreg label {
+                outline: none;
+                border: none;
+                width: 100%;
+            }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .countreg select {
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                height: 100%;
+                width: 100%;
+                font-size: 14px;
+            }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .adr {
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            height: 50px;
+            display: block;
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+        #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .adr span {
+           font-size:14px;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .adr input {
+                border: none;
+                outline: none;
+                height: 100%;
+                width: 100%;
+            }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .twoIns {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            border: none !important;
+            padding: 0px !important;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .twoIns .half {
+                border: 1px solid #dddddd;
+                border-radius: 4px;
+                height: 50px;
+                display: block;
+                padding: 0 15px;
+                width: calc(50% - 10px);
+            }
+
+        #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .bottom {
+            border-radius: 4px;
+        }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .bottom input {
+                padding: 15px 20px;
+                background-color: #131313;
+                font-weight: 500;
+                font-family: "Open Sans", sans-serif;
+                color: white;
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                margin-top:10px;
+                margin-right: 20px;
+            }
+
+                #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .bottom input:hover {
+                    background-color: black;
+                }
+
+            #checkoutPage .leftside .lsidewrapper .contactinfo .shippingAdress .bottom a {
+                text-decoration: none;
+                color: #ee0000;
+                font-family: "Open Sans", sans-serif;
+                font-size: 14px;
+            }
 footer {
   background-color: white;
 }
@@ -10061,6 +10421,13 @@ footer .footerbottom p {
     width: 25% !important;
     padding: 0 7.5px 15px !important;
   }
+    #checkoutPage .lsidewrapper {
+        padding: 20px 0px !important;
+    }
+
+    #checkoutPage .rigthwrapper {
+        padding: 20px 0px !important;
+    }
   #shoplistBannerfirst .bannerforFatured {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
