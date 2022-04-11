@@ -23,5 +23,7 @@ namespace ElectroApp.Models
         public DateTime OrderDate { get; set; }
         public AppUser AppUser { get; set; }
         public string AppUserId { get; set; }
+        public bool? Status { get; set; }
+        public string Message { get; set; }
     }
 }
