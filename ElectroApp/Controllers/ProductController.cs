@@ -33,7 +33,7 @@ namespace ElectroApp.Controllers
             {
                 Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-                Include(p => p.Features).Include(p => p.Specs).Skip((page - 1) * 8).Take(8).ToList(),
+                Include(p => p.Features).Include(p => p.Specs).ToList(),
                 Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList()
             };
             return View(productVM);

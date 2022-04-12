@@ -83,5 +83,10 @@ namespace ElectroApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Details", "Blog", new { id = bcomment.BlogId });
         }
+        public IActionResult Search(string search)
+        {
+            List<Blog> blog = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).Where(b => b.Title.ToLower().Trim().Contains(search.ToLower().Trim())).ToList();
+            return PartialView("_BlogPartialView", blog);
+        }
     }
 }
