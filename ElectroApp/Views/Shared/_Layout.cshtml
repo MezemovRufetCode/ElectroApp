@@ -165,9 +165,9 @@
                         </div>
                     </div>
                     <div class="searchArea d-none d-lg-flex col-lg-6 ">
-                        <form action="">
-                            <input class="searchInp" type="text" placeholder="Search">
-                            <button class="sbmtBtn" type="submit">
+                        <form method="get" asp-controller="product" asp-action="SearchResult" id="search-form">
+                            <input class="searchInp" onkeyup="DisableButton()"  autocomplete="off" name="search" type="text" placeholder="Search" id="generalSearch">
+                            <button class="sbmtBtn" type="submit" id="generalSearchButton">
                                 <span>
                                     <svg version="1.1"
                                          xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 61 64">
@@ -178,6 +178,48 @@
                                 </span>
                             </button>
                         </form>
+                        <div class="searchResult d-none">
+                            <ul class="searchList">
+                                <li class="listEl">
+                                    <div class="image">
+                                        <a href=""><img src="~/assets/images/featuredProducts/FlashDrive_180x.jpg"></a>
+                                    </div>
+                                    <div class="textInfo">
+                                        <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
+                                        <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
+                                    </div>
+                                </li>
+                                <li class="listEl">
+                                    <div class="image">
+                                        <a href=""><img src="~/assets/images/featuredProducts/3_540x.jpg"></a>
+                                    </div>
+                                    <div class="textInfo">
+                                        <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
+                                        <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
+                                    </div>
+                                </li>
+                                <li class="listEl">
+                                    <div class="image">
+                                        <a href=""><img src="~/assets/images/featuredProducts/GameStation_540x.jpg"></a>
+                                    </div>
+                                    <div class="textInfo">
+                                        <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
+                                        <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
+                                    </div>
+                                </li>
+                                <li class="listEl">
+                                    <div class="image">
+                                        <a href="">
+                                            <img src="~/assets/images/featuredProducts/TV_010884af-efd0-4645-8d19-6ee037cd730d_540x.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="textInfo">
+                                        <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
+                                        <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="bottomheadTools col-lg-3 col-md-3 col-sm-6">
                         <div class="compare tool d-none d-lg-inline-block">
@@ -713,7 +755,7 @@
                                             <li class="list-itemMenu  menu-item-has-children">
                                                 <a class="featAnc"
                                                    href="#">Electrnics<i class="fa-solid fa-chevron-right"></i></a>
-                                                <div class="sub-menu mega-menu-column-3">
+                                                <div class="sub-menu mega-menu-column-3 activeMenu">
                                                     <ul class="megamenucol3Submenu">
                                                         <li>
                                                             <div class="list-item">

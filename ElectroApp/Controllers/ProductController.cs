@@ -159,5 +159,19 @@ namespace ElectroApp.Controllers
             }
             return Content("Basket is empty");
         }
+        public IActionResult SearchResult(string search)
+        {
+            //List<Product> products = _context.Products.Where(p => p.Name.ToLower().Trim().Contains(search.ToLower().Trim())).ToList();
+            ProductVM productVM = new ProductVM
+            {
+                Products = search == null ? _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+                Include(p => p.Features).Include(p => p.Specs).ToList() : _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+                Include(p => p.Features).Include(p => p.Specs).Where(p => p.Name.ToLower().Trim().Contains(search.ToLower().Trim())).ToList(),
+                Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList()
+            };
+            return View(productVM);
+        }
     }
 }

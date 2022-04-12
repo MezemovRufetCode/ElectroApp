@@ -337,12 +337,12 @@ header .bottomheader .pc-deparment .bottomheadElements .searchArea form {
   width: 100%;
 }
 
-header .bottomheader .pc-deparment .bottomheadElements .searchArea form .searchInp {
-  margin: 0 30px;
-  width: 100%;
-  border: none;
-  outline: none;
-}
+    header .bottomheader .pc-deparment .bottomheadElements .searchArea form .searchInp {
+        margin: 0 30px;
+        width: calc(100% - 100px);
+        border: none;
+        outline: none;
+    }
 
 header .bottomheader .pc-deparment .bottomheadElements .searchArea form .sbmtBtn {
   position: absolute;
@@ -356,7 +356,106 @@ header .bottomheader .pc-deparment .bottomheadElements .searchArea form .sbmtBtn
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+.searchResult {
+    position: absolute;
+    top: 42px;
+    text-align: start;
+    width: 100%;
+    min-width: 250px;
+    padding: 0;
+    margin: 10px 0 0;
+    border: none;
+    background-color: white;
+    z-index: 999;
+    border-top: 2px solid #fed700;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
+    .searchResult:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        top: -12px;
+        z-index: 9999;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 10px solid #fed700;
+    }
+
+    .searchResult .searchList {
+        padding-left: 0px;
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+        .searchResult .searchList .listEl {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 7px 20px;
+            -webkit-transition: 0.1s ease-in-out;
+            transition: 0.1s ease-in-out;
+        }
+
+            .searchResult .searchList .listEl:hover {
+                background-color: #ececec;
+            }
+
+            .searchResult .searchList .listEl .image {
+                margin-right: 20px;
+            }
+
+                .searchResult .searchList .listEl .image img {
+                    max-height: 72px;
+                    max-width: 72px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+
+            .searchResult .searchList .listEl .textInfo .productName {
+                margin-bottom: 0px;
+            }
+
+                .searchResult .searchList .listEl .textInfo .productName a {
+                    display: block;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    text-decoration: none;
+                    font-family: "Roboto", sans-serif;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #0062bd;
+                    -webkit-transition: all 0.2s ease-in-out;
+                    transition: all 0.2s ease-in-out;
+                }
+
+                    .searchResult .searchList .listEl .textInfo .productName a:hover {
+                        color: #fed700;
+                    }
+
+            .searchResult .searchList .listEl .textInfo .CurrentPrice {
+                color: #ee0000;
+                font-family: "Roboto", sans-serif;
+                font-size: 20px;
+                margin-bottom: 0px;
+            }
+
+                .searchResult .searchList .listEl .textInfo .CurrentPrice .oldPrice {
+                    color: #848484;
+                    font-size: 15px;
+                    font-weight: 400;
+                    text-decoration: line-through;
+                    margin-left: 5px;
+                }
 header .bottomheader .pc-deparment .bottomheadElements .bottomheadTools {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -829,7 +928,7 @@ header .nav .nav-links a:hover:after {
 }
 
 header .nav .nav-links .Menu {
-  z-index: 999;
+  z-index: 998;
 }
 
 header .nav .nav-links .Menu ul {

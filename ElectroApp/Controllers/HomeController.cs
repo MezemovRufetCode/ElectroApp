@@ -24,11 +24,11 @@ namespace ElectroApp.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                IntroSliders=_context.IntroSliders.ToList(),
-                Products= _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+                IntroSliders = _context.IntroSliders.ToList(),
+                Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
                 Include(p => p.Features).Include(p => p.Specs).ToList()
-        };
+            };
             return View(homeVM);
         }
     }
