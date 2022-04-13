@@ -27,7 +27,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 5);
             List<Product> model = _context.Products.Include(p=>p.ProductComments).ThenInclude(p=>p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).Include(p=>p.Features).Skip((page - 1) * 5).Take(5).ToList();
+                Include(p => p.ProductImages).Include(p => p.Brand).Include(p => p.Campaign).Include(p => p.Specs).Include(p=>p.Features).OrderByDescending(p=>p.Id).Skip((page - 1) * 5).Take(5).ToList();
             return View(model);
         }
         public IActionResult Create()
@@ -229,6 +229,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             existProduct.Price = product.Price;
             existProduct.CostPrice = product.CostPrice;
             existProduct.Name = product.Name;
+            existProduct.IsSpecial = product.IsSpecial;
             existProduct.Videolink = product.Videolink;
             existProduct.AvaliableCount = product.AvaliableCount;
             existProduct.BrandId = product.BrandId;

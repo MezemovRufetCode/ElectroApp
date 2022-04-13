@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="brdcrumb">
+    <div class="container">
+        <div class="row">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <div class="display">
+                            <div class="syllabus">
+                                <a href="#">Home > Contact</a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<section id="contactPage">
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mycontact">
+                    <div class="contactwrapper">
+                        <div class="nameofsec">
+                            <div class="productsBy">
+                                <p>Leave A Message</p>
+                            </div>
+                        </div>
+                        <form action="">
+                            <div class="info">
+                                <p>
+                                    Maecenas dolor elit, semper a sem sed, pulvinar molestie lacus. Aliquam
+                                    dignissim, elit non mattis ultrices, neque odio ultricies tellus, eu porttitor
+                                    nisl ipsum eu massa.
+                                </p>
+                            </div>
+                            <div class="nameemail">
+
+                                <div class="name col-lg-6 col-md-12 col-sm-12 col-12 formelement">
+                                    <div class="namewrapper">
+                                        <label for="name">Name*</label><br>
+                                        <input type="text" name="" required id="name">
+                                    </div>
+                                </div>
+                                <div class="email col-lg-6 col-md-12 col-sm-12 col-12 formelement">
+                                    <div class="emailwrapper">
+                                        <label for="email">Email*</label><br>
+                                        <input type="email" name="" required id="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone formelement">
+                                <label for="phone">Phone</label><br>
+                                <input type="text" id="phone">
+                            </div>
+                            <div class="textarea formelement">
+                                <label for="message">Message</label><br>
+                                <textarea name="" cols="40" rows="7" required id=""></textarea>
+                            </div>
+                            <input type="submit" id="submitmessage">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mymap">
+                    <div class="mapwrapper">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.428490145657!2d49.851756815152214!3d40.37719496596736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1saz!2s!4v1647964437089!5m2!1saz!2s"
+                                style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- owl carousel -->
+<script src="./plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
+<!-- ---------------- -->
+<!-- ------progressbar---- -->
+<script src="./assets/JS/skill.bars.jquery.js"></script>
+<!-- ----------------- -->
+<script src="./assets/js/script.js"></script>
+
+<script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>

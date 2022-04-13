@@ -50,5 +50,6 @@ namespace ElectroApp.Models
         public List<int> FeatureIds { get; set; }
         public List<BasketItem> BasketItems { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+        public bool IsSpecial { get; set; }
     }
 }

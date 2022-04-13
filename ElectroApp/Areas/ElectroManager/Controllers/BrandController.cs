@@ -22,7 +22,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Brands.Count() / 6);
-           List<Brand> model = _context.Brands.Include(b=>b.Products).Skip((page - 1) * 6).Take(6).ToList();
+           List<Brand> model = _context.Brands.Include(b=>b.Products).OrderByDescending(p => p.Id).Skip((page - 1) * 6).Take(6).ToList();
             return View(model);
         }
         public IActionResult Create()

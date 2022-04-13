@@ -25,6 +25,21 @@
             <div class="container">
                 <div class="row">
                     <div class="productlistpageLeftside col-lg-3">
+                        <div class="plistCategoires">
+                            <div class="heading">
+                                <h4>Categories</h4>
+                            </div>
+                            <div class="categories">
+                                <div class="categoryWrapper">
+                                    <ul class="catList">
+                                        @foreach (var category in Model.Categories)
+                                        {
+                                            <li class="catlistElement"><a href="">@category.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="productfilter">
                             <div class="opncloseSide d-lg-none">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
@@ -66,25 +81,25 @@
                                             </li>
                                         </ul>
                                         <!-- <label class="customradiobtn" for="">
-                                            <input type="radio" id="radio1">
-                                            <span class="checked1"></span>
-                                        </label>
-                                        <label class="customradiobtn" for="">
-                                            <input type="radio" id="radio2">
-                                            <span class="checked2"></span>
-                                        </label>
-                                        <label class="customradiobtn" for="">
-                                            <input type="radio" id="radio2">
-                                            <span class="checked3"></span>
-                                        </label>
-                                        <label class="customradiobtn" for="">
-                                            <input type="radio" id="radio2">
-                                            <span class="checked4"></span>
-                                        </label>
-                                        <label class="customradiobtn" for="">
-                                            <input type="radio" id="radio2">
-                                            <span class="checked5"></span>
-                                        </label> -->
+                        <input type="radio" id="radio1">
+                        <span class="checked1"></span>
+                    </label>
+                    <label class="customradiobtn" for="">
+                        <input type="radio" id="radio2">
+                        <span class="checked2"></span>
+                    </label>
+                    <label class="customradiobtn" for="">
+                        <input type="radio" id="radio2">
+                        <span class="checked3"></span>
+                    </label>
+                    <label class="customradiobtn" for="">
+                        <input type="radio" id="radio2">
+                        <span class="checked4"></span>
+                    </label>
+                    <label class="customradiobtn" for="">
+                        <input type="radio" id="radio2">
+                        <span class="checked5"></span>
+                    </label> -->
                                     </div>
                                 </li>
                         </div>
@@ -101,7 +116,7 @@
                                 </div>
                                 <div class="filterelement">
                                     <!-- <input type="checkbox" id="scales" name="scales" checked>
-                                    <label for="scales">Scales</label> -->
+                <label for="scales">Scales</label> -->
                                     <ul class="advanced-filter">
                                         @foreach (var brand in Model.Brands)
                                         {
@@ -109,14 +124,14 @@
                                         }
 
                                         @*<li class="checkfilter"><a href="">Samsung</a></li>
-                                            <li class="checkfilter"><a href="">Xiaomi</a></li>
-                                            <li class="checkfilter"><a href="">Nokia</a></li>
-                                            <li class="checkfilter"><a href="">Oppo</a></li>
-                                            <li class="checkfilter"><a href="">Huawei</a></li>
-                                            <li class="checkfilter"><a href="">Oneplus</a></li>
-                                            <li class="checkfilter"><a href="">Rampage</a></li>
-                                            <li class="checkfilter"><a href="">Intel</a></li>
-                                            <li class="checkfilter"><a href="">Amd</a></li>*@
+                        <li class="checkfilter"><a href="">Xiaomi</a></li>
+                        <li class="checkfilter"><a href="">Nokia</a></li>
+                        <li class="checkfilter"><a href="">Oppo</a></li>
+                        <li class="checkfilter"><a href="">Huawei</a></li>
+                        <li class="checkfilter"><a href="">Oneplus</a></li>
+                        <li class="checkfilter"><a href="">Rampage</a></li>
+                        <li class="checkfilter"><a href="">Intel</a></li>
+                        <li class="checkfilter"><a href="">Amd</a></li>*@
                                     </ul>
                                 </div>
                             </li>
@@ -141,41 +156,41 @@
                                     }
 
                                     @*<label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Samsung
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Huawei
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Honor
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Nokia
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Sony
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            HTC
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            ZTE
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            Oppo
-                                        </label>
-                                        <label for="">
-                                            <input type="checkbox" class="option-input checkbox">
-                                            OnePlus
-                                        </label>*@
+                        <input type="checkbox" class="option-input checkbox">
+                        Samsung
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        Huawei
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        Honor
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        Nokia
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        Sony
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        HTC
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        ZTE
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        Oppo
+                    </label>
+                    <label for="">
+                        <input type="checkbox" class="option-input checkbox">
+                        OnePlus
+                    </label>*@
                                 </div>
                             </li>
                         </div>

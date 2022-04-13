@@ -28,7 +28,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         {
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 6);
-            List<Blog> model = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).Skip((page - 1) * 6).Take(6).ToList();
+            List<Blog> model = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).OrderByDescending(p => p.Id).Skip((page - 1) * 6).Take(6).ToList();
             return View(model);
         }
         public IActionResult Create()

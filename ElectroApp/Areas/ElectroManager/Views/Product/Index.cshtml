@@ -38,8 +38,8 @@
                     Avaliable
                 </th>
                 @*<th>
-            Description
-        </th>*@
+                        Description
+                    </th>*@
                 <th>
                     Settings
                 </th>
@@ -48,68 +48,79 @@
         <tbody>
             @foreach (Product product in Model)
             {
-            <tr>
-                <td>
-                    @product.Id
-                </td>
-                @if (product.ProductImages.FirstOrDefault(p => p.IsMain == true).Image.Contains("https://"))
-                {
+                <tr>
                     <td>
-                        <img style="width:100px;height:100px;object-fit:contain" src="@product.ProductImages.FirstOrDefault(p=>p.IsMain == true).Image" alt="product image" />
+                        @product.Id
                     </td>
-                }
-                else
-                {
+                    @if (product.ProductImages.FirstOrDefault(p => p.IsMain == true).Image.Contains("https://"))
+                    {
+                        <td>
+                            <img style="width:100px;height:100px;object-fit:contain" src="@product.ProductImages.FirstOrDefault(p=>p.IsMain == true).Image" alt="product image" />
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <img style="width:100px;height:100px;object-fit:contain" src="~/assets/images/featuredProducts/@product.ProductImages.FirstOrDefault(f=>f.IsMain == true).Image" alt="product image" />
+                        </td>
+                    }
+                    @if (product.IsSpecial)
+                    {
+                        <td style="position:relative">
+                            <p style="font-weight:bold;color:red;font-size:19px;margin-bottom:10px;position:absolute;left:10px;top:10px">Special Product</p>
+                            @product.Name
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @product.Name
+                        </td>
+                    }
+
                     <td>
-                        <img style="width:100px;height:100px;object-fit:contain" src="~/assets/images/featuredProducts/@product.ProductImages.FirstOrDefault(f=>f.IsMain == true).Image" alt="product image" />
+                        @product.Brand.Name
                     </td>
-                }
-                <td>
-                    @product.Name
-                </td>
-                <td>
-                    @product.Brand.Name
-                </td>
-                <td>
-                    @product.Price&#x20BC
+                    <td>
+                        @product.Price&#x20BC
+                        @if (product.CampaignId != null)
+                        {
+                            <span>(</span><span title="Price after discount" class="text-success">@(Math.Floor((product.Price * (100 - product.Campaign.DiscountPercent) / 100 )*100)/100)</span><span class="text-success">&#x20BC)</span>
+                        }
+                    </td>
+                    <td>
+                        @product.CostPrice&#x20BC
+                    </td>
                     @if (product.CampaignId != null)
                     {
-                        <span>(</span><span title="Price after discount" class="text-success">@(Math.Floor((product.Price * (100 - product.Campaign.DiscountPercent) / 100 )*100)/100)</span><span class="text-success">&#x20BC)</span>
+                        <td>
+                            @Math.Floor((((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice) * 100) / 100)&#x20BC
+                        </td>
                     }
-                </td>
-                <td>
-                    @product.CostPrice&#x20BC
-                </td>
-                @if (product.CampaignId != null)
-                {
-                    <td>
-                        @Math.Floor((((product.Price * (100 - product.Campaign.DiscountPercent) / 100) - product.CostPrice)*100)/100)&#x20BC
+                    else
+                    {
+                        <td>
+                            @Math.Floor(((product.Price - product.CostPrice) * 100) / 100)&#x20BC
+                        </td>
+                    }
+                    <td style="text-align:center;">
+                        @product.AvaliableCount
                     </td>
-                }
-                else
-                {
                     <td>
-                        @Math.Floor(((product.Price - product.CostPrice)*100)/100)&#x20BC
+                        <a asp-controller="product" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
+                            <i class="mdi mdi-file-check btn-icon-append"></i>
+                            Edit
+                        </a>
+                        <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
+                            <i class="mdi mdi-alert btn-icon-prepend"></i>
+                            Delete
+                        </a>
+                        <a asp-controller="product" asp-action="comments" asp-route-ProductId="@product.Id" class="btn btn-primary btn-icon-text">
+                            <i class="fas fa-comments"></i>
+                            (@product.ProductComments.Count(c => c.IsAccess == true)) Comments (@product.ProductComments.Count)
+                        </a>
                     </td>
-                }
-                <td style="text-align:center;">
-                    @product.AvaliableCount
-                </td>
-                <td>
-                    <a asp-controller="product" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
-                        <i class="mdi mdi-file-check btn-icon-append"></i>
-                        Edit
-                    </a>
-                    <a asp-controller="product" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
-                        <i class="mdi mdi-alert btn-icon-prepend"></i>
-                        Delete
-                    </a>
-                    <a asp-controller="product" asp-action="comments" asp-route-ProductId="@product.Id" class="btn btn-primary btn-icon-text">
-                        <i class="fas fa-comments"></i>
-                        (@product.ProductComments.Count(c => c.IsAccess == true)) Comments (@product.ProductComments.Count)
-                    </a>
-                </td>
-            </tr>
+                </tr>
             }
         </tbody>
     </table>

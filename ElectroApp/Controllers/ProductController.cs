@@ -34,7 +34,8 @@ namespace ElectroApp.Controllers
                 Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
                 Include(p => p.Features).Include(p => p.Specs).ToList(),
-                Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList()
+                Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList(),
+                Categories=_context.Categories.Include(c=>c.ProductCategories).ThenInclude(pc=>pc.Product).ToList()
             };
             return View(productVM);
         }

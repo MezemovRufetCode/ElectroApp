@@ -27,7 +27,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         }
         public IActionResult Index()
         {
-            List<Order> orders = _context.Orders.ToList();
+            List<Order> orders = _context.Orders.OrderByDescending(p => p.Id).ToList();
             return View(orders);
         }
 
