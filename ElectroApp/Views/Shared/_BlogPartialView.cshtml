@@ -1,7 +1,7 @@
 ﻿@model List<Blog>
 @foreach (Blog blog in Model)
 {
-    <div class="blogwrapper col-lg-6 col-md-6 col-sm-6">
+    <div class="blogwrapper col-lg-6 col-md-6 col-sm-6 item">
         <div class="blog">
             <div class="blogimage">
                 <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id">

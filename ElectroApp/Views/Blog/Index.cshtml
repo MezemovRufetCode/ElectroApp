@@ -2,6 +2,31 @@
 @{
     ViewData["Title"] = "Index";
 }
+@section CSS
+    {
+    <style>
+        .buttonToogle {
+            display: flex;
+            justify-content: center;
+        }
+
+        .showMore {
+            padding: 8px 40px;
+            text-decoration: none;
+            color: #333e48;
+            background-color: #fed700;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 17px;
+            transition: 0.2s ease-in-out;
+        }
+
+            .showMore:hover {
+                background-color: #333e48;
+                color: white;
+            }
+    </style>
+}
 <section id="brdcrumb">
     <div class="container">
         <div class="row">
@@ -24,11 +49,14 @@
         <div class="container">
             <div class="row">
                 <div class="leftside col-lg-9">
-                    <div class="blogs" id="Old-Blogs">
+                    <div class="blogs items" id="Old-Blogs">
                         @await Html.PartialAsync("_BlogPartialView", Model)
                     </div>
                     <div class="blogs" id="New-Blogs">
 
+                    </div>
+                    <div class="buttonToogle">
+                        <a href="javascript:;" class="showMore">View More</a>
                     </div>
                 </div>
                 <div class="rigthSide col-lg-3 d-lg-block d-md-none d-sm-none d-none">
@@ -94,7 +122,7 @@
                             <ul class="taglist">
                                 @foreach (var tag in ViewBag.Tags)
                                 {
-                                    <li><a href="">@tag.Name</a></li>
+                                    <li><a asp-controller="blog" asp-action="index" asp-route-tagId="@tag.Id">@tag.Name</a></li>
                                 }
                             </ul>
                         </div>
@@ -136,6 +164,42 @@
             $("#pgnt").css("display", "flex")
         }
     })
+</script>
+<script>
+    $(function () {
+
+        // items to show
+        var increment = 4;
+
+        var startFilter = 0;
+        var endFilter = increment;
+
+        // item selector
+        var $this = $('.items');
+
+        var elementLength = $this.find('div').length;
+        $('.listLength').text(elementLength);
+
+        // show/hide the Load More button
+        if (elementLength > 2) {
+            $('.buttonToogle').show();
+        }
+
+        $('.items .item').slice(startFilter, endFilter).addClass('shown');
+        $('.shownLength').text(endFilter);
+        $('.items .item').not('.shown').hide();
+        $('.buttonToogle .showMore').on('click', function () {
+            if (elementLength > endFilter) {
+                startFilter += increment;
+                endFilter += increment;
+                $('.items .item').slice(startFilter, endFilter).not('.shown').addClass('shown').toggle(500);
+                $('.shownLength').text((endFilter > elementLength) ? elementLength : endFilter);
+                if (elementLength <= endFilter) {
+                    $(this).remove();
+                }
+            }
+        });
+    });
 </script>
 <!-- ----------------- -->
 <script src="~/assets/js/script.js"></script>

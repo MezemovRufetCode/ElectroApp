@@ -20,22 +20,22 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var admin in Model)
+            @foreach (var user in Model)
             {
             <tr>
                 <td>
-                    @admin.Fullname
+                    @user.Fullname
                 </td>
                 <td>
-                    @admin.UserName
+                    @user.UserName
                 </td>
                 <td>
-                    @admin.Email
+                    @user.Email
                 </td>
                 <td>
-                    <a asp-controller="account" asp-action="DeleteAdmin" asp-area="ElectroManager" asp-route-id="@admin.Id" class="btn btn-danger btn-icon-text">
+                    <a asp-controller="account" asp-action="ShowAllUser" asp-area="ElectroManager" asp-route-id="@user.Id" class="btn btn-danger btn-icon-text">
                         <i class="fas fa-edit"></i>
-                        Delete
+                        Chnage Role
                     </a>
                 </td>
             </tr>}

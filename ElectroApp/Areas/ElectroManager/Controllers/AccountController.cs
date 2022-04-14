@@ -23,7 +23,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
         private readonly SignInManager<AppUser> _signinmanager;
         private readonly AppDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager,RoleManager<IdentityRole> roleManager,SignInManager<AppUser> signInManager,AppDbContext context)
+        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _usermanager = userManager;
             _rolemanager = roleManager;
@@ -31,7 +31,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             _context = context;
         }
 
-        [Authorize(Roles ="SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Register()
         {
             return View();
@@ -48,7 +48,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 Email = register.Email,
                 UserName = register.Username,
                 Fullname = register.Fullname,
-                IsAdmin=true
+                IsAdmin = true
             };
             if (!register.Terms)
             {
@@ -309,20 +309,52 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
             await _usermanager.AddToRoleAsync(user, "Admin");
         }
 
-        [Authorize(Roles ="SuperAdmin")]
-        public IActionResult ShowAdmins()
+        //[Authorize(Roles ="SuperAdmin")]
+        public IActionResult ShowAllUser()
         {
-            List<AppUser> users = _context.Users.Where(u=>u.IsAdmin).ToList();
+            List<AppUser> users = _context.Users.OrderByDescending(u => u.Id).ToList();
             return View(users);
         }
 
-        [Authorize(Roles ="SuperAdmin")]
-        public async Task<IActionResult> DeleteAdmin(string id)
-        {
-            AppUser user = await _usermanager.FindByIdAsync(id);
-            if (user == null) return NotFound();
-            await _usermanager.DeleteAsync(user);
-            return RedirectToAction("ShowAdmins", "Account");
-        }
+        //public async Task<IActionResult> ChangeRole(string id)
+        //{
+        //    if (id == null) return NotFound();
+        //    AppUser appUser = await _usermanager.FindByIdAsync(id);
+        //    if (appUser == null) return NotFound();
+        //    string role = (await _usermanager.GetRolesAsync(appUser)).First();
+        //    ViewBag.Role = role;
+        //    List<IdentityRole> roles = _rolemanager.Roles.ToList();
+        //    return View(roles);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangeRole(string id,string newRole)
+        //{
+        //    List<IdentityRole> roles = _rolemanager.Roles.ToList();
+        //    if (id == null) return NotFound();
+        //    AppUser appUser = await _usermanager.FindByIdAsync(id);
+        //    if (appUser == null) return NotFound();
+        //    string oldRole = (await _usermanager.GetRolesAsync(appUser)).First();
+        //    if (oldRole != newRole)
+        //    {
+        //        IdentityResult addresult = await _usermanager.AddToRoleAsync(appUser, newRole);
+        //        if (!addresult.Succeeded)
+        //        {
+        //            ModelState.AddModelError("", "You can not change role");
+        //            return View(roles);
+        //        }
+        //        IdentityResult removeresult = await _usermanager.RemoveFromRoleAsync(appUser, oldRole);
+        //        if (!removeresult.Succeeded)
+        //        {
+        //            ModelState.AddModelError("", "You can not remove role");
+
+        //            return View(roles);
+        //        }
+
+        //        await _usermanager.UpdateAsync(appUser);
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

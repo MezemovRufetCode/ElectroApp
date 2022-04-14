@@ -24,7 +24,7 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int? brandId, int? categoryId, int page = 1)
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
@@ -35,8 +35,22 @@ namespace ElectroApp.Controllers
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
                 Include(p => p.Features).Include(p => p.Specs).ToList(),
                 Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList(),
-                Categories=_context.Categories.Include(c=>c.ProductCategories).ThenInclude(pc=>pc.Product).ToList()
+                Categories = _context.Categories.Include(c => c.ProductCategories).ThenInclude(pc => pc.Product).ToList(),
+                productCategory = _context.ProductCategories.Include(pc => pc.Product).Include(pc => pc.Category).FirstOrDefault()
             };
+
+            if (brandId != null)
+            {
+                productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+               ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+               Include(p => p.Features).Include(p => p.Specs).Where(p => p.BrandId == brandId).ToList();
+            }
+            if (categoryId != null)
+            {
+                productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+               ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+               Include(p => p.Features).Include(p => p.Specs).Where(p => p.CategoryIds.Contains((int)categoryId)).ToList();
+            }
             return View(productVM);
         }
         public IActionResult Details(int id, int categoryId)
