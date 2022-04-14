@@ -225,7 +225,7 @@
                         <div class="compare tool d-none d-lg-inline-block">
                             <a asp-controller="compare" asp-action="index" title="Compare Products">
                                 <i class="fa-solid fa-code-compare">
-                                    <span class="indicateCount">1</span>
+                                    <span class="indicateCount">3</span>
                                 </i>
                             </a>
                         </div>
@@ -297,7 +297,15 @@
                                         </div>
                                         <div class="action">
                                             <a asp-controller="shoppingcart" asp-action="index" class="gotoCart">Go to Cart</a>
-                                            <a asp-controller="order" asp-action="Checkout" class="checkout">Proceed to Checkout</a>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <a asp-controller="order" asp-action="Checkout" class="checkout">Proceed to Checkout</a>
+                                            }
+                                            else
+                                            {
+                                        <a asp-controller="account" asp-action="login" class="checkout">Sign In for Checkout</a>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
@@ -640,8 +648,8 @@
                                         <li><a asp-controller="product" asp-action="index">Products</a></li>
                                         <li><a asp-controller="blog" asp-action="index">Blogs</a></li>
                                         <li><a asp-controller="faq" asp-action="index">FAQs</a></li>
-                                        <li><a href="#">Home 2.1</a></li>
-                                        <li><a href="#">Home 3</a></li>
+                                        <li><a asp-controller="contact" asp-action="index">Contact</a></li>
+                                        <li><a asp-controller="shoppingcart" asp-action="index">Shopping </a></li>
                                         <li><a href="#">Home 3.1</a></li>
                                         <li><a href="#">Home 4</a></li>
                                         <li><a href="#">Home 5</a></li>

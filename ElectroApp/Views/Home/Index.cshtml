@@ -167,10 +167,8 @@
         <div class="content">
             <div class="contenybyCat">
                 <div class="all featured activeB1Content">
-                    @foreach (var product in Model.Products)
+                    @foreach (var product in Model.Products.Where(p=>p.IsSpecial).Take(1))
                     {
-                        @if (product.IsSpecial)
-                        {
                             <div class="special-productByCat col-lg-4 col-md-6 col-sm-12 col-12">
                                 <p class="announceSp">Special <br> Offer</p>
                                 <p class="discountSp">Save <br><span class="discountPercent">@product.Campaign.DiscountPercent%</span></p>
@@ -185,7 +183,6 @@
                                                 </a>
                                             }
                                         }
-
                                     </div>
                                 </div>
                                 <div class="bottomSpProduc">
@@ -236,10 +233,7 @@
                                     </div>
                                 </div>
                             </div>
-                        }
-
                     }
-
                     <script>
                         // Set the date we're counting down to
                         var countDownDate = new Date("April 27, 2022 18:12:25").getTime();
@@ -439,59 +433,73 @@
                     </div>
                 </div>
                 <div class="all onsale">
-                    <div class="special-productByCat col-lg-4 col-md-5 col-sm-12 col-12">
-                        <p class="announceSp">Special <br> Offer</p>
-                        <p class="discountSp">Save <br><span class="discountPercent">30%</span></p>
-                        <div class="productImage">
-                            <div class="specialOfferImage">
-                                <a href="#">
-                                    <img src="~/assets/images/featuredProducts/1b9d79ba-b753-4d22-ba08-9e40ba65d2fbGamePad_540x.jpg" alt="">
-                                </a>
+                    @foreach (var product in Model.Products.Where(p => p.IsSpecial).Skip(1).Take(1))
+                    {
+                        <div class="special-productByCat col-lg-4 col-md-6 col-sm-12 col-12">
+                            <p class="announceSp">Special <br> Offer</p>
+                            <p class="discountSp">Save <br><span class="discountPercent">@product.Campaign.DiscountPercent%</span></p>
+                            <div class="productImage">
+                                <div class="specialOfferImage">
+                                    @foreach (var item in product.ProductImages)
+                                    {
+                                        if (item.IsMain)
+                                        {
+                                            <a href="#">
+                                                <img src="~/assets/images/featuredProducts/@item.Image" alt="">
+                                            </a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="bottomSpProduc">
+                                <div class="productName">
+                                    <a href="#">
+                                        <p class="spProductName">@product.Name</p>
+                                    </a>
+                                </div>
+                                <div class="productPrice">
+                                    @if (product.CampaignId == null)
+                                    {
+                                        <p class="spProductCurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="spProductCurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                    }
+                                </div>
+                                <div class="stockCondition">
+                                    <div class="stockCount">
+                                        <p class="sold">Already Sold: <span>15</span></p>
+                                        <p class="avaliable">Avaliable: <span>@product.AvaliableCount</span></p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="skillbar" data-percent="@((double)((15*100)/product.AvaliableCount))">
+                                        <p class="skillbar-bar"></p>
+                                    </div>
+                                </div>
+                                <div class="dealEnd">
+                                    <div class="description">
+                                        <p>Hurry Up! Offer ends in</p>
+                                    </div>
+                                    <div class="realtime">
+                                        <div class="hour time">
+                                            <p class="endTime" id="hours">03</p>
+                                            <p class="unit">Hours</p>
+                                        </div>
+                                        <div class="minute time">
+                                            <p class="endTime" id="minutes">32</p>
+                                            <p class="unit">Minutes</p>
+                                        </div>
+                                        <div class="second time">
+                                            <p class="endTime" id="seconds">20</p>
+                                            <p class="unit">Seconds</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="bottomSpProduc">
-                            <div class="productName">
-                                <a href="#">
-                                    <p class="spProductName">Black Fashion Zapda</p>
-                                </a>
-                            </div>
-                            <div class="productPrice">
-                                <p class="spProductCurrentPrice">$350.00 <span class="oldPrice">$500.00</span></p>
-                            </div>
-                            <div class="stockCondition">
-                                <div class="stockCount">
-                                    <p class="sold">Already Sold: <span>25</span></p>
-                                    <p class="avaliable">Avaliable: <span>72</span></p>
-                                </div>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="skillbar" data-percent="25">
-                                    <p class="skillbar-bar"></p>
-                                </div>
-                            </div>
-                            <div class="dealEnd">
-                                <div class="description">
-                                    <p>Hurry Up! Offer ends in</p>
-                                </div>
-                                <div class="realtime">
-                                    <div class="hour time">
-                                        <p class="endTime ">03</p>
-                                        <p class="unit">Hours</p>
-                                    </div>
-                                    <div class="minute time">
-                                        <p class="endTime">32</p>
-                                        <p class="unit">Minutes</p>
-                                    </div>
-                                    <div class="second time">
-                                        <p class="endTime">20</p>
-                                        <p class="unit">Seconds</p>
-                                    </div>
-                                </div>
-                                <div class="timeUnit">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <script>
                         // Set the date we're counting down to
                         var countDownDate = new Date("April 27, 2022 18:12:25").getTime();
@@ -690,59 +698,73 @@
                     </div>
                 </div>
                 <div class="all topated">
-                    <div class="special-productByCat col-lg-4 col-md-5 col-sm-12 col-12">
-                        <p class="announceSp">Special <br> Offer</p>
-                        <p class="discountSp">Save <br><span class="discountPercent">30%</span></p>
-                        <div class="productImage">
-                            <div class="specialOfferImage">
-                                <a href="#">
-                                    <img src="~/assets/images/featuredProducts/Earphones_540x.jpg" alt="">
-                                </a>
+                    @foreach (var product in Model.Products.Where(p => p.IsSpecial).Skip(2).Take(1))
+                    {
+                        <div class="special-productByCat col-lg-4 col-md-6 col-sm-12 col-12">
+                            <p class="announceSp">Special <br> Offer</p>
+                            <p class="discountSp">Save <br><span class="discountPercent">@product.Campaign.DiscountPercent%</span></p>
+                            <div class="productImage">
+                                <div class="specialOfferImage">
+                                    @foreach (var item in product.ProductImages)
+                                    {
+                                        if (item.IsMain)
+                                        {
+                                            <a href="#">
+                                                <img src="~/assets/images/featuredProducts/@item.Image" alt="">
+                                            </a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="bottomSpProduc">
+                                <div class="productName">
+                                    <a href="#">
+                                        <p class="spProductName">@product.Name</p>
+                                    </a>
+                                </div>
+                                <div class="productPrice">
+                                    @if (product.CampaignId == null)
+                                    {
+                                        <p class="spProductCurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="spProductCurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                    }
+                                </div>
+                                <div class="stockCondition">
+                                    <div class="stockCount">
+                                        <p class="sold">Already Sold: <span>15</span></p>
+                                        <p class="avaliable">Avaliable: <span>@product.AvaliableCount</span></p>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="skillbar" data-percent="@((double)((15*100)/product.AvaliableCount))">
+                                        <p class="skillbar-bar"></p>
+                                    </div>
+                                </div>
+                                <div class="dealEnd">
+                                    <div class="description">
+                                        <p>Hurry Up! Offer ends in</p>
+                                    </div>
+                                    <div class="realtime">
+                                        <div class="hour time">
+                                            <p class="endTime" id="hours">03</p>
+                                            <p class="unit">Hours</p>
+                                        </div>
+                                        <div class="minute time">
+                                            <p class="endTime" id="minutes">32</p>
+                                            <p class="unit">Minutes</p>
+                                        </div>
+                                        <div class="second time">
+                                            <p class="endTime" id="seconds">20</p>
+                                            <p class="unit">Seconds</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="bottomSpProduc">
-                            <div class="productName">
-                                <a href="#">
-                                    <p class="spProductName">Black Fashion Zapda</p>
-                                </a>
-                            </div>
-                            <div class="productPrice">
-                                <p class="spProductCurrentPrice">$350.00 <span class="oldPrice">$500.00</span></p>
-                            </div>
-                            <div class="stockCondition">
-                                <div class="stockCount">
-                                    <p class="sold">Already Sold: <span>15</span></p>
-                                    <p class="avaliable">Avaliable: <span>39</span></p>
-                                </div>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="skillbar" data-percent="25">
-                                    <p class="skillbar-bar"></p>
-                                </div>
-                            </div>
-                            <div class="dealEnd">
-                                <div class="description">
-                                    <p>Hurry Up! Offer ends in</p>
-                                </div>
-                                <div class="realtime">
-                                    <div class="hour time">
-                                        <p class="endTime ">03</p>
-                                        <p class="unit">Hours</p>
-                                    </div>
-                                    <div class="minute time">
-                                        <p class="endTime">32</p>
-                                        <p class="unit">Minutes</p>
-                                    </div>
-                                    <div class="second time">
-                                        <p class="endTime">20</p>
-                                        <p class="unit">Seconds</p>
-                                    </div>
-                                </div>
-                                <div class="timeUnit">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <div class="productsByCat col-lg-8 col-md-7 col-sm-12 col-12">
                         <div class="byCat">
                             @foreach (Product product in Model.Products.OrderByDescending(p => p.ProductComments.Count).Skip(1).Take(8))
@@ -1143,22 +1165,24 @@
 
                                         <div class="productImage">
                                             <div class="image">
-                                                @foreach (var item in product.ProductImages)
-                                                {
-                                                    if (item.IsMain)
+                                                <div style="max-width: 100%;" id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto">
+                                                    @foreach (var image in product.ProductImages)
                                                     {
-                                                        <a href="#">
-                                                            <img src="~/assets/images/featuredProducts/1_540x.jpg" alt="">
-                                                        </a>
+                                                        <div class="carousel__slide" data-src="~/assets/images/featuredProducts/@image.Image"
+                                                             data-fancybox="gallery">
+                                                            <a href=""><img src="~/assets/images/featuredProducts/@image.Image" /></a>
+                                                        </div>
                                                     }
+                                                </div>
+                                            </div>
+                                            <div id="thumbCarousel" class="carousel max-w-xl mx-auto">
+                                                @foreach (var image in product.ProductImages)
+                                                {
+                                                    <div class="carousel__slide">
+                                                        <img class="panzoom__content" src="~/assets/images/featuredProducts/@image.Image">
+                                                    </div>
                                                 }
 
-                                            </div>
-                                            <div class="productOtherImages">
-                                                @foreach (var item in product.ProductImages)
-                                                {
-                                                <img src="~/assets/images/featuredProducts/@item.Image" alt="">
-                                                }
                                             </div>
                                         </div>
                                         <div class="bottomProduct">
@@ -6524,6 +6548,39 @@
             }
         }
     })
+</script>
+<script>
+    // Initialise Carousel
+    const mainCarousel = new Carousel(document.querySelector("#mainCarousel"), {
+        Dots: false,
+        Navigation: false,
+    });
+
+    // Thumbnails
+    const thumbCarousel = new Carousel(document.querySelector("#thumbCarousel"), {
+        Sync: {
+            target: mainCarousel,
+            friction: 0,
+        },
+        Dots: false,
+        Navigation: false,
+        center: true,
+        slidesPerPage: 1,
+        infinite: false,
+    });
+
+    // Customize Fancybox
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Carousel: {
+            on: {
+                change: (that) => {
+                    mainCarousel.slideTo(mainCarousel.findPageForSlide(that.page), {
+                        friction: 0,
+                    });
+                },
+            },
+        },
+    });
 </script>
 <!-- ----------------- -->
 <script src="~/assets/js/script.js"></script>
