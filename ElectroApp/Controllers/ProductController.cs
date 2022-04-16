@@ -24,75 +24,57 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int? brandId, int? categoryId, string sortOrder,int page = 1)
+        public IActionResult Index(int? brandId, int? categoryId, int filterId, int page = 1)
         {
 
-            //filter
-            ViewBag.SortByPriceLH = String.IsNullOrEmpty(sortOrder) ? "price_inc" : "";
-            ViewBag.SortByPriceHL = String.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
-            ViewBag.SortByFeatured = String.IsNullOrEmpty(sortOrder) ? "featured" : "";
-            ViewBag.SortByNameAZ = String.IsNullOrEmpty(sortOrder) ? "nameAZ" : "";
-            ViewBag.SortByNameZA = String.IsNullOrEmpty(sortOrder) ? "nameZA" : "";
-            ViewBag.SortByNewOld = String.IsNullOrEmpty(sortOrder) ? "NewOld" : "";
-            ViewBag.SortByOldNew = String.IsNullOrEmpty(sortOrder) ? "OldNew" : "";
+            ////filter
+            //ViewBag.SortByPriceLH = String.IsNullOrEmpty(sortOrder) ? "price_inc" : "";
+            //ViewBag.SortByPriceHL = String.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
+            //ViewBag.SortByFeatured = String.IsNullOrEmpty(sortOrder) ? "featured" : "";
+            //ViewBag.SortByNameAZ = String.IsNullOrEmpty(sortOrder) ? "nameAZ" : "";
+            //ViewBag.SortByNameZA = String.IsNullOrEmpty(sortOrder) ? "nameZA" : "";
+            //ViewBag.SortByNewOld = String.IsNullOrEmpty(sortOrder) ? "NewOld" : "";
+            //ViewBag.SortByOldNew = String.IsNullOrEmpty(sortOrder) ? "OldNew" : "";
             //---------
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
             ProductVM productVM = new ProductVM
             {
+                Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Price).ToList(),
                 Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList(),
                 Categories = _context.Categories.Include(c => c.ProductCategories).ThenInclude(pc => pc.Product).ToList(),
                 productCategory = _context.ProductCategories.Include(pc => pc.Product).Include(pc => pc.Category).FirstOrDefault(),
             };
-            switch (sortOrder)
+            switch (filterId)
             {
-                case "price_inc":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Price).ToList();
+                case 1:
+                    productVM.Products = _context.Products.OrderBy(p => p.Name).ToList();
                     break;
 
-                case "price_desc":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Price).ToList();
+                case 2:
+                    productVM.Products = _context.Products.OrderByDescending(p => p.Name).ToList();
                     break;
 
-                case "featured":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Id).ToList();
+                case 3:
+                    productVM.Products = _context.Products.OrderBy(p => p.Price).ToList();
                     break;
 
-                case "nameAZ":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Name).ToList();
+                case 4:
+                    productVM.Products = _context.Products.OrderByDescending(p => p.Price).ToList();
                     break;
 
-                case "nameZA":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Name).ToList();
+                case 5:
+                    productVM.Products = _context.Products.OrderBy(p => p.Id).ToList();
                     break;
 
-                case "NewOld":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Id).ToList();
+                case 6:
+                    productVM.Products = _context.Products.OrderByDescending(p => p.Id).ToList();
                     break;
-
-                case "OldNew":
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Id).ToList();
-                    break;
-
                 default:
-                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-            ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-            Include(p => p.Features).Include(p => p.Specs).ToList();
+
                     break;
             }
             //productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
@@ -267,7 +249,7 @@ namespace ElectroApp.Controllers
             }
             return Content("Basket is empty");
         }
-        public IActionResult SearchResult(string search,int? categoryId)
+        public IActionResult SearchResult(string search, int? categoryId)
         {
             ViewBag.Categories = _context.Categories.ToList();
             //List<Product> products = _context.Products.Where(p => p.Name.ToLower().Trim().Contains(search.ToLower().Trim())).ToList();
