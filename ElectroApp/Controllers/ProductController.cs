@@ -24,20 +24,83 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int? brandId, int? categoryId, int page = 1)
+        public IActionResult Index(int? brandId, int? categoryId, string sortOrder,int page = 1)
         {
+
+            //filter
+            ViewBag.SortByPriceLH = String.IsNullOrEmpty(sortOrder) ? "price_inc" : "";
+            ViewBag.SortByPriceHL = String.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
+            ViewBag.SortByFeatured = String.IsNullOrEmpty(sortOrder) ? "featured" : "";
+            ViewBag.SortByNameAZ = String.IsNullOrEmpty(sortOrder) ? "nameAZ" : "";
+            ViewBag.SortByNameZA = String.IsNullOrEmpty(sortOrder) ? "nameZA" : "";
+            ViewBag.SortByNewOld = String.IsNullOrEmpty(sortOrder) ? "NewOld" : "";
+            ViewBag.SortByOldNew = String.IsNullOrEmpty(sortOrder) ? "OldNew" : "";
+            //---------
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
             ProductVM productVM = new ProductVM
             {
-                Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
-                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-                Include(p => p.Features).Include(p => p.Specs).ToList(),
                 Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList(),
                 Categories = _context.Categories.Include(c => c.ProductCategories).ThenInclude(pc => pc.Product).ToList(),
-                productCategory = _context.ProductCategories.Include(pc => pc.Product).Include(pc => pc.Category).FirstOrDefault()
+                productCategory = _context.ProductCategories.Include(pc => pc.Product).Include(pc => pc.Category).FirstOrDefault(),
             };
+            switch (sortOrder)
+            {
+                case "price_inc":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Price).ToList();
+                    break;
+
+                case "price_desc":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Price).ToList();
+                    break;
+
+                case "featured":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Id).ToList();
+                    break;
+
+                case "nameAZ":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Name).ToList();
+                    break;
+
+                case "nameZA":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Name).ToList();
+                    break;
+
+                case "NewOld":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderByDescending(p => p.Id).ToList();
+                    break;
+
+                case "OldNew":
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+             ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+             Include(p => p.Features).Include(p => p.Specs).OrderBy(p => p.Id).ToList();
+                    break;
+
+                default:
+                    productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+            ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+            Include(p => p.Features).Include(p => p.Specs).ToList();
+                    break;
+            }
+            //productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
+            // ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
+            // Include(p => p.Features).Include(p => p.Specs).ToList();
+
+
+
 
             if (brandId != null)
             {
@@ -49,14 +112,14 @@ namespace ElectroApp.Controllers
             {
                 productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
-               Include(p => p.Features).Include(p => p.Specs).Where(p => p.CategoryIds.Contains((int)categoryId)).ToList();
+               Include(p => p.Features).Include(p => p.Specs).Where(p => p.ProductCategories.Any(p => p.CategoryId == categoryId)).ToList();
             }
             return View(productVM);
         }
         public IActionResult Details(int id, int categoryId)
         {
             ViewBag.RelatedProducts = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.ProductCategories).ThenInclude(pc => pc.Category).
-                Include(p => p.ProductImages).Include(p => p.Campaign).Include(p => p.Brand).Where(p => p.ProductCategories.FirstOrDefault().CategoryId == categoryId && p.Id != id)
+                Include(p => p.ProductImages).Include(p => p.Campaign).Include(p => p.Brand).Where(p => p.ProductCategories.Any(p => p.CategoryId == categoryId && p.Id != id))
                 .OrderByDescending(p => p.Id).Take(6).ToList();
             ViewBag.Categories = _context.Categories.ToList();
             Product product = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
@@ -125,6 +188,7 @@ namespace ElectroApp.Controllers
                     basketItem.Count++;
                 }
                 _context.SaveChanges();
+                return PartialView("_basketPartialView");
             }
             else
             {
@@ -139,6 +203,7 @@ namespace ElectroApp.Controllers
                     });
                     string basketStr = JsonConvert.SerializeObject(basketCookieItems);
                     HttpContext.Response.Cookies.Append("Basket", basketStr);
+                    return PartialView("_basketPartialView");
                 }
                 else
                 {
@@ -159,10 +224,38 @@ namespace ElectroApp.Controllers
                     }
                     string basketStr = JsonConvert.SerializeObject(basketCookieItems);
                     HttpContext.Response.Cookies.Append("Basket", basketStr);
+                    return PartialView("_basketPartialView");
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> DeleteBasketItem(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+                List<BasketItem> basketItems = _context.BasketItems.Where(b => b.ProductId == id && b.AppUserId == user.Id).ToList();
+                foreach (var item in basketItems)
+                {
+                    _context.BasketItems.Remove(item);
+                }
+            }
+            else
+            {
+                string basket = HttpContext.Request.Cookies["Basket"];
+                List<BasketCookieItemVM> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(basket);
+                BasketCookieItemVM cookieItem = basketCookieItems.FirstOrDefault(c => c.Id == id);
+                basketCookieItems.Remove(cookieItem);
+                string basketStr = JsonConvert.SerializeObject(basketCookieItems);
+                HttpContext.Response.Cookies.Append("Basket", basketStr);
+            }
+            _context.SaveChanges();
+            return PartialView("_basketPartialView");
+        }
+        public IActionResult GetPartial()
+        {
+            return PartialView("_basketPartialView");
         }
         public IActionResult ShowBasket()
         {
@@ -174,8 +267,9 @@ namespace ElectroApp.Controllers
             }
             return Content("Basket is empty");
         }
-        public IActionResult SearchResult(string search)
+        public IActionResult SearchResult(string search,int? categoryId)
         {
+            ViewBag.Categories = _context.Categories.ToList();
             //List<Product> products = _context.Products.Where(p => p.Name.ToLower().Trim().Contains(search.ToLower().Trim())).ToList();
             ProductVM productVM = new ProductVM
             {
@@ -184,6 +278,7 @@ namespace ElectroApp.Controllers
                 Include(p => p.Features).Include(p => p.Specs).ToList() : _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
                 ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
                 Include(p => p.Features).Include(p => p.Specs).Where(p => p.Name.ToLower().Trim().Contains(search.ToLower().Trim())).ToList(),
+                Categories = _context.Categories.Include(c => c.ProductCategories).ThenInclude(pc => pc.Product).ToList(),
                 Brands = _context.Brands.Include(b => b.Products).ThenInclude(p => p.Brand).ToList()
             };
             return View(productVM);

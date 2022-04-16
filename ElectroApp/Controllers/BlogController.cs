@@ -21,23 +21,44 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? tagId)
         {
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.LatestBlogs = _context.Blogs.OrderBy(b => b.PublishDate).Take(3).ToList();
-            List<Blog> model = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).ToList();
+            List<Blog> model;
+            if (tagId != null)
+            {
+                model = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).Where(b=>b.BlogTags.Any(b=>b.TagId==tagId)).ToList();
+            }
+            else
+            {
+                 model = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).ToList();
+            }
             return View(model);
         }
 
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id,int? tagId)
         {
             ViewBag.Tags = _context.Tags.ToList();
             ViewBag.LatestBlogs = _context.Blogs.OrderBy(b => b.PublishDate).Take(3).ToList();
-            Blog blog = _context.Blogs.Include(b=>b.Comments).ThenInclude(b=>b.AppUser).Include(b=>b.BlogTags).ThenInclude(bt=>bt.Tag).FirstOrDefault(b => b.Id == id);
-            if (blog == null)
+            Blog blog;
+            if (tagId != null)
             {
-                return NotFound();
+                 blog = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).Include(b => b.BlogTags).ThenInclude(bt => bt.Tag).Where(b=>b.BlogTags.Any(b=>b.TagId==tagId)).FirstOrDefault(b => b.Id == id);
+                if (blog == null)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction("Index", "Blog");
+            }
+            else
+            {
+                blog = _context.Blogs.Include(b => b.Comments).ThenInclude(b => b.AppUser).Include(b => b.BlogTags).ThenInclude(bt => bt.Tag).FirstOrDefault(b => b.Id == id);
+                if (blog == null)
+                {
+                    return NotFound();
+                }
             }
             return View(blog);
         }

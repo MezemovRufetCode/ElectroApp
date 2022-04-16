@@ -1,0 +1,64 @@
+﻿@inject ElectroApp.Services.LayoutServices layoutService
+@{
+    BasketVM basket = await layoutService.ShowBasket();
+}
+
+<a class="basketOpenClose">
+    <i class="fa-solid fa-cart-shopping">
+        <span class="indicateCount basketCount" id="tcount">@basket.Count</span>
+    </i>
+    <p class="baskettotalPrice" id="totalPrice">$@(Math.Floor((basket.TotalPrice)*100)/100)</p>
+</a>
+<div class="shoppingCard">
+    <div class="cardwrapper">
+        <div class="productsShC">
+            @foreach (var item in layoutService.ShowBasket().Result.BasketItems)
+            {
+                <div class="product" id="prcart">
+                    <div class="image">
+                        @foreach (var image in item.Product.ProductImages)
+                        {
+                            if (image.IsMain)
+                            {
+                                <a>
+                                    <img src="~/assets/images/featuredProducts/@image.Image"
+                                         alt="">
+                                </a>
+                            }
+                        }
+                    </div>
+                    <div class="textinfo">
+                        <p class="name"><a href="#">@item.Product.Name</a></p>
+                        <p class="quantity">QTY: <span>@item.Count</span></p>
+                        <p class="productPrice">$@(Math.Floor((item.Price)*100)/100)</p>
+                    </div>
+                    <a class="cart-close" asp-controller="product" asp-action="DeleteBasketItem" asp-route-id="@item.Product.Id" title="Remove">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="8"
+                             height="17" viewBox="0 0 44 64">
+                            <path d="M0 48.64q0-2.304 1.664-3.968l12.48-12.48-12.48-12.544q-1.664-1.6-1.664-3.904t1.664-3.904 3.904-1.6 3.904 1.6l12.544 12.544 12.48-12.544q1.6-1.6 3.904-1.6t3.904 1.6 1.6 3.904-1.6 3.904l-12.48 12.544 12.48 12.48q1.6 1.664 1.6 3.968t-1.6 3.904-3.904 1.6-3.904-1.6l-12.48-12.48-12.544 12.48q-1.6 1.6-3.904 1.6t-3.904-1.6q-1.664-1.664-1.664-3.904z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="bottomshCard">
+            <div class="priceInfo">
+                <p class="desc">Cart Total</p>
+                <p class="info">$@(Math.Floor((basket.TotalPrice)*100)/100)</p>
+            </div>
+            <div class="action">
+                <a asp-controller="shoppingcart" asp-action="index" class="gotoCart">Go to Cart</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="order" asp-action="Checkout" class="checkout">Proceed to Checkout</a>
+                }
+                else
+                {
+                    <a asp-controller="account" asp-action="login" class="checkout">Sign In for Checkout</a>
+                }
+            </div>
+            <p style="display:none" id="totalCount">@layoutService.ShowBasket().Result.Count</p>
+        </div>
+    </div>
+</div>

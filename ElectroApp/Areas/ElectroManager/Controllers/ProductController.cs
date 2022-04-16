@@ -160,6 +160,7 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 {
                     Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images/featuredProducts", item.Image);
                 }
+
                 foreach (var image in product.ImageFiles)
                 {
                     ProductImage productImage = new ProductImage

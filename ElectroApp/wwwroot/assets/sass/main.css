@@ -1849,10 +1849,13 @@ header .shoppingCard {
   width: 330px;
   padding: 10px 15px;
 }
-
+.prCartCont:hover .shoppingCard {
+    visibility:visible;
+    opacity:1;
+}
 header .shoppingCard .cardwrapper .productsShC {
-  max-height: 320px;
-  overflow-y: auto;
+    max-height: 320px;
+    overflow-y: auto;
 }
 
 header .shoppingCard .cardwrapper .productsShC .product {
@@ -5714,17 +5717,37 @@ header .activeShoppingcart {
         -webkit-appearance: none;
         margin: 0;
     }
-
     #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement {
+        margin-bottom: 25px;
+    }
+    #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement .priceInputs {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
-
+        #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement .actionPrice {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+           justify-content:flex-end;
+        }
+            #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement .actionPrice input {
+                padding: 5px 15px;
+                background-color: #fed700;
+                color: #333e48;
+                text-decoration:none;
+                border-radius:4px;
+                margin-right:30px;
+                transition:0.2s ease-in-out;
+            }
+                #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement .actionPrice input:hover {
+                    background-color: #333e48;
+                    color: white;
+                }
         #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement input {
             max-width: 120px;
             border: 1px solid #dddddd;
@@ -5740,9 +5763,7 @@ header .activeShoppingcart {
                 border: 1px solid #fed700;
             }
 
-            #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement input:last-child {
-                margin-right: 0px;
-            }
+
 
         #productlistPage #productList .productlistpageLeftside .productfilter .mylist .priceFilter .filterelement span {
             margin-right: 10px;
@@ -5908,7 +5929,7 @@ header .activeShoppingcart {
                 visibility: hidden;
                 -webkit-transition: all 0.2s ease-in;
                 transition: all 0.2s ease-in;
-                z-index: 9999;
+                z-index: 997;
             }
 
                 #productlistPage #productList .productlistpageRightside .settingsforProducts .toolbargroup .sortByProduct .sortingFilter .sortList .sortlistItem {

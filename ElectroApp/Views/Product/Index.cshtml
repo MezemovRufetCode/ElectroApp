@@ -93,7 +93,7 @@
             <div class="container">
                 <div class="row">
                     <div class="productlistpageLeftside col-lg-3">
-                        <div class="plistCategoires">
+                        <div class="plistCategoires d-lg-block d-md-none d-sm-none d-none">
                             <div class="heading">
                                 <h4>Categories</h4>
                             </div>
@@ -102,7 +102,7 @@
                                     <ul class="catList">
                                         @foreach (var category in Model.Categories)
                                         {
-                                            <li class="catlistElement"><a asp-controller="product" asp-action="index" asp-route-categoryId="@category.Id)">@category.Name</a></li>
+                                            <li class="catlistElement"><a asp-controller="product" asp-action="index" asp-route-categoryId="@category.Id">@category.Name</a></li>
                                         }
                                     </ul>
                                 </div>
@@ -190,16 +190,6 @@
                                         {
                                             <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-brandId="@brand.Id">@brand.Name</a></li>
                                         }
-
-                                        @*<li class="checkfilter"><a href="">Samsung</a></li>
-                                        <li class="checkfilter"><a href="">Xiaomi</a></li>
-                                        <li class="checkfilter"><a href="">Nokia</a></li>
-                                        <li class="checkfilter"><a href="">Oppo</a></li>
-                                        <li class="checkfilter"><a href="">Huawei</a></li>
-                                        <li class="checkfilter"><a href="">Oneplus</a></li>
-                                        <li class="checkfilter"><a href="">Rampage</a></li>
-                                        <li class="checkfilter"><a href="">Intel</a></li>
-                                        <li class="checkfilter"><a href="">Amd</a></li>*@
                                     </ul>
                                 </div>
                             </li>
@@ -292,9 +282,14 @@
                                     </span>
                                 </div>
                                 <div class="filterelement">
-                                    <input type="number" placeholder="$100">
-                                    <span>to</span>
-                                    <input type="number" placeholder="$500">
+                                    <form>
+                                        <div class="priceInputs">
+                                            <input type="number" id="minprice" placeholder="$100">
+                                            <span>to</span>
+                                            <input type="number" id="maxprice" placeholder="$500">
+                                        </div>
+                                        <div class="actionPrice"><input type="submit" asp-controller="product" asp-action="index" value="Apply"></div>
+                                    </form>
                                 </div>
                             </li>
                         </div>
@@ -311,6 +306,7 @@
                     <div class="topofrightside">
                         <div class="categoryname">
                             <h6>All in One</h6>
+
                         </div>
                         <div class="settingsforProducts">
                             <div class="toolbargroup">
@@ -377,19 +373,19 @@
                                             </button>
                                         </div>
                                         <ul class="sortList">
-                                            <li class="sortlistItem activefilterItem"><a href="">Name, A-Z</a></li>
-                                            <li class="sortlistItem"><a href="">Name, Z-A</a></li>
-                                            <li class="sortlistItem"><a href="">Featured</a></li>
-                                            <li class="sortlistItem"><a href="">Price, Low To High</a></li>
-                                            <li class="sortlistItem"><a href="">Price, High To Low</a></li>
-                                            <li class="sortlistItem"><a href="">Date, Old To New</a></li>
-                                            <li class="sortlistItem"><a href="">Date, New To Old</a></li>
+                                            <li class="sortlistItem activefilterItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByNameAZ">Name, A-Z</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByNameZA">Name, Z-A</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByFeatured">Featured</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByPriceLH">Price, Low To High</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByPriceHL">Price, High To Low</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByOldNew">Date, Old To New</a></li>
+                                            <li class="sortlistItem"><a asp-action="Index" asp-route-sortOrder="@ViewBag.SortByNewOld">Date, New To Old</a></li>
                                             <li class="sortlistItem"><a href="">Best Selling</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="rightside">
-                                    <p class="productCount">Showing all 12 Items</p>
+                                    <p class="productCount">Showing all @Model.Products.Count Items</p>
                                 </div>
                             </div>
 
@@ -502,6 +498,7 @@
         <!-- ----------------- -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>AOS.init();</script>;
+        
         <script src="~/assets/js/script.js"></script>
     </body>
 </section>
