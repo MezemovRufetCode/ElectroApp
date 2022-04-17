@@ -26,16 +26,6 @@ namespace ElectroApp.Controllers
         }
         public IActionResult Index(int? brandId, int? categoryId, int filterId, int page = 1)
         {
-
-            ////filter
-            //ViewBag.SortByPriceLH = String.IsNullOrEmpty(sortOrder) ? "price_inc" : "";
-            //ViewBag.SortByPriceHL = String.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
-            //ViewBag.SortByFeatured = String.IsNullOrEmpty(sortOrder) ? "featured" : "";
-            //ViewBag.SortByNameAZ = String.IsNullOrEmpty(sortOrder) ? "nameAZ" : "";
-            //ViewBag.SortByNameZA = String.IsNullOrEmpty(sortOrder) ? "nameZA" : "";
-            //ViewBag.SortByNewOld = String.IsNullOrEmpty(sortOrder) ? "NewOld" : "";
-            //ViewBag.SortByOldNew = String.IsNullOrEmpty(sortOrder) ? "OldNew" : "";
-            //---------
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = Math.Ceiling((decimal)_context.Products.Count() / 8);
@@ -248,6 +238,106 @@ namespace ElectroApp.Controllers
                 return Json(basket);
             }
             return Content("Basket is empty");
+        }
+        public async Task<IActionResult> AddWishlist(int id)
+        {
+            Product product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            {
+                AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+
+                WishlistItem wishlistItem = _context.WishlistItems.FirstOrDefault(b => b.ProductId == product.Id && b.AppUserId == user.Id);
+                if (wishlistItem == null)
+                {
+                    wishlistItem = new WishlistItem
+                    {
+                        AppUserId = user.Id,
+                        ProductId = product.Id,
+                        Count = 1
+                    };
+                    _context.WishlistItems.Add(wishlistItem);
+                }
+                else
+                {
+                    wishlistItem.Count++;
+                }
+                _context.SaveChanges();
+                return PartialView("_wishlistPartialView");
+            }
+            else
+            {
+                string wishlist = HttpContext.Request.Cookies["Wishlist"];
+                if (wishlist == null)
+                {
+                    List<WishlistCookieItemVM> wishlistCookieItems = new List<WishlistCookieItemVM>();
+                    wishlistCookieItems.Add(new WishlistCookieItemVM
+                    {
+                        Id = product.Id,
+                        Count = 1
+                    });
+                    string wishlistStr = JsonConvert.SerializeObject(wishlistCookieItems);
+                    HttpContext.Response.Cookies.Append("Wishlist", wishlistStr);
+                    return PartialView("_wishlistPartialView");
+                }
+                else
+                {
+                    List<WishlistCookieItemVM> wishlistCookieItems = JsonConvert.DeserializeObject<List<WishlistCookieItemVM>>(wishlist);
+                    WishlistCookieItemVM cookiewItem = wishlistCookieItems.FirstOrDefault(c => c.Id == product.Id);
+                    if (cookiewItem == null)
+                    {
+                        cookiewItem = new WishlistCookieItemVM
+                        {
+                            Id = product.Id,
+                            Count = 1
+                        };
+                        wishlistCookieItems.Add(cookiewItem);
+                    }
+                    else
+                    {
+                        cookiewItem.Count++;
+                    }
+                    string wishlistStr = JsonConvert.SerializeObject(wishlistCookieItems);
+                    HttpContext.Response.Cookies.Append("Wishlist", wishlistStr);
+                    return PartialView("_wishlistPartialView");
+                }
+            }
+        }
+        public async Task<IActionResult> DeleteWishlistItem(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Where(b => b.ProductId == id && b.AppUserId == user.Id).ToList();
+                foreach (var item in wishlistItems)
+                {
+                    _context.WishlistItems.Remove(item);
+                }
+            }
+            else
+            {
+                string wishlist = HttpContext.Request.Cookies["Wishlist"];
+                List<WishlistCookieItemVM> wishlistCookieItems = JsonConvert.DeserializeObject<List<WishlistCookieItemVM>>(wishlist);
+                WishlistCookieItemVM cookiwItem = wishlistCookieItems.FirstOrDefault(c => c.Id == id);
+                wishlistCookieItems.Remove(cookiwItem);
+                string wishlistStr = JsonConvert.SerializeObject(wishlistCookieItems);
+                HttpContext.Response.Cookies.Append("Wishlist", wishlistStr);
+            }
+            _context.SaveChanges();
+            return PartialView("_wishlistPartialView");
+        }
+        public IActionResult ShowWishlist()
+        {
+            string wishlistStr = HttpContext.Request.Cookies["Wishlist"];
+            if (!string.IsNullOrEmpty(wishlistStr))
+            {
+                List<WishlistCookieItemVM> wishlist = JsonConvert.DeserializeObject<List<WishlistCookieItemVM>>(wishlistStr);
+                return Json(wishlist);
+            }
+            return Content("Wishlist is empty");
+        }
+        public IActionResult GetWishPartial()
+        {
+            return PartialView("_wishlistPartialView");
         }
         public IActionResult SearchResult(string search, int? categoryId)
         {

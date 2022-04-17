@@ -90,5 +90,61 @@ namespace ElectroApp.Services
 
             return basketData;
         }
+
+        public async Task<WishlistVM> ShowWishlist()
+        {
+            string wishlist = _httpcontext.HttpContext.Request.Cookies["Wishlist"];
+            WishlistVM wishlistData = new WishlistVM
+            {
+                TotalPrice = 0,
+                WishlistItems = new List<WishlistItemVM>(),
+                Count = 0
+            };
+            if (_httpcontext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _usermanager.FindByNameAsync(_httpcontext.HttpContext.User.Identity.Name);
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Include(b => b.AppUser).Where(b => b.AppUserId == user.Id).ToList();
+                foreach (WishlistItem item in wishlistItems)
+                {
+                    Product product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.ProductId);
+                    if (product != null)
+                    {
+                        WishlistItemVM wishlistItemVM = new WishlistItemVM
+                        {
+                            Product = product,
+                            Count = item.Count
+                        };
+                        wishlistItemVM.Price = product.CampaignId == null ? product.Price : product.Price * (100 - product.Campaign.DiscountPercent) / 100;
+                        wishlistData.WishlistItems.Add(wishlistItemVM);
+                        wishlistData.Count++;
+                        wishlistData.TotalPrice += wishlistItemVM.Price * wishlistItemVM.Count;
+                    }
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(wishlist))
+                {
+                    List<WishlistCookieItemVM> wishlistCookieItems = JsonConvert.DeserializeObject<List<WishlistCookieItemVM>>(wishlist);
+                    foreach (WishlistCookieItemVM item in wishlistCookieItems)
+                    {
+                        Product product = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                        if (product != null)
+                        {
+                            WishlistItemVM wishlistItem = new WishlistItemVM
+                            {
+                                Product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.Id),
+                                Count = item.Count,
+                            };
+                            wishlistItem.Price = wishlistItem.Product.CampaignId == null ? wishlistItem.Product.Price : wishlistItem.Product.Price * (100 - wishlistItem.Product.Campaign.DiscountPercent) / 100;
+                            wishlistData.WishlistItems.Add(wishlistItem);
+                            wishlistData.Count++;
+                            wishlistData.TotalPrice += wishlistItem.Price * wishlistItem.Count;
+                        }
+                    }
+                }
+            }
+            return wishlistData;
+        }
     }
 }

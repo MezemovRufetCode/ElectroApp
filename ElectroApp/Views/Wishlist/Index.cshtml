@@ -1,8 +1,10 @@
-﻿
+﻿@inject ElectroApp.Services.LayoutServices layoutService
 @{
     ViewData["Title"] = "Index";
 }
-
+@{
+    WishlistVM wishlist = await layoutService.ShowWishlist();
+}
 <section id="whishlistPage">
     <div class="container">
         <div class="row">
@@ -77,7 +79,7 @@
                 </div>
             </div>
             <div class="wishList">
-                <div class="wrapperWish">
+                <div class="wrapperWish prWishCont" >
                     <div class="topList">
                         <div class="grid1 grid">
                             <span class="gridFirst"><i class="fa-solid fa-bars"></i></span>
@@ -88,234 +90,8 @@
                             </span>
                         </div>
                     </div>
-                    <div class="listSettings">
-                        <div class="leftside col-lg-6">
-                            <div class="opencloseList setElem">
-                                <span><i class="fa-solid fa-chevron-down"></i></span>
-                            </div>
-                            <div class="listName setElem">
-                                <span>MyList</span>
-                            </div>
-                            <div class="prodCount setElem">
-                                <span>3</span>
-                            </div>
-                        </div>
-                        <div class="rightside col-lg-6">
-                            <div class="wishMenu">
-                                <span><i class="fa-solid fa-ellipsis"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="listItems">
-                        <div class="item">
-                            <div class="item-wrapper">
-                                <div class="itemImage wlistItem">
-                                    <div class="thumbnail">
-                                        <div class="remove">
-                                            <span><i class="fa-solid fa-xmark"></i></span>
-                                        </div>
-                                        <img src="~/assets/images/featuredProducts/07063fee-2f7b-4146-b92e-60d030efd79cEarphones_540x.jpg" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="itemInfo wlistItem">
-                                    <div class="productName">
-                                        <a href="">Faxtex Product Sample</a>
-                                    </div>
-                                    <div class="stockContidition">
-                                        <span>In Stock</span>
-                                    </div>
-                                </div>
-                                <div class="action wlistItem">
-                                    <div class="actwrapper">
-                                        <div class="price"><span>$110.00</span></div>
-                                        <div class="quantity">
-
-                                            <div class="qty-inner">
-                                                <button type="button" class="qty-up">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <input type="number" class="" id="quantity" value="1"
-                                                       pattern="[0-9]*" min="1">
-                                                <button type="button" class="qty-down">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="addtoCart">
-                                            <a href="">Add to Cart</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="item-wrapper">
-                                <div class="itemImage wlistItem">
-                                    <div class="thumbnail">
-                                        <div class="remove">
-                                            <span><i class="fa-solid fa-xmark"></i></span>
-                                        </div>
-                                        <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="itemInfo wlistItem">
-                                    <div class="productName">
-                                        <a href="">Faxtex Product Sample</a>
-                                    </div>
-                                    <div class="stockContidition">
-                                        <span>In Stock</span>
-                                    </div>
-                                </div>
-                                <div class="action wlistItem">
-                                    <div class="actwrapper">
-                                        <div class="price"><span>$110.00</span></div>
-                                        <div class="quantity">
-
-                                            <div class="qty-inner">
-                                                <button type="button" class="qty-up">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <input type="number" class="" id="quantity" value="1"
-                                                       pattern="[0-9]*" min="1">
-                                                <button type="button" class="qty-down">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="addtoCart">
-                                            <a href="">Add to Cart</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="item-wrapper">
-                                <div class="itemImage wlistItem">
-                                    <div class="thumbnail">
-                                        <div class="remove">
-                                            <span><i class="fa-solid fa-xmark"></i></span>
-                                        </div>
-                                        <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="itemInfo wlistItem">
-                                    <div class="productName">
-                                        <a href="">Faxtex Product Sample</a>
-                                    </div>
-                                    <div class="stockContidition">
-                                        <span>In Stock</span>
-                                    </div>
-                                </div>
-                                <div class="action wlistItem">
-                                    <div class="actwrapper">
-                                        <div class="price"><span>$110.00</span></div>
-                                        <div class="quantity">
-
-                                            <div class="qty-inner">
-                                                <button type="button" class="qty-up">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <input type="number" class="" id="quantity" value="1"
-                                                       pattern="[0-9]*" min="1">
-                                                <button type="button" class="qty-down">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="addtoCart">
-                                            <a href="">Add to Cart</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="item-wrapper">
-                                <div class="itemImage wlistItem">
-                                    <div class="thumbnail">
-                                        <div class="remove">
-                                            <span><i class="fa-solid fa-xmark"></i></span>
-                                        </div>
-                                        <img src="~/assets/images/featuredProducts/DekstopPC_180x.jpg" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="itemInfo wlistItem">
-                                    <div class="productName">
-                                        <a href="">Faxtex Product Sample</a>
-                                    </div>
-                                    <div class="stockContidition">
-                                        <span>In Stock</span>
-                                    </div>
-                                </div>
-                                <div class="action wlistItem">
-                                    <div class="actwrapper">
-                                        <div class="price"><span>$110.00</span></div>
-                                        <div class="quantity">
-
-                                            <div class="qty-inner">
-                                                <button type="button" class="qty-up">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-13.44v13.44q0 1.92-3.2 1.92t-3.2-1.92v-13.44h-13.44q-1.92 0-1.92-3.2t1.92-3.2h13.44v-13.44q0-1.92 3.2-1.92t3.2 1.92v13.44h13.44z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                                <input type="number" class="" id="quantity" value="1"
-                                                       pattern="[0-9]*" min="1">
-                                                <button type="button" class="qty-down">
-                                                    <svg version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                         viewBox="0 0 37 64">
-                                                        <path d="M35.2 28.8q1.92 0 1.92 3.2t-1.92 3.2h-33.28q-1.92 0-1.92-3.2t1.92-3.2h33.28z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="addtoCart">
-                                            <a href="">Add to Cart</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @await Html.PartialAsync("_wishlistPartialView")
                 </div>
-
             </div>
         </div>
     </div>
@@ -330,4 +106,56 @@
 <script src="~/assets/JS/skill.bars.jquery.js"></script>
 <script src="~/assets/js/wishlist.js"></script>
 <!-- ----------------- -->
+<script>
+    $(document).ready(function () {
+        $(document).on("click", ".addToWishlist", function (e) {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            var base = window.location.origin;
+            var url = `${base}${href}`
+            var urlForPartial = `${base}/Product/GetWishPartial`
+            fetch(url).then(res => res.text()).then(data => {
+                fetch(urlForPartial).then(res => res.text().then(data => {
+                    $(".prWishCont.prWishCont").empty();
+                    //var card = document.querySelector(".prCartCont")
+                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                    $("").append(data);
+                }))
+            })
+            setTimeout(function () {
+                var totalwishCount = document.getElementById("totalwishCount");
+                var countw = totalwishCount.innerHTML
+                var htmlTagw = document.getElementById("wcount");
+                console.log(countw);
+                htmlTagw.innerHTML = countw
+            }, 100)
+        });
+    })
+
+    $(document).ready(function () {
+        $(document).on("click", ".removewishElement", function (e) {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            var base = window.location.origin;
+            var url = `${base}${href}`
+            var urlForPartial = `${base}/Product/GetWishPartial`
+            fetch(url).then(res => res.text()).then(data => {
+                fetch(urlForPartial).then(res => res.text().then(data => {
+                    $(".prWishCont").empty();
+                    //var card = document.querySelector(".prCartCont")
+                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                    $(".prWishCont").append(data);
+                }))
+
+            })
+            setTimeout(function () {
+                var totalwishCount = document.getElementById("totalwishCount");
+                var htmlTagw = document.getElementById("wcount");
+                htmlTagw.innerHTML = "0"
+                var countw = totalwishCount.innerHTML
+                htmlTagw.innerHTML = countw
+            }, 100)
+        });
+    })
+</script>
 <script src="~/assets/js/script.js"></script>
