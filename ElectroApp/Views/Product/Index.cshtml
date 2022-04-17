@@ -461,10 +461,53 @@
         <script>AOS.init();</script>;
         <script>
             $(document).ready(function () {
-                var showfiltername = document.querySelector(".sotyByFilterName");
-                console.log(showfiltername.innerHTML)
-                $(".filterItem").on('click', function () {
-                    showfiltername.innerHTML = $(this).innerHTML;
+                $(document).on("click", ".addToBasket", function (e) {
+                    e.preventDefault();
+                    var href = $(this).attr("href");
+                    var base = window.location.origin;
+                    var url = `${base}${href}`
+                    var urlForPartial = `${base}/Product/GetPartial`
+                    fetch(url).then(res => res.text()).then(data => {
+                        fetch(urlForPartial).then(res => res.text().then(data => {
+                            $(".prCartCont").empty();
+                            //var card = document.querySelector(".prCartCont")
+                            //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                            $(".prCartCont").append(data);
+                        }))
+
+                    })
+                    setTimeout(function () {
+                        var totalCount = document.getElementById("totalCount");
+                        var count = totalCount.innerHTML
+                        var htmlTag = document.getElementById("tcount");
+                        htmlTag.innerHTML = count
+                    }, 100)
+                });
+            })
+
+            $(document).ready(function () {
+                $(document).on("click", ".cart-close", function (e) {
+                    e.preventDefault();
+                    var href = $(this).attr("href");
+                    var base = window.location.origin;
+                    var url = `${base}${href}`
+                    var urlForPartial = `${base}/Product/GetPartial`
+                    fetch(url).then(res => res.text()).then(data => {
+                        fetch(urlForPartial).then(res => res.text().then(data => {
+                            $(".prCartCont").empty();
+                            //var card = document.querySelector(".prCartCont")
+                            //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                            $(".prCartCont").append(data);
+                        }))
+
+                    })
+                    setTimeout(function () {
+                        var totalCount = document.getElementById("totalCount");
+                        var htmlTag = document.getElementById("tcount");
+                        htmlTag.innerHTML = "0"
+                        var count = totalCount.innerHTML
+                        htmlTag.innerHTML = count
+                    }, 100)
                 });
             })
         </script>

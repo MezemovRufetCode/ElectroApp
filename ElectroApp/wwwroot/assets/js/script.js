@@ -86,6 +86,8 @@ $(document).ready(function () {
             items: 1,
             nav: true,
             loop: true,
+            autoplay: true,
+            autoplayTimeout: 7000,
             navText: [
                 "<i class='fa-solid fa-chevron-left'></i>",
                 "<i class='fa-solid fa-chevron-right'></i>",
@@ -548,6 +550,50 @@ $(document).ready(function () {
         });
     });
 
+    //fancybox
+    // Initialise Carousel
+    const mainCarousel = new Carousel(document.querySelector("#mainCarousel"), {
+        Dots: false,
+    });
+
+    // Thumbnails
+    const thumbCarousel = new Carousel(document.querySelector("#thumbCarousel"), {
+        Sync: {
+            target: mainCarousel,
+            friction: 0,
+        },
+        Dots: false,
+        Navigation: false,
+        center: true,
+        slidesPerPage: 1,
+        infinite: false,
+    });
+
+    // Customize Fancybox
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Carousel: {
+            on: {
+                change: (that) => {
+                    mainCarousel.slideTo(mainCarousel.findPageForSlide(that.page), {
+                        friction: 0,
+                    });
+                },
+            },
+        },
+    });
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Carousel: {
+            on: {
+                change: (that) => {
+                    // Sync Carousel slide
+                    mainCarousel.slideTo(mainCarousel.findPageForSlide(that.page), {
+                        friction: 0,
+                    });
+                },
+            },
+        },
+    });
+    //ending fancybox
     //add to basket
     $(document).ready(function () {
         $(document).on("click", ".addToBasket", function (e) {

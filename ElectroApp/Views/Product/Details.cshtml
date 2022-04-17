@@ -22,35 +22,31 @@
     </div>
 </section>
 <section id="detailspage">
-    <div class="container" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="500">
+    <div class="container">
         <div class="row">
             <div class="productdetails">
                 <div class="productcontent-wrapper">
                     <div class="left col-lg-5 col-md-6 col-12">
                         <div class="imagewrapper">
                             <div class="product-imgs">
-                                <div class="img-display">
-                                    <div class="img-showcase">
-                                        @foreach (var image in Model.ProductImages)
-                                        {
-                                            <a href="~/assets/images/featuredProducts/@image.Image"
-                                               data-fancybox="gallery" data-caption="Optional caption">
-                                                <img src="~/assets/images/featuredProducts/@image.Image" alt="">
-                                            </a>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="img-select">
-                                    @{int dataId = 1; }
-
+                                <div id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto"
+                                     style="width: 100%;">
                                     @foreach (var image in Model.ProductImages)
                                     {
-                                        <div class="img-item">
-                                            <a href="#" data-id="@dataId">
-                                                <img src="~/assets/images/featuredProducts/@image.Image" alt="Product Image">
-                                            </a>
+                                        <div class="carousel__slide"
+                                             data-src="/assets/images/featuredProducts/@image.Image"
+                                             data-fancybox="gallery">
+                                            <img src="~/assets/images/featuredProducts/@image.Image" alt="">
                                         </div>
-                                        dataId = dataId + 1;
+                                    }
+                                </div>
+                                <div id="thumbCarousel" class="carousel max-w-xl mx-auto">
+                                    @foreach (var image in Model.ProductImages)
+                                    {
+                                        <div class="carousel__slide">
+                                            <img class="panzoom__content"
+                                                 src="~/assets/images/featuredProducts/@image.Image" />
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -232,7 +228,7 @@
             </div>
         </div>
     </div>
-    <section id="fullinfo" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="500">
+    <section id="fullinfo">
         <div class="container">
             <div class="row">
                 <div class="wrapperfull">
@@ -516,7 +512,7 @@
         </div>
         </div>
     </section>
-    <section id="relatedproducts" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="500">
+    <section id="relatedproducts">
         <div class="container">
             <div class="row">
                 <div class="bannerforFatured">
@@ -543,14 +539,67 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- owl carousel -->
+<script src="~/plugins/ui-main/dist/fancybox.umd.js"></script>
+<script src="~/plugins/ui-main/dist/carousel.umd.js"></script>
 <script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
 <!-- ---------------- -->
 <!-- ------progressbar---- -->
 <script src="~/assets/JS/skill.bars.jquery.js"></script>
 <script src="~/plugins/star-rating-svg-master/src/jquery.star-rating-svg.js"></script>
 <script src="~/assets/js/detailspg.js"></script>
-<script src="~/plugins/ui-main/dist/fancybox.umd.js"></script>
 <!-- ----------------- -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init();</script>;
+<script>
+    $(document).ready(function () {
+        $(document).on("click", ".addToBasket", function (e) {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            var base = window.location.origin;
+            var url = `${base}${href}`
+            var urlForPartial = `${base}/Product/GetPartial`
+            fetch(url).then(res => res.text()).then(data => {
+                fetch(urlForPartial).then(res => res.text().then(data => {
+                    $(".prCartCont").empty();
+                    //var card = document.querySelector(".prCartCont")
+                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                    $(".prCartCont").append(data);
+                }))
+
+            })
+            setTimeout(function () {
+                var totalCount = document.getElementById("totalCount");
+                var count = totalCount.innerHTML
+                var htmlTag = document.getElementById("tcount");
+                htmlTag.innerHTML = count
+            }, 100)
+        });
+    })
+
+    $(document).ready(function () {
+        $(document).on("click", ".cart-close", function (e) {
+            e.preventDefault();
+            var href = $(this).attr("href");
+            var base = window.location.origin;
+            var url = `${base}${href}`
+            var urlForPartial = `${base}/Product/GetPartial`
+            fetch(url).then(res => res.text()).then(data => {
+                fetch(urlForPartial).then(res => res.text().then(data => {
+                    $(".prCartCont").empty();
+                    //var card = document.querySelector(".prCartCont")
+                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
+                    $(".prCartCont").append(data);
+                }))
+
+            })
+            setTimeout(function () {
+                var totalCount = document.getElementById("totalCount");
+                var htmlTag = document.getElementById("tcount");
+                htmlTag.innerHTML = "0"
+                var count = totalCount.innerHTML
+                htmlTag.innerHTML = count
+            }, 100)
+        });
+    })
+</script>
 <script src="~/assets/js/script.js"></script>

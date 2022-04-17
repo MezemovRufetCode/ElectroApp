@@ -1151,7 +1151,7 @@
                             }
                         </div>
                     </div>
-                    <div class="spProductWrapper col-lg-4 col-md-12 col-sm-12">
+                    <div class="spProductWrapper col-lg-4 col-md-12 col-sm-12 col-12">
                         <div class="productWrapper">
                             @foreach (var product in Model.Products.Where(p => p.CampaignId != null).OrderByDescending(p => p.Campaign.DiscountPercent).Skip(4).Take(1))
                             {
@@ -1168,7 +1168,7 @@
                                                 <div style="max-width: 100%;" id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto">
                                                     @foreach (var image in product.ProductImages)
                                                     {
-                                                        <div class="carousel__slide" data-src="~/assets/images/featuredProducts/@image.Image"
+                                                        <div class="carousel__slide" data-src="/assets/images/featuredProducts/@image.Image"
                                                              data-fancybox="gallery">
                                                             <a href=""><img src="~/assets/images/featuredProducts/@image.Image" /></a>
                                                         </div>
