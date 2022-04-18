@@ -1,0 +1,93 @@
+﻿@inject ElectroApp.Services.LayoutServices layoutService
+@{
+    CompareVM compare = layoutService.ShowCompare();
+}
+<tbody>
+    <tr>
+        <td class="heading-col">Product</td>
+        @foreach (var item in compare.CompareItems)
+        {
+            <td class="product-col">
+                <div class="compareProduct">
+                    <div class="productInfo">
+                        <div class="remove">
+                            <a asp-controller="product" asp-action="DeleteCompareItem" asp-route-id="@item.Product.Id" class="removeCompEl">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        </div>
+                        <div class="productImage">
+                            @foreach (var image in item.Product.ProductImages)
+                            {
+                                if (image.IsMain)
+                                {
+                                    <a href="">
+                                        <img src="~/assets/images/featuredProducts/@image.Image"
+                                             alt="">
+                                    </a>
+                                }
+                            }
+                        </div>
+                        <div class="productName">
+                            <a href="">@item.Product.Name</a>
+                        </div>
+                        <div class="productPrice">
+                            <span>$@(Math.Floor((item.Price)*100)/100)</span>
+                        </div>
+                        <div class="comparsionPrDetails">
+                            <a href="">View Detail</a>
+                        </div>
+                        <p style="display:none" id="totalCompareCount">@layoutService.ShowCompare().Count</p>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    <tr>
+        <td class="heading-col">Vendor</td>
+        @foreach (var item in compare.CompareItems)
+        {
+            <td class="product-col">@item.Product.Brand.Name</td>
+        }
+    </tr>
+    <tr>
+        <td class="heading-col">Collection</td>
+        @foreach (var item in compare.CompareItems)
+        {
+            <td class="product-col">
+                @foreach (var cat in item.Product.ProductCategories)
+                {
+                    <p>
+                        @cat.Category.Name
+                    </p>
+                }
+            </td>
+        }
+    </tr>
+    <tr>
+        <td class="heading-col">Specifications</td>
+        @foreach (var item in compare.CompareItems)
+        {
+            <td class="product-col">
+                @foreach (var spec in item.Product.Specs)
+                {
+                    <p>@spec.Name</p>
+                }
+            </td>
+        }
+    </tr>
+    <tr>
+        <td class="heading-col">Avaliability</td>
+        @foreach (var item in compare.CompareItems)
+        {
+            if (item.Product.InStock)
+            {
+                <td class="product-col">In Stock</td>
+            }
+            else
+            {
+                <td class="product-col">Out of stock</td>
+            }
+
+        }
+    </tr>
+</tbody>

@@ -99,11 +99,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- owl carousel -->
-<script src="~/plugins/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
-<!-- ---------------- -->
-<!-- ------progressbar---- -->
-<script src="~/assets/JS/skill.bars.jquery.js"></script>
 <script src="~/assets/js/wishlist.js"></script>
 <!-- ----------------- -->
 <script>
@@ -116,10 +111,8 @@
             var urlForPartial = `${base}/Product/GetWishPartial`
             fetch(url).then(res => res.text()).then(data => {
                 fetch(urlForPartial).then(res => res.text().then(data => {
-                    $(".prWishCont.prWishCont").empty();
-                    //var card = document.querySelector(".prCartCont")
-                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
-                    $("").append(data);
+                    $(".prWishCont").empty();
+                    $(".prWishCont").append(data);
                 }))
             })
             setTimeout(function () {
@@ -142,8 +135,6 @@
             fetch(url).then(res => res.text()).then(data => {
                 fetch(urlForPartial).then(res => res.text().then(data => {
                     $(".prWishCont").empty();
-                    //var card = document.querySelector(".prCartCont")
-                    //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
                     $(".prWishCont").append(data);
                 }))
 

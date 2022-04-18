@@ -339,6 +339,72 @@ namespace ElectroApp.Controllers
         {
             return PartialView("_wishlistPartialView");
         }
+
+
+        public IActionResult AddCompare(int id)
+        {
+            Product product = _context.Products.Include(p => p.Campaign).Include(p => p.ProductImages).Include(p=>p.Brand).Include(p=>p.Specs).FirstOrDefault(p => p.Id == id);
+            string compare = HttpContext.Request.Cookies["Compare"];
+            if (compare == null)
+            {
+                List<CompareCookieItemVM> compareCookieItems = new List<CompareCookieItemVM>();
+                compareCookieItems.Add(new CompareCookieItemVM
+                {
+                    Id = product.Id,
+                    Count = 1
+                });
+                string compareStr = JsonConvert.SerializeObject(compareCookieItems);
+                HttpContext.Response.Cookies.Append("Compare", compareStr);
+                return PartialView("_comparePartialView");
+            }
+            else
+            {
+                List<CompareCookieItemVM> compareCookieItems = JsonConvert.DeserializeObject<List<CompareCookieItemVM>>(compare);
+                CompareCookieItemVM cookiecItem = compareCookieItems.FirstOrDefault(c => c.Id == product.Id);
+                if (cookiecItem == null)
+                {
+                    cookiecItem = new CompareCookieItemVM
+                    {
+                        Id = product.Id,
+                        Count = 1
+                    };
+                    compareCookieItems.Add(cookiecItem);
+                }
+                else
+                {
+                    cookiecItem.Count++;
+                }
+                string compareStr = JsonConvert.SerializeObject(compareCookieItems);
+                HttpContext.Response.Cookies.Append("Compare", compareStr);
+                return PartialView("_comparePartialView");
+            }
+
+        }
+        public IActionResult DeleteCompareItem(int id)
+        {
+            string compare = HttpContext.Request.Cookies["Compare"];
+            List<CompareCookieItemVM> compareCookieItems = JsonConvert.DeserializeObject<List<CompareCookieItemVM>>(compare);
+            CompareCookieItemVM cookiecItem = compareCookieItems.FirstOrDefault(c => c.Id == id);
+            compareCookieItems.Remove(cookiecItem);
+            string compareStr = JsonConvert.SerializeObject(compareCookieItems);
+            HttpContext.Response.Cookies.Append("Compare", compareStr);
+            _context.SaveChanges();
+            return PartialView("_comparePartialView");
+        }
+        public IActionResult ShowCompare()
+        {
+            string compareStr = HttpContext.Request.Cookies["Compare"];
+            if (!string.IsNullOrEmpty(compareStr))
+            {
+                List<CompareCookieItemVM> compare = JsonConvert.DeserializeObject<List<CompareCookieItemVM>>(compareStr);
+                return Json(compare);
+            }
+            return Content("Compare is empty");
+        }
+        public IActionResult GetComparePartial()
+        {
+            return PartialView("_comparePartialView");
+        }
         public IActionResult SearchResult(string search, int? categoryId)
         {
             ViewBag.Categories = _context.Categories.ToList();

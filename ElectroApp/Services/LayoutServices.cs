@@ -31,7 +31,7 @@ namespace ElectroApp.Services
         }
         public List<Product> getProductDatas()
         {
-            List<Product> prdata = _context.Products.Include(p => p.Campaign).Include(p => p.ProductComments).Include(p => p.ProductImages).ToList();
+            List<Product> prdata = _context.Products.Include(p => p.Campaign).Include(p => p.ProductComments).Include(p=>p.Specs).Include(p=>p.Brand).Include(p => p.ProductImages).ToList();
             return prdata;
         }
         public async Task<BasketVM> ShowBasket()
@@ -145,6 +145,41 @@ namespace ElectroApp.Services
                 }
             }
             return wishlistData;
+        }
+
+        public CompareVM ShowCompare()
+        {
+            string compare = _httpcontext.HttpContext.Request.Cookies["Compare"];
+            CompareVM compareData = new CompareVM
+            {
+                TotalPrice = 0,
+                CompareItems = new List<CompareItemVM>(),
+                Count = 0
+            };
+
+            if (!string.IsNullOrEmpty(compare))
+            {
+                List<CompareCookieItemVM> compareCookieItems = JsonConvert.DeserializeObject<List<CompareCookieItemVM>>(compare);
+                foreach (CompareCookieItemVM item in compareCookieItems)
+                {
+                    Product product = _context.Products.Include(p=>p.Brand).Include(p=>p.ProductCategories).ThenInclude(p=>p.Category).
+                        Include(p=>p.Specs).Include(p=>p.ProductImages).FirstOrDefault(p => p.Id == item.Id);
+                    if (product != null)
+                    {
+                        CompareItemVM compareItem = new CompareItemVM
+                        {
+                            Product = _context.Products.Include(p => p.Campaign).Include(p => p.Brand).Include(p => p.ProductCategories).
+                            ThenInclude(p => p.Category).Include(p => p.Specs).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == item.Id),
+                            Count = item.Count,
+                        };
+                        compareItem.Price = compareItem.Product.CampaignId == null ? compareItem.Product.Price : compareItem.Product.Price * (100 - compareItem.Product.Campaign.DiscountPercent) / 100;
+                        compareData.CompareItems.Add(compareItem);
+                        compareData.Count++;
+                        compareData.TotalPrice += compareItem.Price * compareItem.Count;
+                    }
+                }
+            }
+            return compareData;
         }
     }
 }

@@ -2033,51 +2033,6 @@ header .activeShoppingcart {
   visibility: visible;
   opacity: 1;
 }
-/*#thumbCarousel .carousel__slide {
-    border: 1px solid #dddddd;
-    border-bottom: 2px solid #dddddd;
-    height: auto;
-    -o-object-fit: cover !important;
-    object-fit: cover !important;
-    margin: 0px;
-    margin-right: 2px;
-    width: calc((100% - 8px) / 4) !important;
-}
-
-    #thumbCarousel .carousel__slide img {
-        -o-object-fit: cover !important;
-        object-fit: cover !important;
-    }
-
-    #thumbCarousel .carousel__slide:last-child {
-        margin-right: 0px;
-    }
-
-    #thumbCarousel .carousel__slide:hover {
-        border-bottom: 2px solid #fed700;
-    }
-
-#thumbCarousel .is-nav-selected {
-    border-bottom: 2px solid #fed700;
-}
-
-.carousel__nav .carousel__button {
-    background: none !important;
-    outline: none !important;
-    border: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    width: 20px;
-    height: 20px;
-}
-
-.carousel__nav .is-next {
-    right: 0px !important;
-}
-
-.carousel__nav .is-prev {
-    left: 0px !important;
-}*/
 #Intro .IntroSlider {
   z-index: 0;
   position: relative;
@@ -3109,7 +3064,7 @@ header .activeShoppingcart {
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -3233,6 +3188,9 @@ header .activeShoppingcart {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 0px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice .oldPrice {
@@ -3242,6 +3200,8 @@ header .activeShoppingcart {
   font-weight: 400;
   text-decoration: line-through;
   margin-left: 5px;
+  position:relative;
+  bottom:2px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent .bottomProduct .contforBotPr .selectOption {
@@ -3543,7 +3503,7 @@ header .activeShoppingcart {
 
 #shoplistBannersecond .content .contenybyCat .all .spProductWrapper .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #shoplistBannersecond .content .contenybyCat .all .spProductWrapper .product .productContent .topProduct .brandName {
@@ -3854,7 +3814,7 @@ header .activeShoppingcart {
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -3978,6 +3938,9 @@ header .activeShoppingcart {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 0px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
 }
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice .oldPrice {
@@ -3987,6 +3950,8 @@ header .activeShoppingcart {
   font-weight: 400;
   text-decoration: line-through;
   margin-left: 5px;
+  position:relative;
+  bottom:1px;
 }
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .bottomProduct .contforBotPr .selectOption {
@@ -4325,7 +4290,7 @@ header .activeShoppingcart {
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent .topProduct .brandName {
@@ -4744,7 +4709,7 @@ header .activeShoppingcart {
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .topProduct .brandName {
@@ -4863,12 +4828,15 @@ header .activeShoppingcart {
   margin-bottom: 4px;
 }
 
-#shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice {
-  color: #ee0000;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  margin-bottom: 0px;
-}
+    #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice {
+        color: #ee0000;
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        margin-bottom: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice .oldPrice {
   color: #848484;
@@ -4877,6 +4845,8 @@ header .activeShoppingcart {
   font-weight: 400;
   text-decoration: line-through;
   margin-left: 5px;
+  position:relative;
+  bottom:1px;
 }
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .bottomProduct .contforBotPr .selectOption {
@@ -6195,7 +6165,7 @@ header .activeShoppingcart {
 
                 #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .product .productContent {
                     position: relative;
-                    margin: 20px 20px 2px 20px;
+                    margin: 12px 12px 2px 12px;
                     width: 100%;
                 }
 
@@ -6274,6 +6244,9 @@ header .activeShoppingcart {
                                 font-family: "Roboto", sans-serif;
                                 font-size: 18px;
                                 margin-bottom: 0px;
+                                display:flex;
+                                align-items:flex-end;
+                                flex-wrap:wrap;
                             }
 
                                 #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .product .productContent .bottomProduct .contforBotPr .productPrice .CurrentPrice .oldPrice {
@@ -6283,6 +6256,8 @@ header .activeShoppingcart {
                                     font-weight: 400;
                                     text-decoration: line-through;
                                     margin-left: 5px;
+                                    position:relative;
+                                    bottom:2px;
                                 }
 
                             #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .product .productContent .bottomProduct .contforBotPr .selectOption {
@@ -7519,7 +7494,7 @@ header .activeShoppingcart {
   display: flex;
 }
 
-#detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .bottomform .Compare {
+#detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .bottomform .Compare a {
   color: #848484;
   font-weight: 300;
   font-size: 14px;
@@ -7527,6 +7502,8 @@ header .activeShoppingcart {
   cursor: pointer;
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
+  position:relative;
+  bottom:3px;
 }
 
 #detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .bottomform .Compare i {
@@ -7535,7 +7512,7 @@ header .activeShoppingcart {
   color: #fed700;
 }
 
-#detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .bottomform .Compare:hover {
+#detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .bottomform .Compare a:hover {
   color: #fed700;
 }
 
@@ -8115,7 +8092,7 @@ header .activeShoppingcart {
 
 #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 20px 20px 2px 20px;
+  margin: 12px 12px 2px 12px;
 }
 
 #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -10561,8 +10538,8 @@ header .activeShoppingcart {
     margin-top:12px;
 }
 #thumbCarousel .carousel__slide {
-    opacity: 0.5;
-    padding: 0;
+    opacity: 0.9;
+   
     margin: 0.25rem;
     width: 96px;
     height: 64px;
@@ -10580,16 +10557,16 @@ header .activeShoppingcart {
     #thumbCarousel .carousel__slide.is-nav-selected {
         opacity: 1;
     }
-#thumbCarousel .carousel__slide {
-    border: 1px solid #eaebec;
-    border-bottom: 2px solid transparent;
-    height: auto;
-    -o-object-fit: cover !important;
-    object-fit: cover !important;
-    margin: 0px;
-    margin-right: 2px;
-    width: calc(100% / 4) !important;
-}
+    #thumbCarousel .carousel__slide {
+        border: 1px solid #dddddd;
+        border-bottom: 2px solid #dddddd;
+        height: auto;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+        margin: 0px;
+        margin-right: 5px;
+        width: calc((100% - 20px) / 4) !important;
+    }
 
     #thumbCarousel .carousel__slide img {
         -o-object-fit: cover !important;

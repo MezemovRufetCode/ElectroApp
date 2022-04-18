@@ -594,7 +594,7 @@ $(document).ready(function () {
         },
     });
     //ending fancybox
-    //add to basket
+   /* add to basket*/
     $(document).ready(function () {
         $(document).on("click", ".addToBasket", function (e) {
             e.preventDefault();
