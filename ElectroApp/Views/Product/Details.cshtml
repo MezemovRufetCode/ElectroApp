@@ -160,7 +160,15 @@
                                     </div>
                                 </div>
                                 <div class="productprice">
-                                    <span class="price">$399.00</span>
+                                    @if (Model.CampaignId == null)
+                                    {
+                                        <p class="price">$@(Math.Floor((Model.Price)*100)/100)</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="price" style="color:red">$@(Math.Floor((Model.Price*(100-Model.Campaign.DiscountPercent)/100)*100)/100)<span style="font-size: 15px; text-decoration: line-through;color:grey;margin-left:5px;">$@Model.Price</span></p>
+                                    }
+                                    @*<span class="price">$@Model.Price</span>*@
                                 </div>
                                 <form action="">
                                     <p class="smdesc">Quantity</p>

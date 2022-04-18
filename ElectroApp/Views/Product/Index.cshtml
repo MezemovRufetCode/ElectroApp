@@ -6,7 +6,7 @@
 @section CSS
     {
     <style>
-        /*            .pagination a {
+        /*                    .pagination a {
                 border-radius: 50% !important;
             }
 
@@ -157,7 +157,7 @@
                             <li class="filters">
                                 <div class="filtername">
                                     <h6>
-                                        Brand1
+                                        Brand
                                     </h6>
                                     <span class="Icon zerodeg">
                                         <i class="fas fa-chevron-down"></i>
@@ -173,7 +173,7 @@
                                 </div>
                             </li>
                         </div>
-                        <div class="listelement">
+                        @*<div class="listelement">
                             <li class="filters">
                                 <div class="filtername">
                                     <h6>
@@ -193,12 +193,12 @@
                                     }
                                 </div>
                             </li>
-                        </div>
+                        </div>*@
                         <div class="listelement">
                             <li class="filters">
                                 <div class="filtername">
                                     <h6>
-                                        Price1
+                                        Price
                                     </h6>
                                     <span class="Icon zerodeg">
                                         <i class="fas fa-chevron-down"></i>
@@ -213,7 +213,7 @@
                                 </div>
                             </li>
                         </div>
-                        <div class="listelement priceFilter">
+                        @*<div class="listelement priceFilter">
                             <li class="filters">
                                 <div class="filtername">
                                     <h6>
@@ -234,7 +234,7 @@
                                     </form>
                                 </div>
                             </li>
-                        </div>
+                        </div>*@
                         </ul>
                     </div>
                     <div class="banner d-lg-block d-md-none d-sm-none d-none">
@@ -346,6 +346,46 @@
                     <div class="buttonToogle">
                         <a href="javascript:;" class="showMore">View More</a>
                     </div>
+                    @*<div class="container" style="display:flex;justify-content:center">
+                            <div class="row justify-content-center mt-2">
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-center">
+                                        @if (ViewBag.CurrentPage == 1)
+                                        {
+                                            <li class="page-item disabled">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)"><i class="fa-solid fa-chevron-left"></i></a>
+                                            </li>
+                                        }
+
+                                        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                        {
+                                            <li class="page-item @(ViewBag.CurrentPage==i ? "active" : "")
+                                    " style="@(ViewBag.CurrentPage==i ? "pointer-events:none" : "")"><a asp-controller="product" asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>
+                                }
+
+                                        @if (ViewBag.CurrentPage == ViewBag.TotalPage)
+                                        {
+                                            <li class="page-item disabled">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="product" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)"><i class="fa-solid fa-chevron-right"></i></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>*@
+
                 </div>
             </div>
         </section>

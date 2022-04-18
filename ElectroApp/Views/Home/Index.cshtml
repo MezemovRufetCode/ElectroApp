@@ -260,7 +260,7 @@
                     </script>
                     <div class="productsByCat col-lg-8 col-md-6 col-sm-12 col-12">
                         <div class="byCat">
-                            @foreach (Product product in Model.Products.OrderByDescending(p => p.Id).Take(10))
+                            @foreach (Product product in Model.Products.OrderByDescending(p => p.Id).Take(9))
                             {
                                 if (!product.IsSpecial)
                                 {
@@ -535,7 +535,7 @@
                     </script>
                     <div class="productsByCat col-lg-8 col-md-7 col-sm-12 col-12">
                         <div class="byCat">
-                            @foreach (Product product in Model.Products.Where(p => p.CampaignId != null).OrderByDescending(p => p.Campaign.DiscountPercent).Take(10))
+                            @foreach (Product product in Model.Products.Where(p => p.CampaignId != null).OrderByDescending(p => p.Campaign.DiscountPercent).Take(11))
                             {
                                 if (!product.IsSpecial)
                                 {
@@ -776,7 +776,7 @@
                     }
                     <div class="productsByCat col-lg-8 col-md-7 col-sm-12 col-12">
                         <div class="byCat">
-                            @foreach (Product product in Model.Products.OrderByDescending(p => p.ProductComments.Count).Take(10))
+                            @foreach (Product product in Model.Products.OrderByDescending(p => p.ProductComments.Count).Take(11))
                             {
                                 if (!product.IsSpecial)
                                 {

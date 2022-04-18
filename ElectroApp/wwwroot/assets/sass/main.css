@@ -2865,6 +2865,7 @@ header .activeShoppingcart {
   text-align: center;
   width: 100%;
   margin: 0 auto 10px;
+  padding-top:35px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .special-productByCat .productImage .specialOfferImage img {
@@ -2873,7 +2874,7 @@ header .activeShoppingcart {
   top: 0;
   max-width: 100%;
   max-height: 100%;
-  width: 100%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
 }
@@ -3064,7 +3065,7 @@ header .activeShoppingcart {
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -3118,6 +3119,7 @@ header .activeShoppingcart {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+          padding-top:5px;
 }
 
 #shoplistBannerfirst .content .contenybyCat .all .productsByCat .byCat .product .productContent .productImage .image {
@@ -3503,7 +3505,7 @@ header .activeShoppingcart {
 
 #shoplistBannersecond .content .contenybyCat .all .spProductWrapper .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #shoplistBannersecond .content .contenybyCat .all .spProductWrapper .product .productContent .topProduct .brandName {
@@ -3814,7 +3816,7 @@ header .activeShoppingcart {
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -3861,14 +3863,15 @@ header .activeShoppingcart {
   color: #fed700;
 }
 
-#shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .productImage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
+    #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .productImage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 5px;
+    }
 
 #shoplistBannersecond .content .contenybyCat .productsByCat .byCat .product .productContent .productImage .image {
   display: block;
@@ -4290,7 +4293,7 @@ header .activeShoppingcart {
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent .topProduct .brandName {
@@ -4337,14 +4340,15 @@ header .activeShoppingcart {
   color: #fed700;
 }
 
-#shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent .productImage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
+    #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent .productImage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 5px;
+    }
 
 #shoplistBannerthird .content .contenybyCat .all .productsByCat .product .productContent .productImage .image {
   display: block;
@@ -4709,7 +4713,7 @@ header .activeShoppingcart {
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .topProduct .brandName {
@@ -4756,14 +4760,15 @@ header .activeShoppingcart {
   color: #fed700;
 }
 
-#shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .productImage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
+    #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .productImage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 5px;
+    }
 
 #shoplistBannerfourth .content .contenybyCat .all .productsByCat .product .productContent .productImage .image {
   display: block;
@@ -6165,7 +6170,7 @@ header .activeShoppingcart {
 
                 #productlistPage #productList .content .contenybyCat .productsByCat .productWrapper .product .productContent {
                     position: relative;
-                    margin: 12px 12px 2px 12px;
+                    margin: 15px 15px 2px 15px;
                     width: 100%;
                 }
 
@@ -6503,6 +6508,7 @@ header .activeShoppingcart {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
+        padding-top: 5px;
     }
 
         #productlistPage #productList .content .productImage .image {
@@ -8092,7 +8098,7 @@ header .activeShoppingcart {
 
 #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent {
   position: relative;
-  margin: 12px 12px 2px 12px;
+  margin: 15px 15px 2px 15px;
 }
 
 #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent .topProduct .brandName {
@@ -8139,14 +8145,15 @@ header .activeShoppingcart {
   color: #fed700;
 }
 
-#detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent .productImage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
+    #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent .productImage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 5px;
+    }
 
 #detailspage #relatedproducts .content .contenybyCat .all .productsByCat .byCat .product .productContent .productImage .image {
   display: block;
