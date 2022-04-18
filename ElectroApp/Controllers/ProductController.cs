@@ -24,7 +24,7 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int? brandId, int? categoryId, int filterId, int page = 1)
+        public IActionResult Index(int? brandId, int? categoryId, int filterId,int priceId, int page = 1)
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
@@ -65,6 +65,23 @@ namespace ElectroApp.Controllers
                     break;
                 default:
 
+                    break;
+            }
+            switch (priceId)
+            {
+                case 1:
+                    productVM.Products = _context.Products.Where(p => p.Price<=100).ToList();
+                    break;
+
+                case 2:
+                    productVM.Products = _context.Products.Where(p => p.Price>100 && p.Price<=300).ToList();
+                    break;
+
+                case 3:
+                    productVM.Products = _context.Products.Where(p => p.Price>300).ToList();
+                    break;
+                default:
+                    productVM.Products = _context.Products.ToList();
                     break;
             }
             //productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
