@@ -6700,7 +6700,7 @@
                 $.each(data, function (key, item) {
                     if (item.Name.search(expression) != -1 && searchField != "") {
                         $('.searchResult').removeClass("d-none");
-                            var html_Search = `<li class="listEl">
+                        var html_Search = `<li class="listEl">
                                         <div class="image">
                                              <a href="/product/details/${item.Id}"><img src="/assets/images/featuredProducts/${item.ProductImages[0].Image}"></a>
                                         </div>
@@ -6716,5 +6716,26 @@
         })
     })
 </script>
+<script src="~/plugins/Fullscreen-Loading-Modal-Indicator-Plugin-For-jQuery-loadingModal/js/jquery.loadingModal.min.js"></script>
+<script>
+    function showModal() {
+        $('body').loadingModal({
+            position: 'auto',
+            text: '',
+            color: '#fff',
+            opacity: '0.7',
+            backgroundColor: 'rgb(0,0,0)',
+            animation: 'wave'
+        });
 
+        var delay = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }) };
+        var time = 200;
+
+        delay(time)
+            .then(function () { $('body').loadingModal('animation', 'wave'); return delay(time); })
+            .then(function () { $('body').loadingModal('hide'); return delay(time); })
+            .then(function () { $('body').loadingModal('destroy'); });
+    }
+    showModal();
+</script>
 <script src="~/assets/js/script.js"></script>
