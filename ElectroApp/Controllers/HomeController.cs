@@ -1,9 +1,11 @@
 ﻿
 using ElectroApp.DAL;
+using ElectroApp.Models;
 using ElectroApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +32,16 @@ namespace ElectroApp.Controllers
                 Include(p => p.Features).Include(p => p.Specs).ToList()
             };
             return View(homeVM);
+        }
+        public JsonResult Search()
+        {
+            List<Product> products = _context.Products.Include(p=>p.ProductImages).ToList();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(products, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value);
         }
     }
 }

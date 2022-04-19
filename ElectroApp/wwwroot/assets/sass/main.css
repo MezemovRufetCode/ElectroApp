@@ -675,12 +675,13 @@ header .bottomheader .pc-deparment .bottomheadElements .searchArea form .sbmtBtn
     border: none;
     background-color: white;
     z-index: 999;
-    border-top: 2px solid #fed700;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-    .searchResult:after {
+/*    .searchResult:after {
         content: "";
         position: absolute;
         left: 50%;
@@ -693,13 +694,29 @@ header .bottomheader .pc-deparment .bottomheadElements .searchArea form .sbmtBtn
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         border-bottom: 10px solid #fed700;
-    }
+    }*/
 
     .searchResult .searchList {
         padding-left: 0px;
         max-height: 300px;
         overflow-y: scroll;
+        margin-bottom: 7px;
+        border-top: 2px solid #fed700;
     }
+        .searchResult .searchList:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            top: -10px;
+            z-index: 9999;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 10px solid #fed700;
+        }
 
         .searchResult .searchList .listEl {
             display: -webkit-box;

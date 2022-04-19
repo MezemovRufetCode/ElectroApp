@@ -646,4 +646,5 @@ $(document).ready(function () {
         });
     })
     //end of add to basket
+
 });

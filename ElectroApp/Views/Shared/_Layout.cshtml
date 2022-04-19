@@ -170,7 +170,7 @@
                         </div>
                         <div class="searchArea d-none d-lg-flex col-lg-6 ">
                             <form method="get" asp-controller="product" asp-action="SearchResult" id="search-form">
-                                <input class="searchInp" onkeyup="DisableButton()" autocomplete="off" name="search" type="text" placeholder="Search" id="generalSearch">
+                                <input class="searchInp" autocomplete="off" name="search" type="text" placeholder="Search" id="generalSearch">
                                 <button class="sbmtBtn" type="submit" id="generalSearchButton">
                                     <span>
                                         <svg version="1.1"
@@ -182,9 +182,9 @@
                                     </span>
                                 </button>
                             </form>
-                            <div class="searchResult d-none">
+                            <div class="searchResult  d-none">
                                 <ul class="searchList">
-                                    <li class="listEl">
+                                    @*<li class="listEl">
                                         <div class="image">
                                             <a href=""><img src="~/assets/images/featuredProducts/FlashDrive_180x.jpg"></a>
                                         </div>
@@ -192,36 +192,7 @@
                                             <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
                                             <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
                                         </div>
-                                    </li>
-                                    <li class="listEl">
-                                        <div class="image">
-                                            <a href=""><img src="~/assets/images/featuredProducts/3_540x.jpg"></a>
-                                        </div>
-                                        <div class="textInfo">
-                                            <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
-                                            <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
-                                        </div>
-                                    </li>
-                                    <li class="listEl">
-                                        <div class="image">
-                                            <a href=""><img src="~/assets/images/featuredProducts/GameStation_540x.jpg"></a>
-                                        </div>
-                                        <div class="textInfo">
-                                            <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
-                                            <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
-                                        </div>
-                                    </li>
-                                    <li class="listEl">
-                                        <div class="image">
-                                            <a href="">
-                                                <img src="~/assets/images/featuredProducts/TV_010884af-efd0-4645-8d19-6ee037cd730d_540x.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="textInfo">
-                                            <h4 class="productName"><a href="#">Black Fashion Zapda</a></h4>
-                                            <p class="CurrentPrice">$350.00<span class="oldPrice">$500.00</span></p>
-                                        </div>
-                                    </li>
+                                    </li>*@
                                 </ul>
                             </div>
                         </div>
