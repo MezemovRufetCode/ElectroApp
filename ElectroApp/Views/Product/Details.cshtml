@@ -665,4 +665,41 @@
         });
     })
 </script>
+<script>
+    //AutocompleteSearch
+    $('#generalSearch').keyup(function () {
+        var searchField = $('#generalSearch').val();
+        var expression = RegExp(searchField, "i");
+        /*$('.searchResult').remove();*/
+        $('.searchResult').addClass("d-none");
+        $('.searchList').remove();
+        $.ajax({
+            type: "GET",
+            url: "/Home/Search",
+            success: function (response) {
+                var data = JSON.parse(response);
+                if (searchField != "") {
+                    var html_Body = `<ul class="searchList">
+
+                                        </ul>`;
+                } $('.searchResult').append(html_Body);
+                $.each(data, function (key, item) {
+                    if (item.Name.search(expression) != -1 && searchField != "") {
+                        $('.searchResult').removeClass("d-none");
+                        var html_Search = `<li class="listEl">
+                                                <div class="image">
+                                                     <a href="/product/details/${item.Id}"><img src="/assets/images/featuredProducts/${item.ProductImages[0].Image}"></a>
+                                                </div>
+                                                <div class="textInfo">
+                                                    <h4 class="productName"><a href="/product/details/${item.Id}">${item.Name}</a></h4>
+                                                    <p class="CurrentPrice">${item.Price}<span class="oldPrice">$500.00</span></p>
+                                                </div>
+                                            </li>`;
+                        $('.searchList').append(html_Search);
+                    }
+                })
+            }
+        })
+    })
+</script>
 <script src="~/assets/js/script.js"></script>

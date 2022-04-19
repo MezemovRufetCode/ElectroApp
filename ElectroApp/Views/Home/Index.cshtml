@@ -14,7 +14,6 @@
 {
     <input type="hidden" id="verifiedJS" />
 }
-
 <section id="brdcrumb" style="display: none;">
     <div class="container">
         <div class="row">
@@ -6703,10 +6702,10 @@
                         $('.searchResult').removeClass("d-none");
                             var html_Search = `<li class="listEl">
                                         <div class="image">
-                                             <a href=""><img src="/assets/images/featuredProducts/${item.ProductImages[0].Image}"></a>
+                                             <a href="/product/details/${item.Id}"><img src="/assets/images/featuredProducts/${item.ProductImages[0].Image}"></a>
                                         </div>
                                         <div class="textInfo">
-                                            <h4 class="productName"><a asp-controller="product" asp-action="details" asp-route-id="@@product.Id">${item.Name}</a></h4>
+                                            <h4 class="productName"><a href="/product/details/${item.Id}">${item.Name}</a></h4>
                                             <p class="CurrentPrice">${item.Price}<span class="oldPrice">$500.00</span></p>
                                         </div>
                                     </li>`;
