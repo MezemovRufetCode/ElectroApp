@@ -6684,7 +6684,6 @@
     //AutocompleteSearch
     $('#generalSearch').keyup(function () {
         var searchField = $('#generalSearch').val();
-        console.log(searchField)
         var expression = RegExp(searchField, "i");
         /*$('.searchResult').remove();*/
         $('.searchResult').addClass("d-none");
@@ -6694,7 +6693,6 @@
             url: "/Home/Search",
             success: function (response) {
                 var data = JSON.parse(response);
-                console.log(data);
                 if (searchField != "") {
                     var html_Body = `<ul class="searchList">
 
