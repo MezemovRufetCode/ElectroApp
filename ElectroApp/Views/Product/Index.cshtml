@@ -206,9 +206,9 @@
                                 </div>
                                 <div class="filterelement">
                                     <ul class="advanced-filter">
-                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-priceId="1">Under $100</a></li>
-                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-priceId="2">$100-$300</a></li>
-                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-priceId="3">Above $300</a></li>
+                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-filterId="7">Under $100</a></li>
+                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-filterId="8">$100-$300</a></li>
+                                        <li class="checkfilter"><a asp-controller="product" asp-action="index" asp-route-filterId="9">Above $300</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -306,7 +306,7 @@
                                         <div class="filterName">
                                             <span class="d-lg-block d-md-block d-sm-none d-none">Sort by</span>
                                             <button id="sort_by_button">
-                                                <span class="name sotyByFilterName">Name, A-Z</span>
+                                                <span class="name sotyByFilterName"></span>
                                                 <svg version="1.1"
                                                      xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      viewBox="0 0 37 64">
@@ -502,10 +502,10 @@
                     var urlForPartial = `${base}/Product/GetWishPartial`
                     fetch(url).then(res => res.text()).then(data => {
                         fetch(urlForPartial).then(res => res.text().then(data => {
-                            $(".prWishCont.prWishCont").empty();
+                            $(".prWishCont").empty();
                             //var card = document.querySelector(".prCartCont")
                             //card.innerHTML = `<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>`
-                            $("").append(data);
+                            $(".prWishCont").append(data);
                         }))
                     })
                     setTimeout(function () {
@@ -539,7 +539,7 @@
                         htmlTagw.innerHTML = "0"
                         var countw = totalwishCount.innerHTML
                         htmlTagw.innerHTML = countw
-                    }, 10)
+                    }, 100)
                 });
             })
         </script>
@@ -580,7 +580,7 @@
                 })
             })
         </script>
-        //loading indicator
+        @*loading indicator*@
         <script src="~/plugins/Fullscreen-Loading-Modal-Indicator-Plugin-For-jQuery-loadingModal/js/jquery.loadingModal.min.js"></script>
         <script>
             function showModal() {
@@ -603,6 +603,21 @@
             }
             showModal();
         </script>
+        @*<script>
+            $(document).ready(function () {
+                let filtername = document.querySelector('.sotyByFilterName')
+                if (filtername.innerHTML.length == 0) {
+                    filtername.innerHTML = "Name, A-Z";
+                }
+                setTimeout(function () {
+                    $(".filterItem").click(function () {
+                        var test = this.innerHTML;
+                        filtername.innerHTML = test;
+                    })
+                }, 100)
+
+            })
+        </script>*@
         <script src="~/assets/js/script.js"></script>
     </body>
 </section>

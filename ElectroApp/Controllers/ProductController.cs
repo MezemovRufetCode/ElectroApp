@@ -24,7 +24,7 @@ namespace ElectroApp.Controllers
             _context = context;
             _usermanager = userManager;
         }
-        public IActionResult Index(int? brandId, int? categoryId, int filterId,int priceId, int page = 1)
+        public IActionResult Index(int? brandId, int? categoryId, int filterId, int page = 1)
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.CurrentPage = page;
@@ -63,27 +63,35 @@ namespace ElectroApp.Controllers
                 case 6:
                     productVM.Products = _context.Products.OrderByDescending(p => p.Id).ToList();
                     break;
-                default:
-
+                case 7:
+                    productVM.Products = _context.Products.Where(p => p.Price <= 100).ToList();
                     break;
-            }
-            switch (priceId)
-            {
-                case 1:
-                    productVM.Products = _context.Products.Where(p => p.Price<=100).ToList();
+                case 8:
+                    productVM.Products = _context.Products.Where(p => p.Price > 100 && p.Price <= 300).ToList();
                     break;
-
-                case 2:
-                    productVM.Products = _context.Products.Where(p => p.Price>100 && p.Price<=300).ToList();
-                    break;
-
-                case 3:
-                    productVM.Products = _context.Products.Where(p => p.Price>300).ToList();
+                case 9:
+                    productVM.Products = _context.Products.Where(p => p.Price > 300).ToList();
                     break;
                 default:
-                    productVM.Products = _context.Products.ToList();
                     break;
             }
+            //switch (priceId)
+            //{
+            //    case 1:
+            //        productVM.Products = _context.Products.Where(p => p.Price<=100).ToList();
+            //        break;
+
+            //    case 2:
+            //        productVM.Products = _context.Products.Where(p => p.Price>100 && p.Price<=300).ToList();
+            //        break;
+
+            //    case 3:
+            //        productVM.Products = _context.Products.Where(p => p.Price>300).ToList();
+            //        break;
+            //    default:
+            //        productVM.Products = _context.Products.ToList();
+            //        break;
+            //}
             //productVM.Products = _context.Products.Include(p => p.ProductComments).ThenInclude(p => p.AppUser).Include(p => p.Brand).Include(p => p.ProductCategories).
             // ThenInclude(pc => pc.Category).Include(p => p.ProductImages).Include(p => p.Campaign).
             // Include(p => p.Features).Include(p => p.Specs).ToList();

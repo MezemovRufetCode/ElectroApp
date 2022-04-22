@@ -29,7 +29,7 @@
                     <div class="left col-lg-5 col-md-6 col-12">
                         <div class="imagewrapper">
                             <div class="product-imgs">
-                                <div id="mainCarousel" class="carousel w-10/12 max-w-5xl mx-auto"
+                                <div id="mainCarousel" class="mainCarousel carousel w-10/12 max-w-5xl mx-auto"
                                      style="width: 100%;">
                                     @foreach (var image in Model.ProductImages)
                                     {
@@ -40,7 +40,7 @@
                                         </div>
                                     }
                                 </div>
-                                <div id="thumbCarousel" class="carousel max-w-xl mx-auto">
+                                <div id="thumbCarousel" class="thumbCarousel carousel max-w-xl mx-auto">
                                     @foreach (var image in Model.ProductImages)
                                     {
                                         <div class="carousel__slide">

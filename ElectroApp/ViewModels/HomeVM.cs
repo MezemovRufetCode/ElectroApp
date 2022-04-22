@@ -11,6 +11,7 @@ namespace ElectroApp.ViewModels
         public List<IntroSlider> IntroSliders { get; set; }
         public List<Product> Products { get; set; }
         public List<ProductImage> ProductImages { get; set; }
+        public List<Brand> Brands { get; set; }
         public List<ProductCategory> productCategories { get; set; }
         public Setting Settings { get; set; }
     }

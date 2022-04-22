@@ -5679,10 +5679,16 @@ header .activeShoppingcart {
                         -webkit-transition: 0.2s ease-in;
                         transition: 0.2s ease-in;
                     }
-
-                        #productlistPage #productList .productlistpageLeftside .productfilter .mylist .listelement .filters .filterelement .advanced-filter .checkfilter a:hover {
-                            color: #fed700;
-                        }
+.activeBrand {
+    color: #fed700 !important;
+}
+    .activeBrand:before {
+        border: 1px solid #fed700 !important;
+        background-color: #fed700;
+    }
+#productlistPage #productList .productlistpageLeftside .productfilter .mylist .listelement .filters .filterelement .advanced-filter .checkfilter a:hover {
+    color: #fed700;
+}
 
                             #productlistPage #productList .productlistpageLeftside .productfilter .mylist .listelement .filters .filterelement .advanced-filter .checkfilter a:hover:before {
                                 -webkit-transition: 0.2s ease-in;
@@ -10542,7 +10548,7 @@ header .activeShoppingcart {
     --carousel-button-svg-stroke-width: 2.5;
 }
 
-    #mainCarousel .carousel__slide {
+/*    #mainCarousel .carousel__slide {
         width: 100%;
         padding: 10px;
     }
@@ -10607,7 +10613,7 @@ header .activeShoppingcart {
 
 #thumbCarousel .is-nav-selected {
     border-bottom: 2px solid #fed700;
-}
+}*/
 
 .carousel__nav .carousel__button {
     background: none !important;
@@ -10630,6 +10636,146 @@ header .activeShoppingcart {
 .spProductWrapper .carousel__nav {
     display:none !important;
 }
+
+/*#mainCarousel2 .carousel__slide {
+    width: 100%;
+    padding: 10px;
+}
+
+#mainCarousel2 .carousel__button.is-prev {
+    left: -1.5rem;
+}
+
+#mainCarousel2 .carousel__button.is-next {
+    right: -1.5rem;
+}
+
+#mainCarousel2 .carousel__button:focus {
+    outline: none;
+}
+
+#thumbCarousel2 {
+    margin-top: 12px;
+}
+
+    #thumbCarousel2 .carousel__slide {
+        opacity: 0.9;
+        margin: 0.25rem;
+        width: 96px;
+        height: 64px;
+        padding: 10px;
+    }
+
+        #thumbCarousel2 .carousel__slide img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        #thumbCarousel2 .carousel__slide.is-nav-selected {
+            opacity: 1;
+        }
+
+    #thumbCarousel2 .carousel__slide {
+        border: 1px solid #dddddd;
+        border-bottom: 2px solid #dddddd;
+        height: auto;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+        margin: 0px;
+        margin-right: 5px;
+        width: calc((100% - 20px) / 4) !important;
+    }
+
+        #thumbCarousel2 .carousel__slide img {
+            -o-object-fit: cover !important;
+            object-fit: cover !important;
+        }
+
+        #thumbCarousel2 .carousel__slide:last-child {
+            margin-right: 0px;
+        }
+
+        #thumbCarousel2 .carousel__slide:hover {
+            border-bottom: 2px solid #fed700;
+        }
+
+    #thumbCarousel2 .is-nav-selected {
+        border-bottom: 2px solid #fed700;
+    }*/
+
+
+.mainCarousel .carousel__slide {
+    width: 100%;
+    padding: 10px;
+}
+
+.mainCarousel .carousel__button.is-prev {
+    left: -1.5rem;
+}
+
+.mainCarousel .carousel__button.is-next {
+    right: -1.5rem;
+}
+
+.mainCarousel .carousel__button:focus {
+    outline: none;
+}
+
+.thumbCarousel {
+    margin-top: 12px;
+}
+
+    .thumbCarousel .carousel__slide {
+        opacity: 0.9;
+        margin: 0.25rem;
+        width: 96px;
+        height: 64px;
+        padding: 10px;
+    }
+
+        .thumbCarousel .carousel__slide img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .thumbCarousel .carousel__slide.is-nav-selected {
+            opacity: 1;
+        }
+
+    .thumbCarousel .carousel__slide {
+        border: 1px solid #dddddd;
+        border-bottom: 2px solid #dddddd;
+        height: auto;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+        margin: 0px;
+        margin-right: 5px;
+        width: calc((100% - 20px) / 4) !important;
+    }
+
+        .thumbCarousel .carousel__slide img {
+            -o-object-fit: cover !important;
+            object-fit: cover !important;
+        }
+
+        .thumbCarousel .carousel__slide:last-child {
+            margin-right: 0px;
+        }
+
+        .thumbCarousel .carousel__slide:hover {
+            border-bottom: 2px solid #fed700;
+        }
+
+    .thumbCarousel .is-nav-selected {
+        border-bottom: 2px solid #fed700;
+    }
+
 
 footer {
     background-color: white;

@@ -81,5 +81,19 @@ $(document).ready(function () {
         $(".productlistpageLeftside").removeClass("activefilterside");
     });
     // -----------
+    $(document).ready(function () {
+        let filtername = document.querySelector('.sotyByFilterName')
+        if (filtername.innerHTML.length == 0) {
+            filtername.innerHTML = "Name, A-Z";
+        }
+        $(".filterItem").click(function () {
+            /*var test = this.innerHTML;*/
+            localStorage.ClassName = this.innerHTML;
+        })
 
+        $(document).ready(function () {
+            let test = document.querySelector(".sotyByFilterName");
+            test.innerHTML = localStorage.ClassName;
+        })
+    })
 });
