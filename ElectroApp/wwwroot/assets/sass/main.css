@@ -29,6 +29,17 @@ body ::-webkit-scrollbar-thumb:hover {
 header .topheader {
   border-bottom: 1px solid #eaebec;
 }
+.moreSpecs {
+    position: relative;
+    left: -35px;
+    color: #333e48;
+    text-decoration:none;
+    font-size:15px;
+    transition:0.2s ease-in-out;
+}
+    .moreSpecs:hover {
+        color: #ee0000;
+    }
 .quickVContent {
     border-radius: 20px;
 }
@@ -7365,6 +7376,7 @@ header .activeShoppingcart {
   font-family: "Open Sans", sans-serif;
   color: #333e48;
   font-weight: 400;
+  margin-bottom:0px;
 }
 
 #detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .smdesc {
@@ -7481,7 +7493,7 @@ header .activeShoppingcart {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 28px 0 15px;
+  margin: 10px 0 15px;
 }
 
 #detailspage .productdetails .productcontent-wrapper .right .right-action-wrapper .product-info form .action-button .add-to-cart {

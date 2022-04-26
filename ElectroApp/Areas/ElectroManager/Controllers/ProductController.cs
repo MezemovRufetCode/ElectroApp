@@ -64,8 +64,12 @@ namespace ElectroApp.Areas.ElectroManager.Controllers
                 };
                 product.ProductCategories.Add(prCat);
             }
-
-            if (product.ImageFiles.Count > 6 || product.ImageFiles.Count < 1)
+            if (product.ImageFiles == null)
+            {
+                ModelState.AddModelError("ImageFiles", "Don't forget to add image");
+                return View();
+            }
+            if (product.ImageFiles.Count > 8 || product.ImageFiles.Count < 1)
             {
                 ModelState.AddModelError("ImageFiles", "You can choose min-1,max 6 images");
                 return View();

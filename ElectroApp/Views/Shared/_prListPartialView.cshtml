@@ -40,11 +40,11 @@
                         <div class="productPrice">
                             @if (product.CampaignId == null)
                             {
-                                <p class="CurrentPrice">$@(Math.Floor((product.Price)*100)/100)</p>
+                                <p class="CurrentPrice">$@(Math.Floor((product.Price) * 100) / 100)</p>
                             }
                             else
                             {
-                                <p class="CurrentPrice">$@(Math.Floor((product.Price*(100-product.Campaign.DiscountPercent)/100)*100)/100)<span class="oldPrice">$@product.Price</span></p>
+                                <p class="CurrentPrice">$@(Math.Floor((product.Price * (100 - product.Campaign.DiscountPercent) / 100) * 100) / 100)<span class="oldPrice">$@product.Price</span></p>
                             }
                         </div>
                         <a asp-controller="product" asp-action="addbasket" asp-route-id="@product.Id" class="addToBasket">
@@ -67,9 +67,20 @@
                             </a>
                         </p>
                         <ul class="specy">
-                            @foreach (var spec in product.Specs)
+                            @if (product.Specs.Count <= 6)
                             {
-                                <li>@spec.Name @spec.Value</li>
+                                @foreach (var spec in product.Specs)
+                                {
+                                    <li>@spec.Name @spec.Value</li>
+                                }
+                            }
+                            else
+                            {
+                                @foreach (var spec in product.Specs.Take(5))
+                                {
+                                    <li>@spec.Name @spec.Value</li>
+                                }
+                                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id" class="moreSpecs">Go details page for to see other specs</a>
                             }
                         </ul>
                     </div>

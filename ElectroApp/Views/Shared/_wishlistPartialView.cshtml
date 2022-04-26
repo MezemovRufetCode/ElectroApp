@@ -53,7 +53,14 @@
                         <a href="">@item.Product.Name</a>
                     </div>
                     <div class="stockContidition">
-                        <span>@item.Product.InStock</span>
+                        @if (item.Product.InStock)
+                        {
+                            <span class="text-success" style="font-weight:bold;">In stock</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger" style="font-weight:bold;">Out of stock</span>
+                        }
                     </div>
                 </div>
                 <div class="action wlistItem">

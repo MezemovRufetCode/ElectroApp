@@ -258,7 +258,7 @@
                     </script>
                     <div class="productsByCat col-lg-8 col-md-6 col-sm-12 col-12">
                         <div class="byCat">
-                            @foreach (Product product in Model.Products.OrderByDescending(p => p.Id).Take(9))
+                            @foreach (Product product in Model.Products.OrderByDescending(p => p.Id).Take(8))
                             {
                                 if (!product.IsSpecial)
                                 {
@@ -533,7 +533,7 @@
                     </script>
                     <div class="productsByCat col-lg-8 col-md-7 col-sm-12 col-12">
                         <div class="byCat">
-                            @foreach (Product product in Model.Products.Where(p => p.CampaignId != null).OrderByDescending(p => p.Campaign.DiscountPercent).Take(11))
+                            @foreach (Product product in Model.Products.Where(p => p.CampaignId != null).OrderByDescending(p => p.Campaign.DiscountPercent).Take(9))
                             {
                                 if (!product.IsSpecial)
                                 {
@@ -1697,9 +1697,14 @@
                         <div class="productWrapper">
                             @foreach (var product in Model.Products.OrderByDescending(p => p.Id).Skip(4).Take(1))
                             {
+
+
                                 <div class="product">
                                     <div class="productContent">
-                                        <p class="discountSp">Save<br><span class="discountPercent">@product.Campaign.DiscountPercent%</span></p>
+                                        @if (product.CampaignId != null)
+                                        {
+                                            <p class="discountSp">Save<br><span class="discountPercent">@product.Campaign.DiscountPercent%</span></p>
+                                        }
                                         <div class="topProduct">
                                             <p class="brandName"><a href="#">@product.Brand.Name</a></p>
                                             <p class="productName"><a href="#">@product.Name</a></p>
@@ -3426,7 +3431,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
